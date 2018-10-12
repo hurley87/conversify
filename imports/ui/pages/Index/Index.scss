@@ -1,0 +1,25 @@
+$primaryColor: #00ae57;
+
+
+h1 {
+	margin-bottom: 0px !important;
+}
+
+.tagline {
+	margin: 50px;
+}
+
+.get-started {
+	background-color: $primaryColor;
+    color: #fff;
+    padding: 10px;
+    max-width: 200px;
+    display: block;
+    border-radius: 3px;
+    margin: auto;
+}
+
+.get-started:hover {
+	color: #fff;
+	text-decoration: none;
+}

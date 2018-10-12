@@ -1,0 +1,109 @@
+$primaryColor: #00ae57;
+
+.Chats {
+	img {
+
+	}
+	.result p:hover {
+		background-color: #fafafa;
+		border-radius: 2px;
+	}
+  .thread {
+    padding-top: 0px;
+  }
+
+}
+
+.question {
+  height: 200px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 5px 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 10px;
+
+}
+.statement {
+  position: absolute;
+  bottom: 0px;
+  background-color: #4b507a;
+  color: #fff;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  margin: 0px;
+  padding: 5px 10px;
+  min-height: 50px;
+}
+
+.poll-btn {
+  flex: 1 1 auto;
+  color: #fff;
+  position: relative;
+  overflow:hidden;
+  transition: .5s;
+  text-decoration: none;
+  border: 1px solid #fff;
+  border-radius: 3px;
+	width: 100%;
+	margin: 0px;
+	padding: 10px;
+	background-color: $primaryColor;
+	color: #fff !important;
+  max-width: 400px;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  text-decoration: none;
+
+  &:after {
+    position: absolute;
+    transition: .3s;
+    content: '';
+    width: 0;
+    left: 50%;
+    bottom: 0;
+    height: 3px;
+    background: #fff;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: white !important;
+    text-decoration: none;
+
+    &:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.poll-btn.clear {
+  background-color: #fff;
+  color: $primaryColor !important;
+  border: 1px solid $primaryColor;
+
+  &:after {
+    background: $primaryColor;
+  }
+
+}
+
+.login-box {
+	width: 300px;
+	margin: auto;
+	padding-top: 50px;
+}
+
+
+ @media screen and (max-width: 640px) {
+  .login-box {
+    width: 100%;
+  }
+  .thread {
+    padding: 0px;
+  }
+ }
