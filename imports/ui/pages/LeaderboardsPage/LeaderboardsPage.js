@@ -15,15 +15,15 @@ class HomePageDatePicker extends React.Component {
 	dateObj.setHours(dateObj.getHours() - 4);
 	var month = dateObj.getUTCMonth();
 	var month2 = dateObj.getUTCMonth() + 1;
-	var day = dateObj.getUTCDate();
-	var day2 = day + 1
+	var day = dateObj.getUTCDate() - 7;
+	var day2 = day + 7
 	var year = dateObj.getUTCFullYear();
 
 	if(month.toString().length == 1){ month = '0' + month }
 	if(month2.toString().length == 1){ month2 = '0' + month2 }
 	if(day.toString().length == 1){ day = '0' + day }
 
-	let today = year + "-" + month + '-' + day
+	let today = year + "-" + month2 + '-' + day
 	let tomorrow = year + "-" + month2 + '-' + day2
 
     this.state = {
@@ -68,7 +68,6 @@ class HomePageDatePicker extends React.Component {
         <div>
 	    <Row>
 	      <Col xs={12}>
-		      <h3>LinkdIn Metrics</h3>
           </Col>
           <br />
           <Col xs={12}>
