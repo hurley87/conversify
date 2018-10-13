@@ -25,9 +25,9 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             <tr>
               <th>#</th>
               <th>Account</th>
-              <th>Contacts</th>
-              <th>CRs</th>
-              <th>NCs</th>
+              <th>Requests</th>
+              <th>Connections</th>
+              <th>Connection Rate</th>
               <th>Replies</th>
               <th>Reply Rate</th>
             </tr>
@@ -39,11 +39,11 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                 <tr>
                   <td>{i + 1}</td>
                   <td>{stat.name}</td>
-                  <td>{numberWithCommas(stat.num_contacts)}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
                   <td>{numberWithCommas(stat.new_CR)}</td>
+                  <td>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%</td>
                   <td>{numberWithCommas(stat.replies)}</td>
-                  <td>{(stat.replies / stat.num_contacts * 100).toFixed(2)}%</td>
+                  <td>{(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%</td>
                 </tr>
               )
             })
@@ -52,17 +52,20 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         </Table>
       </Col>
       <Col sm={12} md={2}>
-        <h5>Contacts</h5>
-        <h3>{numberWithCommas(leaderboards.length)}</h3>
-        <hr />
-        <h5>CRs</h5>
+        <h5>Requests</h5>
         <h3>{numberWithCommas(first_msgs)}</h3>
         <hr />
-        <h5>NCs</h5>
+        <h5>Connections</h5>
         <h3>{numberWithCommas(ncs)}</h3>
+        <hr />
+        <h5>Connection Rate</h5>
+        <h3>{(ncs/first_msgs*100).toFixed(2)}%</h3>
         <hr />
         <h5>Replies</h5>
         <h3>{numberWithCommas(replies)}</h3>
+        <hr />
+        <h5>Reply Rate</h5>
+        <h3>{(replies/first_msgs*100).toFixed(2)}%</h3>
         <hr />
       </Col>
     </Row>

@@ -59,9 +59,9 @@ const Leaderboards = ({
             <tr>
               <th>#</th>
               <th>Account</th>
-              <th>Contacts</th>
               <th>CRs</th>
               <th>NCs</th>
+              <th>New Connection Rate</th>
               <th>Replies</th>
               <th>Reply Rate</th>
             </tr>
@@ -73,11 +73,11 @@ const Leaderboards = ({
                 <tr>
                   <td>{i + 1}</td>
                   <td>{stat.name}</td>
-                  <td>{numberWithCommas(stat.num_contacts)}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
                   <td>{numberWithCommas(stat.new_CR)}</td>
+                  <td>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%</td>
                   <td>{numberWithCommas(stat.replies)}</td>
-                  <td>{(stat.replies / stat.num_contacts * 100).toFixed(2)}%</td>
+                  <td>{(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%</td>
                 </tr>
               )
             })
@@ -86,9 +86,6 @@ const Leaderboards = ({
         </Table>
       </Col>
       <Col sm={12} md={2}>
-        <h5>Contacts</h5>
-        <h3>{numberWithCommas(Leaderboards.length)}</h3>
-        <hr />
         <h5>CRs</h5>
         <h3>{numberWithCommas(first_msgs)}</h3>
         <hr />
