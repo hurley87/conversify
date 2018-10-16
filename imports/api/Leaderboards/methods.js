@@ -14,7 +14,7 @@ Meteor.methods({
     try {
       return Leaderboards.update({ 'Person Linkedin Url': linkedInUrl }, {
       	$set: {
-      		"First Message Reply Sentiment": sentiment
+      		"Third Message Reply Sentiment": sentiment
       	}
       });
     } catch (exception) {

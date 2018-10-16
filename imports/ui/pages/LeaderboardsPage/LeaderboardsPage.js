@@ -71,6 +71,9 @@ class HomePageDatePicker extends React.Component {
           </Col>
           <br />
           <Col xs={12}>
+	          <a href='/responses'>Responses</a>
+	          <br />
+	          <br />
 	          <DateRangePicker
 	            {...this.props}
 	            onDatesChange={this.onDatesChange}

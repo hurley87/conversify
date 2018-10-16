@@ -15,7 +15,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies }) => ( !loading ? (
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime }) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
     <Row>
@@ -30,6 +30,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Connection Rate</th>
               <th>Replies</th>
               <th>Reply Rate</th>
+              <th>PRs</th>
+              <th>PR Rate</th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +46,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   <td>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%</td>
                   <td>{numberWithCommas(stat.replies)}</td>
                   <td>{(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%</td>
+                  <td>{stat.positives}</td>
+                  <td>{(stat.positives / stat.num_crs_sent * 100).toFixed(2)}%</td>
                 </tr>
               )
             })
@@ -66,6 +70,12 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <hr />
         <h5>Reply Rate</h5>
         <h3>{(replies/first_msgs*100).toFixed(2)}%</h3>
+        <hr />
+        <h5>PRs</h5>
+        <h3>{prtime}</h3>
+        <hr />
+        <h5>PRs Rate</h5>
+        <h3>{(prtime/first_msgs*100).toFixed(2)}%</h3>
         <hr />
       </Col>
     </Row>
@@ -103,9 +113,12 @@ export default createContainer((props) => {
 	  const accounts = leaderboards.groupBy('account_owner')
 	  const names = []
 	  for(var k in accounts) names.push(k)
-	  // console.log(names);
 
-	  // console.log(accounts)
+    const prtime = leaderboards.reduce(function (n, replies) {
+          return n + (replies["Third Message Reply Sentiment"] == 'positive');
+      }, 0);
+    console.log('HEYYYYY')
+    console.log(prtime)
 
 	  let stats = []
 
@@ -121,15 +134,17 @@ export default createContainer((props) => {
 	      num_crs_sent: get_stat(collection, "First Message Sent", true),
 	      new_CR: get_stat(collection, "CR Accepted", true),
 	      replies: get_stat(collection, "replied", true),
-	      positives: get_stat(collection, "First Message Reply Sentiment", 'positive'),
-	      neutrals: get_stat(collection, "First Message Reply Sentiment", 'neutral'),
-	      negatives: get_stat(collection, "First Message Reply Sentiment", 'negative'),
-	      points: 2*get_stat(collection, "First Message Reply Sentiment", 'positive') + get_stat(collection, "First Message Reply Sentiment", 'neutral') - get_stat(collection, "First Message Reply Sentiment", 'negative')
+	      positives: get_stat(collection, "Third Message Reply Sentiment", 'positive'),
+	      neutrals: get_stat(collection, "Third Message Reply Sentiment", 'neutral'),
+	      negatives: get_stat(collection, "Third Message Reply Sentiment", 'negative'),
+	      points: 2*get_stat(collection, "Third Message Reply Sentiment", 'positive') + get_stat(collection, "First Message Reply Sentiment", 'neutral') - get_stat(collection, "First Message Reply Sentiment", 'negative')
 	    })
 	  })
 
 
-	  stats = _.sortBy(stats, ['replies'])
+	  stats = _.sortBy(stats, ['positives'])
+
+    console.log(stats)
 
 	  return {
 	    loading: !subscription.ready(),
@@ -137,7 +152,8 @@ export default createContainer((props) => {
 	    stats: stats,
 	    first_msgs: first_msgs,
 	    ncs: ncs,
-	    replies: replies
+	    replies: replies,
+      prtime: prtime
 
 	  };
 }, LeaderboardsContainer);

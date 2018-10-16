@@ -31,9 +31,17 @@ const Responses = ({
 
       return(
           <div>
-            <h5>{response["collection"]+ " "+response["First Name"] + " " + response["Last Name"]}: {response["First Message Reply Text"]}</h5>
+            <h5>{response["account_owner"]+ " - " + response["First Name"] + " " + response["Last Name"]}</h5>
             <br />
-            <p>Sentiment: {response['First Message Reply Sentiment']}</p>
+            {
+              response.messages.map((message) =>{
+                return (
+                  <p><b>{ message.name  }</b>: {message.text}</p>
+                )
+              })
+
+            }
+            <p>Sentiment: {response['Third Message Reply Sentiment']}</p>
             <Button onClick={() => updateSentiment(response['Person Linkedin Url'], 'positive')} bsStyle="success">Positive</Button>
             <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'neutral')}  bsStyle="warning">Neutral</Button>
             <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'negative')}  bsStyle="danger">Negative</Button>
@@ -58,7 +66,8 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('leaderboards');
 
   let Responses = LeaderboardsCollection.find({
-    "First Message Reply": true
+    "replied": true,
+    "Third Message Reply Sentiment": ""
   }).fetch();
 
   console.log(Responses)

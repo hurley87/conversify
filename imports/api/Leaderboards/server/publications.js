@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import Leaderboards from '../Leaderboards';
 
 Meteor.publish('leaderboards', function leaderboards() {
-  return Leaderboards.find({});
+  return Leaderboards.find({ "Third Message Reply Sentiment": "" });
 });
 
 Meteor.publish('leaderboards.list', function leaderboardsList(startDate, endDate) {
