@@ -8,9 +8,6 @@ Meteor.methods({
     check(linkedInUrl, String)
     check(sentiment, String)
 
-    console.log(sentiment)
-    console.log(linkedInUrl)
-
     try {
       return Leaderboards.update({ 'Person Linkedin Url': linkedInUrl }, {
       	$set: {

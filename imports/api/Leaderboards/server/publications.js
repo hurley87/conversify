@@ -10,9 +10,6 @@ Meteor.publish('leaderboards.list', function leaderboardsList(startDate, endDate
   check(startDate, String);
   check(endDate, String);
 
-  console.log(startDate)
-  console.log(endDate)
-
   let selector = {
   	"First Message Sent Date" : { 
         $gte: new Date(startDate),

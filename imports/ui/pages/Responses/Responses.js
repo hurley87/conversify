@@ -25,13 +25,15 @@ const Responses = ({
 }) => (!loading ?  (
   <div className="Responses">
     <br />
+    <a href='/leaderboard'>Leaderboard</a>
+    <br />
     <br />
     {
       Responses.map((response) => {
 
       return(
           <div>
-            <h5>{response["account_owner"]+ " - " + response["First Name"] + " " + response["Last Name"]}</h5>
+            <h5>{response["account_owner"]+ " - " + response["linkedin_username"]}</h5>
             <br />
             {
               response.messages.map((message) =>{
@@ -41,7 +43,6 @@ const Responses = ({
               })
 
             }
-            <p>Sentiment: {response['Third Message Reply Sentiment']}</p>
             <Button onClick={() => updateSentiment(response['Person Linkedin Url'], 'positive')} bsStyle="success">Positive</Button>
             <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'neutral')}  bsStyle="warning">Neutral</Button>
             <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'negative')}  bsStyle="danger">Negative</Button>
