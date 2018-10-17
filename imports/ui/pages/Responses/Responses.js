@@ -28,6 +28,7 @@ const Responses = ({
     <a href='/leaderboard'>Leaderboard</a>
     <br />
     <br />
+    { Responses.length == 0 ? <p>All responses are labeled</p> : null }
     {
       Responses.map((response) => {
 

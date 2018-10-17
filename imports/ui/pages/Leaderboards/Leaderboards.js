@@ -64,6 +64,8 @@ const Leaderboards = ({
               <th>New Connection Rate</th>
               <th>Replies</th>
               <th>Reply Rate</th>
+              <th>Neutrals</th>
+              <th>Negatives</th>
             </tr>
           </thead>
           <tbody>
@@ -78,6 +80,8 @@ const Leaderboards = ({
                   <td>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%</td>
                   <td>{numberWithCommas(stat.replies)}</td>
                   <td>{(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%</td>
+                  <td>{stat.neutrals}</td>
+                  <td>{stat.negatives}</td>
                 </tr>
               )
             })
@@ -126,9 +130,6 @@ export default withTracker(() => {
   const accounts = Leaderboards.groupBy('account_owner')
   const names = []
   for(var k in accounts) names.push(k)
-  // console.log(names);
-
-  // console.log(accounts)
 
   let stats = []
 
