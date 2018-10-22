@@ -9,7 +9,7 @@ Meteor.methods({
     check(sentiment, String)
 
     try {
-      return Leaderboards.update({ 'Person Linkedin Url': linkedInUrl }, {
+      return Leaderboards.update({ 'linkedin_url': linkedInUrl }, {
       	$set: {
       		"Third Message Reply Sentiment": sentiment
       	}

@@ -58,22 +58,13 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <h3>{numberWithCommas(first_msgs)}</h3>
         <hr />
         <h5>Connections</h5>
-        <h3>{numberWithCommas(ncs)}</h3>
-        <hr />
-        <h5>Connection Rate</h5>
-        <h3>{(ncs/first_msgs*100).toFixed(2)}%</h3>
+        <h3>{numberWithCommas(ncs)} <small>{(ncs/first_msgs*100).toFixed(2)}%</small></h3>
         <hr />
         <h5>Replies</h5>
-        <h3>{numberWithCommas(replies)}</h3>
-        <hr />
-        <h5>Reply Rate</h5>
-        <h3>{(replies/first_msgs*100).toFixed(2)}%</h3>
+        <h3>{numberWithCommas(replies)} <small>{(replies/first_msgs*100).toFixed(2)}%</small></h3>
         <hr />
         <h5>PRs</h5>
-        <h3>{prtime}</h3>
-        <hr />
-        <h5>PRs Rate</h5>
-        <h3>{(prtime/first_msgs*100).toFixed(2)}%</h3>
+        <h3>{prtime} <small>{(prtime/first_msgs*100).toFixed(2)}%</small></h3>
         <hr />
       </Col>
     </Row>
@@ -91,13 +82,10 @@ LeaderboardsContainer.propTypes = {
 
 export default createContainer((props) => {
 
-	console.log(props)
-
 	const subscription = Meteor.subscribe('leaderboards.list', props.startDate, props.endDate);
 
 	let leaderboards = LeaderboardsCollection.find().fetch();
 
-	  console.log(leaderboards)
 
 	  const first_msgs = leaderboards.reduce(function (n, first_msgs) {
 	        return n + (first_msgs["First Message Sent"] == true);
@@ -115,8 +103,6 @@ export default createContainer((props) => {
     const prtime = leaderboards.reduce(function (n, replies) {
           return n + (replies["Third Message Reply Sentiment"] == 'positive');
       }, 0);
-    console.log('HEYYYYY')
-    console.log(prtime)
 
 	  let stats = []
 

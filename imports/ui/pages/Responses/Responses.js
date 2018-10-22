@@ -10,6 +10,9 @@ import Loading from '../../components/Loading/Loading';
 
 const updateSentiment = (linkedInUrl, sentiment) => {
 
+  console.log(linkedInUrl)
+  console.log(sentiment)
+
   Meteor.call('updateSentiment', linkedInUrl, sentiment, (error) => {
     if (error) {
       console.log(error.reason, 'success');
@@ -34,7 +37,7 @@ const Responses = ({
 
       return(
           <div>
-            <h5>{response["account_owner"]+ " - " + response["linkedin_username"]}</h5>
+            <h5>{response["account_owner"]+ " - " + response["username"]}</h5>
             <br />
             {
               response.messages.map((message) =>{
@@ -44,9 +47,9 @@ const Responses = ({
               })
 
             }
-            <Button onClick={() => updateSentiment(response['Person Linkedin Url'], 'positive')} bsStyle="success">Positive</Button>
-            <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'neutral')}  bsStyle="warning">Neutral</Button>
-            <Button  onClick={() => updateSentiment(response['Person Linkedin Url'], 'negative')}  bsStyle="danger">Negative</Button>
+            <Button onClick={() => updateSentiment(response['linkedin_url'], 'positive')} bsStyle="success">Positive</Button>
+            <Button  onClick={() => updateSentiment(response['linkedin_url'], 'neutral')}  bsStyle="warning">Neutral</Button>
+            <Button  onClick={() => updateSentiment(response['linkedin_url'], 'negative')}  bsStyle="danger">Negative</Button>
             <br/><hr/>
           </div>
         )
