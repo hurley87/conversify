@@ -15,7 +15,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime }) => ( !loading ? (
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats }) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
     <Row>
@@ -24,7 +24,43 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <thead>
             <tr>
               <th>#</th>
+              <th>CGM</th>
+              <th>Accounts</th>
+              <th>Requests</th>
+              <th>Connections</th>
+              <th>Replies</th>
+              <th>PRs</th>
+              <th>Neutrals</th>
+              <th>Negatives</th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            owner_stats.reverse().map((stat, i) =>{
+              return (
+                <tr>
+                  <td>{i + 1}</td>
+                  <td>{stat.owner}</td>
+                  <td>{stat.num_contacts}</td>
+                  <td>{numberWithCommas(stat.num_crs_sent)}</td>
+                  <td>{numberWithCommas(stat.new_CR)} ({(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%)</td>
+                  <td>{numberWithCommas(stat.replies)} ({(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%)</td>
+                  <td>{stat.positives} ({(stat.positives / stat.num_crs_sent * 100).toFixed(2)}%)</td>
+                  <td>{stat.neutrals}</td>
+                  <td>{stat.negatives}</td>
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </Table>
+        <br />
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>#</th>
               <th>Account</th>
+              <th>Owner</th>
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
@@ -40,6 +76,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                 <tr>
                   <td>{i + 1}</td>
                   <td>{stat.name}</td>
+                  <td>{stat.account}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
                   <td>{numberWithCommas(stat.new_CR)} ({(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%)</td>
                   <td>{numberWithCommas(stat.replies)} ({(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%)</td>
@@ -112,8 +149,63 @@ export default createContainer((props) => {
 
 	  names.map(name => {
 	    const collection = accounts[name]
+      let account = 'na'
+      switch(name){
+        case "haris@growthgenius.com":
+          account = 'Suthen';
+          break;
+        case "jj@growthgenius.com":
+          account = 'Suthen';
+          break;
+        case "berlin@growthgenius.com":
+          account = 'Suthen';
+          break;
+        case "ashley@smartboxdentalmarketing.com":
+          account = 'Andrew';
+          break;
+        case 'qing@clearbanc.com':
+          account = 'Nizar';
+          break;
+        case "11sa82@queensu.ca":
+          account = 'Dave'
+          break;
+        case "jeremeholiman@gmail.com":
+          account = 'Suthen'
+          break;
+        case "sassnorth":
+          account = 'Suthen'
+          break;
+        case "reitano":
+          account = 'Suthen'
+          break;
+        case "riipen":
+          account = 'Suthen'
+          break;
+        case "noticed":
+          account = 'Suthen'
+          break;
+        case "fundscott":
+          account = 'Andrew'
+          break;
+        case "lng":
+          account = 'Andrew'
+          break;
+        case "papaya":
+          account = 'Andrew'
+          break;
+        case "papaya":
+          account = 'Andrew'
+          break;
+        case "shelf":
+          account = 'Andrew'
+          break;
+        case "icm_hub":
+          account = 'Dave'
+          break;
+      }
 	    stats.push({
 	      name: name,
+        account: account,
 	      num_contacts: collection.length,
 	      num_crs_sent: get_stat(collection, "First Message Sent", true),
 	      new_CR: get_stat(collection, "CR Accepted", true),
@@ -125,10 +217,35 @@ export default createContainer((props) => {
 	    })
 	  })
 
-
 	  stats = _.sortBy(stats, ['positives'])
 
-    console.log(stats)
+    let leads = stats.groupBy('account')
+
+    const owners = []
+    for(var k in leads) owners.push(k)
+
+
+    function get_owner_stat(collection, str) {
+      return collection.reduce(function (n, collection) { return n + collection[str] }, 0);
+    }
+
+    let owner_stats = []
+
+    owners.map(owner => {
+      const owner_collection = leads[owner]
+      owner_stats.push({
+        owner: owner,
+        num_contacts: owner_collection.length,
+        num_crs_sent: get_owner_stat(owner_collection, "num_crs_sent"),
+        new_CR: get_owner_stat(owner_collection, "new_CR"),
+        replies: get_owner_stat(owner_collection, "replies"),
+        positives: get_owner_stat(owner_collection, "positives"),
+        neutrals: get_owner_stat(owner_collection, "neutrals"),
+        negatives: get_owner_stat(owner_collection, "negatives"),
+      })
+    })
+
+    owner_stats = _.sortBy(owner_stats, ['positives'])
 
 	  return {
 	    loading: !subscription.ready(),
@@ -137,7 +254,8 @@ export default createContainer((props) => {
 	    first_msgs: first_msgs,
 	    ncs: ncs,
 	    replies: replies,
-      prtime: prtime
+      prtime: prtime,
+      owner_stats: owner_stats
 
 	  };
 }, LeaderboardsContainer);

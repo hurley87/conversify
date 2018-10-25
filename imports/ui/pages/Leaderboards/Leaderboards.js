@@ -121,6 +121,7 @@ export default withTracker(() => {
   const first_msgs = Leaderboards.reduce(function (n, first_msgs) {
         return n + (first_msgs["First Message Sent"] == true);
     }, 0);
+
   const ncs = Leaderboards.reduce(function (n, ncs) {
         return n + (ncs["CR Accepted"] == true);
     }, 0);
@@ -139,6 +140,7 @@ export default withTracker(() => {
 
   names.map(name => {
     const collection = accounts[name]
+    
     stats.push({
       name: name,
       num_contacts: collection.length,
