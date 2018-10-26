@@ -30,8 +30,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Connections</th>
               <th>Replies</th>
               <th>PRs</th>
-              <th>Neutrals</th>
-              <th>Negatives</th>
             </tr>
           </thead>
           <tbody>
@@ -43,11 +41,9 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   <td>{stat.owner}</td>
                   <td>{stat.num_contacts}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
-                  <td>{numberWithCommas(stat.new_CR)} ({(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{numberWithCommas(stat.replies)} ({(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{stat.positives} ({(stat.positives / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{stat.neutrals}</td>
-                  <td>{stat.negatives}</td>
+                  <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
+                  <td>{numberWithCommas(stat.replies)} (<small>{(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
+                  <td>{stat.positives} (<small>{(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
                 </tr>
               )
             })
@@ -65,8 +61,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Connections</th>
               <th>Replies</th>
               <th>PRs</th>
-              <th>Neutrals</th>
-              <th>Negatives</th>
             </tr>
           </thead>
           <tbody>
@@ -78,11 +72,9 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   <td>{stat.name}</td>
                   <td>{stat.account}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
-                  <td>{numberWithCommas(stat.new_CR)} ({(stat.new_CR / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{numberWithCommas(stat.replies)} ({(stat.replies / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{stat.positives} ({(stat.positives / stat.num_crs_sent * 100).toFixed(2)}%)</td>
-                  <td>{stat.neutrals}</td>
-                  <td>{stat.negatives}</td>
+                  <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
+                  <td>{numberWithCommas(stat.replies)} (<small>{(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
+                  <td>{stat.positives} (<small>{(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
                 </tr>
               )
             })
@@ -95,13 +87,13 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <h3>{numberWithCommas(first_msgs)}</h3>
         <hr />
         <h5>Connections</h5>
-        <h3>{numberWithCommas(ncs)} <small>{(ncs/first_msgs*100).toFixed(2)}%</small></h3>
+        <h3>{numberWithCommas(ncs)} <small>{(ncs/first_msgs*100).toFixed(1)}%</small></h3>
         <hr />
         <h5>Replies</h5>
-        <h3>{numberWithCommas(replies)} <small>{(replies/first_msgs*100).toFixed(2)}%</small></h3>
+        <h3>{numberWithCommas(replies)} <small>{(replies/first_msgs*100).toFixed(1)}%</small></h3>
         <hr />
         <h5>PRs</h5>
-        <h3>{prtime} <small>{(prtime/first_msgs*100).toFixed(2)}%</small></h3>
+        <h3>{prtime} <small>{(prtime/first_msgs*100).toFixed(1)}%</small></h3>
         <hr />
       </Col>
     </Row>
