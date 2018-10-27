@@ -24,39 +24,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <thead>
             <tr>
               <th>#</th>
-              <th>CGM</th>
-              <th>Accounts</th>
-              <th>Requests</th>
-              <th>Connections</th>
-              <th>Replies</th>
-              <th>PRs</th>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            owner_stats.reverse().map((stat, i) =>{
-              return (
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>{stat.owner}</td>
-                  <td>{stat.num_contacts}</td>
-                  <td>{numberWithCommas(stat.num_crs_sent)}</td>
-                  <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
-                  <td>{numberWithCommas(stat.replies)} (<small>{(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
-                  <td>{stat.positives} (<small>{(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
-                </tr>
-              )
-            })
-          }
-          </tbody>
-        </Table>
-        <br />
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>#</th>
               <th>Account</th>
-              <th>Owner</th>
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
@@ -70,7 +38,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                 <tr>
                   <td>{i + 1}</td>
                   <td>{stat.name}</td>
-                  <td>{stat.account}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
                   <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
                   <td>{numberWithCommas(stat.replies)} (<small>{(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
