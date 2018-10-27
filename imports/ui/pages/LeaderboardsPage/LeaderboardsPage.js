@@ -6,6 +6,7 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import LeaderboardsContainer from '../LeaderboardsContainer/LeaderboardsContainer'
+import ContactsContainer from '../ContactsContainer/ContactsContainer';
 
 
 class HomePageDatePicker extends React.Component {
@@ -70,7 +71,7 @@ class HomePageDatePicker extends React.Component {
 	      <Col xs={12}>
           </Col>
           <br />
-          <Col xs={12}>
+          <Col xs={12} sm={8}>
 	          <a href='/responses'>Responses</a>
 	          <br />
 	          <br />
@@ -92,6 +93,9 @@ class HomePageDatePicker extends React.Component {
 	           <br />
 	           <br />
 	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
+           </Col>
+           <Col xs={12} sm={4}>
+           		<ContactsContainer />
            </Col>
         </Row>   
         </div>

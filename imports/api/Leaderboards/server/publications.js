@@ -9,6 +9,13 @@ Meteor.publish('leaderboards', function leaderboards() {
   });
 });
 
+Meteor.publish('contactsLeft', function contactsLeft() {
+  return Leaderboards.find({ 
+    "First Message Sent": false,
+    "Bad LinkedIn Url": false
+  });
+});
+
 Meteor.publish('leaderboards.list', function leaderboardsList(startDate, endDate) {
   check(startDate, String);
   check(endDate, String);

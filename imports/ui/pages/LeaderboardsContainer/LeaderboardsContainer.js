@@ -19,11 +19,10 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
     <Row>
-      <Col sm={12} md={10}>
+      <Col sm={12}>
         <Table responsive>
           <thead>
             <tr>
-              <th>#</th>
               <th>Account</th>
               <th>Requests</th>
               <th>Connections</th>
@@ -36,7 +35,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             stats.reverse().map((stat, i) =>{
               return (
                 <tr>
-                  <td>{i + 1}</td>
                   <td>{stat.name}</td>
                   <td>{numberWithCommas(stat.num_crs_sent)}</td>
                   <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
@@ -49,22 +47,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           </tbody>
         </Table>
       </Col>
-      <Col sm={12} md={2}>
-        <h5>Requests</h5>
-        <h3>{numberWithCommas(first_msgs)}</h3>
-        <hr />
-        <h5>Connections</h5>
-        <h3>{numberWithCommas(ncs)} <small>{(ncs/first_msgs*100).toFixed(1)}%</small></h3>
-        <hr />
-        <h5>Replies</h5>
-        <h3>{numberWithCommas(replies)} <small>{(replies/first_msgs*100).toFixed(1)}%</small></h3>
-        <hr />
-        <h5>PRs</h5>
-        <h3>{prtime} <small>{(prtime/first_msgs*100).toFixed(1)}%</small></h3>
-        <hr />
-      </Col>
     </Row>
-
   </div>:
   <div>
   	<Alert bsStyle="warning">No leaderboards can be delivered between the dates selected.</Alert>
@@ -164,8 +147,6 @@ export default createContainer((props) => {
       }
 	    stats.push({
 	      name: name,
-        account: account,
-	      num_contacts: collection.length,
 	      num_crs_sent: get_stat(collection, "First Message Sent", true),
 	      new_CR: get_stat(collection, "CR Accepted", true),
 	      replies: get_stat(collection, "replied", true),
@@ -175,6 +156,14 @@ export default createContainer((props) => {
 	      points: 2*get_stat(collection, "Third Message Reply Sentiment", 'positive') + get_stat(collection, "First Message Reply Sentiment", 'neutral') - get_stat(collection, "First Message Reply Sentiment", 'negative')
 	    })
 	  })
+
+    stats.push({
+      name: "GrowthGenius",
+      num_crs_sent: first_msgs,
+      new_CR: ncs,
+      replies: replies,
+      positives: prtime
+    })
 
 	  stats = _.sortBy(stats, ['positives'])
 
