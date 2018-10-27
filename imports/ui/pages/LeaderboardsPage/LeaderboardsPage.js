@@ -72,9 +72,6 @@ class HomePageDatePicker extends React.Component {
           </Col>
           <br />
           <Col xs={12} sm={8}>
-	          <a href='/responses'>Responses</a>
-	          <br />
-	          <br />
 	          <DateRangePicker
 	            {...this.props}
 	            onDatesChange={this.onDatesChange}
@@ -95,7 +92,10 @@ class HomePageDatePicker extends React.Component {
 	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
            </Col>
            <Col xs={12} sm={4}>
-           		<ContactsContainer />
+	          <a href='/responses'>Label Responses</a>
+	          <br />
+	          <br />
+           	  <ContactsContainer />
            </Col>
         </Row>   
         </div>

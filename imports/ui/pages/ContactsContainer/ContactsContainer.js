@@ -18,8 +18,6 @@ const numberWithCommas = (x) => {
 const ContactsContainer = ({ loading, stats }) => ( !loading ? (
   stats.length > 0 ? 
   <div className="Leaderboards">
-    <Row>
-      <Col sm={12}>
         <Table responsive>
           <thead>
             <tr>
@@ -40,8 +38,6 @@ const ContactsContainer = ({ loading, stats }) => ( !loading ? (
           }
           </tbody>
         </Table>
-      </Col>
-    </Row>
   </div>:
   <div>
   	<Alert bsStyle="warning">No leaderboards can be delivered between the dates selected.</Alert>
