@@ -16,8 +16,8 @@ class HomePageDatePicker extends React.Component {
 	dateObj.setHours(dateObj.getHours() - 4);
 	var month = dateObj.getUTCMonth();
 	var month2 = dateObj.getUTCMonth() + 1;
-	var day = dateObj.getUTCDate() - 7;
-	var day2 = day + 7
+	var day = dateObj.getUTCDate();
+	var day2 = day + 1
 	var year = dateObj.getUTCFullYear();
 
 	if(month.toString().length == 1){ month = '0' + month }
@@ -71,6 +71,12 @@ class HomePageDatePicker extends React.Component {
 	      <Col xs={12}>
           </Col>
           <br />
+           <Col xs={12} sm={4}>
+	          <a href='/responses'>Label Responses</a>
+	          <br />
+	          <br />
+           	  <ContactsContainer />
+           </Col>
           <Col xs={12} sm={8}>
 	          <DateRangePicker
 	            {...this.props}
@@ -90,12 +96,6 @@ class HomePageDatePicker extends React.Component {
 	           <br />
 	           <br />
 	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
-           </Col>
-           <Col xs={12} sm={4}>
-	          <a href='/responses'>Label Responses</a>
-	          <br />
-	          <br />
-           	  <ContactsContainer />
            </Col>
         </Row>   
         </div>

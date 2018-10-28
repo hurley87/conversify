@@ -36,10 +36,33 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               return (
                 <tr>
                   <td>{stat.name}</td>
-                  <td>{numberWithCommas(stat.num_crs_sent)}</td>
-                  <td>{numberWithCommas(stat.new_CR)} (<small>{(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
-                  <td>{numberWithCommas(stat.replies)} (<small>{(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
-                  <td>{stat.positives} (<small>{(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%</small>)</td>
+                  <td>
+                  {numberWithCommas(stat.num_crs_sent)}
+                  </td>
+                  <td>
+                  { numberWithCommas(stat.new_CR) } 
+                  { 
+                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
+                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
+                    )
+                  } 
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.replies)} 
+                  {
+                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.positives)} 
+                  {
+                    stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
                 </tr>
               )
             })
