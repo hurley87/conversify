@@ -42,6 +42,7 @@ import Q4Launch_Responses from '../../pages/Q4Launch_Responses/Q4Launch_Response
 import Apploi_Responses from '../../pages/Apploi_Responses/Apploi_Responses';
 import All from '../../pages/All/All';
 import LeaderboardsPage from '../../pages/LeaderboardsPage/LeaderboardsPage';
+import ContactsContainer from '../../pages/ContactsContainer/ContactsContainer';
 import Responses from '../../pages/Responses/Responses';
 import './App.scss';
 
@@ -66,7 +67,7 @@ class App extends React.Component {
               <Switch>
                 <Route exact name="index" path="/" component={Index} />
                 <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/chats" component={Chats} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/apploi" component={Applois} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/nextopia" component={Nextopias} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/q4launch" component={Q4Launchs} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

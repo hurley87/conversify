@@ -35,7 +35,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             stats.reverse().map((stat, i) =>{
               return (
                 <tr>
-                  <td>{stat.name}</td>
+                  <td>{ stat.name.length > 15 ? stat.name.slice(0,15) + "..." : stat.name }</td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
                   </td>
@@ -87,7 +87,6 @@ export default createContainer((props) => {
 	const subscription = Meteor.subscribe('leaderboards.list', props.startDate, props.endDate);
 
 	let leaderboards = LeaderboardsCollection.find().fetch();
-
 
 	  const first_msgs = leaderboards.reduce(function (n, first_msgs) {
 	        return n + (first_msgs["First Message Sent"] == true);

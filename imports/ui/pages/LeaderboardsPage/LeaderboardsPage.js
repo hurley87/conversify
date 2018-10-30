@@ -71,13 +71,13 @@ class HomePageDatePicker extends React.Component {
 	      <Col xs={12}>
           </Col>
           <br />
-           <Col xs={12} sm={4}>
+          <Col xs={12} sm={12}>
+          	  <a href='/contacts'>Contacts Left</a>
+          	  <br />
+          	  <br />
 	          <a href='/responses'>Label Responses</a>
 	          <br />
 	          <br />
-           	  <ContactsContainer />
-           </Col>
-          <Col xs={12} sm={8}>
 	          <DateRangePicker
 	            {...this.props}
 	            onDatesChange={this.onDatesChange}
