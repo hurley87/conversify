@@ -72,9 +72,6 @@ class HomePageDatePicker extends React.Component {
           </Col>
           <br />
           <Col xs={12} sm={12}>
-          	  <a href='/contacts'>Contacts Left</a>
-          	  <br />
-          	  <br />
 	          <a href='/responses'>Label Responses</a>
 	          <br />
 	          <br />
