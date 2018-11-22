@@ -17,5 +17,9 @@ Meteor.methods({
     } catch (exception) {
       handleMethodException(exception);
     }
+  },
+  'upload.contacts': function uploadContacts(contacts) {
+    check(contacts, Array);
+    console.log(contacts);  
   }
 });

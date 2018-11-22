@@ -35,7 +35,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             stats.reverse().map((stat, i) =>{
               return (
                 <tr>
-                  <td>{ stat.name.length > 15 ? stat.name.slice(0,15) + "..." : stat.name }</td>
+                  <td>{ stat.name }</td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
                   </td>
@@ -229,3 +229,6 @@ export default createContainer((props) => {
 
 	  };
 }, LeaderboardsContainer);
+
+
+
