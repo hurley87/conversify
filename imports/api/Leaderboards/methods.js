@@ -18,14 +18,17 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
-  'upload.contacts': function uploadContacts(contacts) {
+  'upload.contacts': function uploadContacts(contacts, email) {
     check(contacts, Array);
+    check(email, String);
+    console.log('EMAILS')
+    console.log(email);
     for(let idx in contacts) {
       let uploadedContact = contacts[idx];
       uploadedContact.linkedin_url = uploadedContact['Person Linkedin Url'];
       uploadedContact.linkedin_username = uploadedContact['Person Linkedin Url'].split('/')[4];
       uploadedContact.replied= false;
-      uploadedContact.account_owner='hurls';
+      uploadedContact.account_owner=email;
       uploadedContact['Bad LinkedIn Url'] = false;
       uploadedContact['Can Contact'] = false;
       uploadedContact['Can Contact Date'] = false;
@@ -39,8 +42,8 @@ Meteor.methods({
       uploadedContact['Second Message Sent Date'] = '';
       uploadedContact['Third Message Sent'] = false;
       uploadedContact['Third Message Sent Date'] = '';
-      uploadedContact['Third Message Reply Sentiment'] = ''
-      Leaderboards.upsert({ 'Person Linkedin Url': uploadedContact['Person Linkedin Url'] }, { $set: uploadedContact }, { upsert: true } )
+      uploadedContact['Third Message Reply Sentiment'] = '';
+      Leaderboards.update({'Person Linkedin Url': uploadedContact['Person Linkedin Url'], "account_owner": email }, { $set: uploadedContact }, { upsert: true } );
     }
   }
 });
