@@ -8,7 +8,7 @@ import validate from '../../../modules/validate';
 import autoBind from 'react-autobind';
 import CSVReader from 'react-csv-reader';
 import { Row, Col } from 'react-bootstrap';
-import { Wave } from 'react-animated-text';
+import { Wave, Random } from 'react-animated-text';
 
 class NewSequence extends React.Component {
   constructor(props) {
@@ -166,7 +166,7 @@ class NewSequence extends React.Component {
     return (
       <div>
           {
-              this.state.contacts.length > 0 ? (
+              this.state.contacts.length > 0 && this.state.contacts.length <= 300 ? (
 
                 <Row>
                   <button onClick={this.handleNext} className="btn btn-default">Next</button>
@@ -271,10 +271,17 @@ class NewSequence extends React.Component {
                     <br />
                     <CSVReader
                       cssClass="react-csv-input"
-                      label="Upload CSV of Contacts"
+                      label="Upload CSV of Contacts (max 300)"
                       onFileLoaded={this.handleForce}
                     />
+                  <br />
+                  {this.state.contacts.length > 300 ? (
+                    <p style={{ color: "#e74c3c" }}><Wave
+                      effect="stretch" effectChange={2.2} 
+                     style={{ color: 'red' }} text={`That's ${this.state.contacts.length - 300} contacts too many`} /></p>
+                  ) : null}
                   </Col>
+
                 </Row>
               )
 

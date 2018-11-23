@@ -21,8 +21,7 @@ Meteor.methods({
   'upload.contacts': function uploadContacts(contacts, email) {
     check(contacts, Array);
     check(email, String);
-    console.log('EMAILS')
-    console.log(email);
+    
     for(let idx in contacts) {
       let uploadedContact = contacts[idx];
       uploadedContact.linkedin_url = uploadedContact['Person Linkedin Url'];
