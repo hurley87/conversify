@@ -8,6 +8,7 @@ import validate from '../../../modules/validate';
 import autoBind from 'react-autobind';
 import CSVReader from 'react-csv-reader';
 import { Row, Col } from 'react-bootstrap';
+import { Wave } from 'react-animated-text';
 
 class NewSequence extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class NewSequence extends React.Component {
       variables: [],
       contacts: [],
       contact_index: 0,
+      loading: false,
       cra: 'Hi {{First Name}}, I’m always looking to connect with and learn from experienced digital leaders in {{City}} if you’re open to expanding your network. Looking forward to seeing how I can help.',
       crb: "Hi {{First Name}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
       follow1: "Thanks for connecting, {{First Name}}.\n\nWould you be open to having that call(or meet in person) ? I'm interested in knowing more about {{Company}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
@@ -83,16 +85,6 @@ class NewSequence extends React.Component {
 
   handleSubmit(form) {
     const { history } = this.props;
-    const existingDocument = this.props.doc && this.props.doc._id;
-    const methodToCall = existingDocument ? 'documents.update' : 'documents.insert';
-    const doc = {
-      cra: form.cra.value,
-      crb: form.crb.value,
-      follow1: form.follow1.value,
-      follow2: form.follow2.value,
-    };
-
-    console.log(doc)
 
     const newContacts = this.state.contacts;
 
@@ -102,6 +94,10 @@ class NewSequence extends React.Component {
       newContacts[contact]['Second Message Text'] = this.parseCopy(form.follow1.value, contact);
       newContacts[contact]['Third Message Text'] = this.parseCopy(form.follow2.value, contact);
     }
+
+    this.setState({
+      loading: true
+    })
 
 
     Meteor.call('upload.contacts', newContacts, (error, documentId) => {
@@ -159,7 +155,7 @@ class NewSequence extends React.Component {
 
   render() {
     const { doc } = this.props;
-    
+
     return (
       <div>
           {
@@ -224,9 +220,18 @@ class NewSequence extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success">
+                        {
+                          this.state.loading ? (
+                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" disabled={true}>
+                              <Wave text="Your contacts are entering the matrix" />
+                            </Button>
+                          ) : (
+                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" >
                           Create Sequence
-                        </Button>
+                            </Button>
+                          )
+                        }
+
                       </FormGroup>
                     </form>
                   </Col>
