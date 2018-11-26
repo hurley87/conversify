@@ -45,6 +45,7 @@ import LeaderboardsPage from '../../pages/LeaderboardsPage/LeaderboardsPage';
 import ContactsContainer from '../../pages/ContactsContainer/ContactsContainer';
 import Responses from '../../pages/Responses/Responses';
 import NewSequence from '../../pages/NewSequence/NewSequence';
+import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
 import './App.scss';
 
 class App extends React.Component {
@@ -83,6 +84,7 @@ class App extends React.Component {
                 <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/leaderboard" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

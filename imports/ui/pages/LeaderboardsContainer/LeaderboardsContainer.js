@@ -35,7 +35,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             stats.reverse().map((stat, i) =>{
               return (
                 <tr>
-                  <td>{ stat.name }</td>
+                  <td><a href={`/sequences/${stat.name}/edit`}>{stat.name}</a> </td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
                   </td>
@@ -179,13 +179,13 @@ export default createContainer((props) => {
 	    })
 	  })
 
-    stats.push({
-      name: "GrowthGenius",
-      num_crs_sent: first_msgs,
-      new_CR: ncs,
-      replies: replies,
-      positives: prtime
-    })
+    // stats.push({
+    //   name: "GrowthGenius",
+    //   num_crs_sent: first_msgs,
+    //   new_CR: ncs,
+    //   replies: replies,
+    //   positives: prtime
+    // })
 
 	  stats = _.sortBy(stats, ['positives'])
 
