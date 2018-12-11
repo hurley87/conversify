@@ -13,7 +13,6 @@ import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
 import Documents from '../../pages/Documents/Documents';
-import Chats from '../../pages/Chats/Chats';
 import Votes from '../../pages/Votes/Votes';
 import NewDocument from '../../pages/NewDocument/NewDocument';
 import ViewDocument from '../../pages/ViewDocument/ViewDocument';
@@ -26,7 +25,6 @@ import RecoverPassword from '../../pages/RecoverPassword/RecoverPassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import Profile from '../../pages/Profile/Profile';
 import NotFound from '../../pages/NotFound/NotFound';
-import Footer from '../../components/Footer/Footer';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
 import ExamplePage from '../../pages/ExamplePage/ExamplePage';
@@ -65,6 +63,7 @@ class App extends React.Component {
       <Router>
         {!props.loading ? (
           <div className="App">
+            <Navigation {...props} {...state} />
             <Grid>
               <Switch>
                 <Route exact name="index" path="/" component={Index} />
@@ -86,7 +85,7 @@ class App extends React.Component {
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/leaderboard" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/results" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state} />

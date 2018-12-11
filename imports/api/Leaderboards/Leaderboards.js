@@ -1,7 +1,6 @@
 
 import { Mongo } from 'meteor/mongo';
-import SimpleSchema from 'simpl-schema';
 
-const Leaderboards = new Mongo.Collection('mother');
+const Leaderboards = new Mongo.Collection('Contacts');
 
 export default Leaderboards;

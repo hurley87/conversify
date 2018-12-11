@@ -73,7 +73,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
     </Row>
   </div>:
   <div>
-  	<Alert bsStyle="warning">No leaderboards can be delivered between the dates selected.</Alert>
+  	<Alert bsStyle="warning">No data exists between the dates selected.</Alert>
   </div>
 ): <Loading />);
 

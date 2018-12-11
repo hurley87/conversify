@@ -21,7 +21,10 @@ Meteor.methods({
   'upload.contacts': function uploadContacts(contacts, email) {
     check(contacts, Array);
     check(email, String);
-    
+
+    console.log(contacts);
+    console.log(email);
+
     for(let idx in contacts) {
       let uploadedContact = contacts[idx];
       uploadedContact.linkedin_url = uploadedContact['Person Linkedin Url'];
@@ -42,7 +45,9 @@ Meteor.methods({
       uploadedContact['Third Message Sent'] = false;
       uploadedContact['Third Message Sent Date'] = '';
       uploadedContact['Third Message Reply Sentiment'] = '';
-      Leaderboards.update({'Person Linkedin Url': uploadedContact['Person Linkedin Url'], "account_owner": email }, { $set: uploadedContact }, { upsert: true } );
+      uploadedContact['account_owner'] = email;
+      uploadedContact['owner'] = this.userId;
+      Leaderboards.insert(uploadedContact);
     }
   }
 });

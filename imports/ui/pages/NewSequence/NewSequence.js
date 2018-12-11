@@ -44,10 +44,6 @@ class NewSequence extends React.Component {
         follow2: {
           required: true,
         },
-        email: {
-          email: true,
-          required: true,
-        }
       },
       messages: {
         cra: {
@@ -61,9 +57,6 @@ class NewSequence extends React.Component {
         },
         follow2: {
           required: 'This thneeds a body, please.',
-        },
-        email: {
-          required: 'Please add an email',
         },
       },
       submitHandler() { component.handleSubmit(component.form); },
@@ -106,14 +99,16 @@ class NewSequence extends React.Component {
       loading: true
     })
 
+    const userEmail = Meteor.user().emails[0].address;
 
-    Meteor.call('upload.contacts', newContacts, form.email.value.trim(), (error, documentId) => {
+
+    Meteor.call('upload.contacts', newContacts, userEmail, (error, documentId) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
         this.form.reset();
         Bert.alert('Sequence Uploaded', 'success');
-        history.push(`/leaderboard`);
+        history.push(`/results`);
       }
     });
   }
@@ -183,15 +178,7 @@ class NewSequence extends React.Component {
                     </div>
                   </Col>
                   <Col xs={6}>
-                <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
-                      <FormGroup>
-                        <ControlLabel>Email of LinkedIn Account</ControlLabel>
-                        <input
-                          type="email"
-                          className="form-control"
-                          name="email"
-                        />
-                      </FormGroup>           
+                <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>          
                       <FormGroup>
                         <ControlLabel>Champion Connect Request</ControlLabel>
                         <textarea

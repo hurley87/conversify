@@ -28,7 +28,7 @@ const Responses = ({
 }) => (!loading ?  (
   <div className="Responses">
     <br />
-    <a href='/leaderboard'>Leaderboard</a>
+    <a href='/results'>Back</a>
     <br />
     <br />
     { Responses.length == 0 ? <p>All responses are labeled</p> : null }
@@ -72,7 +72,8 @@ export default withTracker(() => {
 
   let Responses = LeaderboardsCollection.find({
     "replied": true,
-    "Third Message Reply Sentiment": ""
+    "Third Message Reply Sentiment": "",
+    "owner": Meteor.userId()
   }).fetch();
 
   console.log(Responses)
