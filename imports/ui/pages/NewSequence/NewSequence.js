@@ -20,10 +20,10 @@ class NewSequence extends React.Component {
       contacts: [],
       contact_index: 0,
       loading: false,
-      cra: 'Hi {{First Name}}, I’m always looking to connect with and learn from experienced digital leaders in {{City}} if you’re open to expanding your network. Looking forward to seeing how I can help.',
-      crb: "Hi {{First Name}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
-      follow1: "Thanks for connecting, {{First Name}}.\n\nWould you be open to having that call(or meet in person) ? I'm interested in knowing more about {{Company}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
-      follow2: "Thanks for connecting, {{First Name}}.\n\nWould you be open to having that call(or meet in person) ? I'm interested in knowing more about {{Company}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
+      cra: 'Hi {{firstName}}, I’m looking to connect with and learn from experienced marketers. if you’re open to expanding your network. Looking forward to seeing how I can help.',
+      crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
+      follow1: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
+      follow2: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
     };
   }
 
@@ -65,22 +65,25 @@ class NewSequence extends React.Component {
 
   handleForce(data) {
     const variables = data[0];
+    variables.push('City');
     let contacts = [];
     const just_contacts = data.slice(1, data.length - 1);
     for (const index in just_contacts) {
       const contact = {};
-      for (const idx in variables) contact[variables[idx]] = just_contacts[index][idx];
+      for (const idx in variables) {
+        contact[variables[idx]] = just_contacts[index][idx];
+      }
       contacts.push(contact);
     }
     contacts = contacts.slice(0, contacts.length - 1);
+    contacts.map(contact => {
+      console.log(contact)
+      contact['City'] = contact['Contact Location'].split(',')[0]
+    });
     this.setState({
       contacts,
       variables,
     });
-  }
-
-  craHandler(evt) {
-    console.log(evt);
   }
 
   handleSubmit(form) {
@@ -88,7 +91,7 @@ class NewSequence extends React.Component {
 
     const newContacts = this.state.contacts;
 
-    for(let contact in newContacts){
+    for (const contact in newContacts) {
       newContacts[contact]['First Message Text'] = this.parseCopy(form.cra.value, contact);
       newContacts[contact]['First Message Text Alternate'] = this.parseCopy(form.crb.value, contact);
       newContacts[contact]['Second Message Text'] = this.parseCopy(form.follow1.value, contact);
@@ -96,8 +99,8 @@ class NewSequence extends React.Component {
     }
 
     this.setState({
-      loading: true
-    })
+      loading: true,
+    });
 
     const userEmail = Meteor.user().emails[0].address;
 
@@ -108,15 +111,13 @@ class NewSequence extends React.Component {
       } else {
         this.form.reset();
         Bert.alert('Sequence Uploaded', 'success');
-        history.push(`/results`);
+        history.push('/results');
       }
     });
   }
 
   handleNext() {
-    this.setState({
-      contact_index: this.state.contact_index + 1,
-    });
+    this.state.contact_index < this.state.contacts.length - 1 ? this.setState({ contact_index: this.state.contact_index + 1, }) : this.setState({ contact_index: 0, })
   }
 
   handleCra(evt) {
@@ -144,12 +145,10 @@ class NewSequence extends React.Component {
   }
 
   parseCopy(copy, contact_index) {
-    if (copy.indexOf("{{") > 0 && copy.indexOf("}}") > 0) {
-      const start_index = copy.indexOf("{{");
-      const end_index = copy.indexOf("}}");
+    if (copy.indexOf('{{') > 0 && copy.indexOf('}}') > 0) {
+      const start_index = copy.indexOf('{{');
+      const end_index = copy.indexOf('}}');
       const variable = copy.slice(start_index + 2, end_index);
-      console.log(variable);
-
       return this.parseCopy(copy.replace(copy.slice(start_index, end_index + 2), this.state.contacts[contact_index][variable]), contact_index);
     }
     return copy;
@@ -160,120 +159,120 @@ class NewSequence extends React.Component {
 
     return (
       <div>
-          {
-              this.state.contacts.length > 0 && this.state.contacts.length <= 300 ? (
+        {
+            this.state.contacts.length > 0 && this.state.contacts.length <= 300 ? (
 
-                <Row>
-                  <button onClick={this.handleNext} className="btn btn-default">Next</button>
+              <Row>
+                <Col xs={3}>
+                  <p> {this.state.contact_index + 1} / {this.state.contacts.length} </p>
+                  <button style={{margin: '0'}} onClick={this.handleNext} className="btn btn-default">Next</button>
                   <br />
                   <br />
-                  <Col xs={3}>
-                    <p>You have uploaded {this.state.contacts.length} contacts.</p>
-                    <div>
+                  <div>
+                    {
+                    this.state.variables.map(variable => (['firstName', 'lastName', 'Title', 'CompanyCleaned', 'Website', 'City', 'email1', 'LIProfileUrl'].includes(variable) ? (<div><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></div>) : null))
+                    }
+                  </div>
+                </Col>
+                <Col xs={6}>
+                  <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
+                    <FormGroup>
+                      <ControlLabel>Champion Connect Request</ControlLabel>
+                      <textarea
+                        style={{ minHeight: '100px' }}
+                        type="text"
+                        className="form-control"
+                        name="cra"
+                        defaultValue={this.state.cra}
+                        onChange={this.handleCra}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <ControlLabel>Challenger Connection Request</ControlLabel>
+                      <textarea
+                        style={{ minHeight: '100px' }}
+                        className="form-control"
+                        name="crb"
+                        defaultValue={this.state.crb}
+                        onChange={this.handleCrb}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <ControlLabel>1st Follow-up</ControlLabel>
+                      <textarea
+                        style={{ minHeight: '200px' }}
+                        className="form-control"
+                        name="follow1"
+                        defaultValue={this.state.follow1}
+                        onChange={this.handleFollow1}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <ControlLabel>2nd Follow-up</ControlLabel>
+                      <textarea
+                        style={{ minHeight: '200px' }}
+                        className="form-control"
+                        name="follow2"
+                        defaultValue={this.state.follow2}
+                        onChange={this.handleFollow2}
+                      />
+                    </FormGroup>
+                    <FormGroup>
                       {
-                        this.state.variables.map((variable) => (
-                            <div><b>{variable}:</b> {this.state.contacts[this.state.contact_index][variable]}</div>
-                          ))
-                      }
-                    </div>
-                  </Col>
-                  <Col xs={6}>
-                <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>          
-                      <FormGroup>
-                        <ControlLabel>Champion Connect Request</ControlLabel>
-                        <textarea
-                          style={{ minHeight: '100px' }}
-                          type="text"
-                          className="form-control"
-                          name="cra"
-                          defaultValue={this.state.cra}
-                          onFocus={this.craHandler}
-                          onChange={this.handleCra}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <ControlLabel>Challenger Connection Request</ControlLabel>
-                        <textarea
-                          style={{ minHeight: '100px' }}
-                          className="form-control"
-                          name="crb"
-                          defaultValue={this.state.crb}
-                          onChange={this.handleCrb}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <ControlLabel>1st Follow-up</ControlLabel>
-                        <textarea
-                          style={{ minHeight: '200px' }}
-                          className="form-control"
-                          name="follow1"
-                          defaultValue={this.state.follow1}
-                          onChange={this.handleFollow1}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <ControlLabel>2nd Follow-up</ControlLabel>
-                        <textarea
-                          style={{ minHeight: '200px' }}
-                          className="form-control"
-                          name="follow2"
-                          defaultValue={this.state.follow2}
-                          onChange={this.handleFollow2}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        {
-                          this.state.loading ? (
-                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" disabled={true}>
-                              <Wave text="Your contacts are entering the matrix" />
-                            </Button>
-                          ) : (
+                        this.state.loading ? (
+                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" disabled>
+                            <Wave text="Your contacts are entering the matrix" />
+                          </Button>
+                        ) : (
                           <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" >
-                          Create Sequence
-                            </Button>
-                          )
-                        }
+                        Create Sequence
+                          </Button>
+                        )
+                      }
 
-                      </FormGroup>
-                    </form>
-                  </Col>
-                  <Col xs={3}>
-                    <h5>Champion Connection Request</h5>
-                    <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.cra, this.state.contact_index)}</div>
-                    <hr />
-                    <h5>Challenger Connection Request</h5>
-                    <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
-                    <hr />
-                    <h5>1st Follow-up</h5>
-                    <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow1, this.state.contact_index)}</div>
-                    <hr />
-                    <h5>2nd Follow-up</h5>
-                    <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow2, this.state.contact_index)}</div>
-                  </Col>
-                </Row>
-
-              ) : (
-                <Row>
-                  <Col xs={12}>
-                    <br />
-                    <CSVReader
-                      cssClass="react-csv-input"
-                      label="Upload CSV of Contacts (max 300)"
-                      onFileLoaded={this.handleForce}
-                    />
+                    </FormGroup>
+                  </form>
+                </Col>
+                <Col xs={3}>
+                  <h5>Champion Connection Request</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.cra, this.state.contact_index)}</div>
+                  <hr />
+                  <h5>Challenger Connection Request</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
+                  <hr />
+                  <h5>1st Follow-up</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow1, this.state.contact_index)}</div>
+                  <hr />
+                  <h5>2nd Follow-up</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow2, this.state.contact_index)}</div>
+                </Col>
+              </Row>
+            ) : (
+              <Row>
+                <Col xs={12}>
+                  <br />
+                  <CSVReader
+                    cssClass="react-csv-input"
+                    label="Upload CSV of Contacts (max 300)"
+                    onFileLoaded={this.handleForce}
+                  />
                   <br />
                   {this.state.contacts.length > 300 ? (
-                    <p style={{ color: "#e74c3c" }}><Wave
-                      effect="stretch" effectChange={2.2} 
-                     style={{ color: 'red' }} text={`That's ${this.state.contacts.length - 300} contacts too many`} /></p>
-                  ) : null}
-                  </Col>
+                    <p style={{ color: '#e74c3c' }}><Wave
+                      effect="stretch"
+                      effectChange={2.2}
+                      style={{ color: 'red' }}
+                      text={`That's ${this.state.contacts.length - 300} contacts too many`}
+                    />
+                    </p>
+                ) : null}
+                </Col>
 
-                </Row>
-              )
+              </Row>
+            )
 
             }
-        </div>
+      </div>
     );
   }
 }

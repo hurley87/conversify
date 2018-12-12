@@ -27,8 +27,9 @@ Meteor.methods({
 
     for(let idx in contacts) {
       let uploadedContact = contacts[idx];
-      uploadedContact.linkedin_url = uploadedContact['Person Linkedin Url'];
-      uploadedContact.linkedin_username = uploadedContact['Person Linkedin Url'].split('/')[4];
+      uploadedContact['Person Linkedin Url'] = uploadedContact['LIProfileUrl'];
+      uploadedContact.linkedin_url = uploadedContact['LIProfileUrl'];
+      uploadedContact.linkedin_username = uploadedContact['LIProfileUrl'].split('/')[4];
       uploadedContact.replied= false;
       uploadedContact.account_owner=email;
       uploadedContact['Bad LinkedIn Url'] = false;
