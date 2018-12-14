@@ -3,6 +3,7 @@ import '../../api/Documents/server/publications';
 
 import '../../api/Chats/server/publications';
 import '../../api/Votes/server/publications';
+import '../../api/Contacts/server/publications';
 
 import '../../api/OAuth/server/methods';
 

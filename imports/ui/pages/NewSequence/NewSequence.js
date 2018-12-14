@@ -77,7 +77,6 @@ class NewSequence extends React.Component {
     }
     contacts = contacts.slice(0, contacts.length - 1);
     contacts.map(contact => {
-      console.log(contact)
       contact['City'] = contact['Contact Location'].split(',')[0]
     });
     this.setState({
@@ -92,26 +91,23 @@ class NewSequence extends React.Component {
     const newContacts = this.state.contacts;
 
     for (const contact in newContacts) {
-      newContacts[contact]['First Message Text'] = this.parseCopy(form.cra.value, contact);
-      newContacts[contact]['First Message Text Alternate'] = this.parseCopy(form.crb.value, contact);
-      newContacts[contact]['Second Message Text'] = this.parseCopy(form.follow1.value, contact);
-      newContacts[contact]['Third Message Text'] = this.parseCopy(form.follow2.value, contact);
+      newContacts[contact]['championText'] = this.parseCopy(form.cra.value, contact);
+      newContacts[contact]['challengerText'] = this.parseCopy(form.crb.value, contact);
+      newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.follow1.value, contact);
+      newContacts[contact]['secondFollowUpText'] = this.parseCopy(form.follow2.value, contact);
     }
 
     this.setState({
       loading: true,
     });
 
-    const userEmail = Meteor.user().emails[0].address;
-
-
-    Meteor.call('upload.contacts', newContacts, userEmail, (error, documentId) => {
+    Meteor.call('upload.contacts', newContacts, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
         this.form.reset();
-        Bert.alert('Sequence Uploaded', 'success');
-        history.push('/results');
+        Bert.alert('Prospects uploaded', 'success');
+        history.push('/prospects');
       }
     });
   }

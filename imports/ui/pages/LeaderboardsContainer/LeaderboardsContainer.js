@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ListGroup, ListGroupItem, Alert, Grid, Row, Col, Table } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import LeaderboardsCollection from '../../../api/Leaderboards/Leaderboards';
+import ContactsCollection from '../../../api/Contacts/Contacts';
 import Loading from '../../components/Loading/Loading';
 import Leaderboards from '../Leaderboards/Leaderboards';
 import moment from 'moment';
@@ -35,7 +35,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
             stats.reverse().map((stat, i) =>{
               return (
                 <tr>
-                  <td><a href={`/sequences/${stat.name}/edit`}>{stat.name}</a> </td>
+                  <td>{stat.name}</td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
                   </td>
@@ -84,25 +84,25 @@ LeaderboardsContainer.propTypes = {
 
 export default createContainer((props) => {
 
-	const subscription = Meteor.subscribe('leaderboards.list', props.startDate, props.endDate);
+	const subscription = Meteor.subscribe('contacts.list', props.startDate, props.endDate);
 
-	let leaderboards = LeaderboardsCollection.find().fetch();
+	let leaderboards = ContactsCollection.find().fetch();
 
 	  const first_msgs = leaderboards.reduce(function (n, first_msgs) {
-	        return n + (first_msgs["First Message Sent"] == true);
+	        return n + (first_msgs["requestSent"] == true);
 	    }, 0);
 	  const ncs = leaderboards.reduce(function (n, ncs) {
-	        return n + (ncs["CR Accepted"] == true);
+	        return n + (ncs["connection"] == true);
 	    }, 0);
 	  const replies = leaderboards.reduce(function (n, replies) {
 	        return n + (replies["replied"] == true);
 	    }, 0);
-	  const accounts = leaderboards.groupBy('account_owner')
+	  const accounts = leaderboards.groupBy('owner')
 	  const names = []
 	  for(var k in accounts) names.push(k)
 
     const prtime = leaderboards.reduce(function (n, replies) {
-          return n + (replies["Third Message Reply Sentiment"] == 'positive');
+          return n + (replies["sentiment"] == 'positive');
       }, 0);
 
 	  let stats = []
@@ -114,78 +114,16 @@ export default createContainer((props) => {
 	  names.map(name => {
 	    const collection = accounts[name]
       let account = 'na'
-      switch(name){
-        case "haris@growthgenius.com":
-          account = 'Suthen';
-          break;
-        case "jj@growthgenius.com":
-          account = 'Suthen';
-          break;
-        case "berlin@growthgenius.com":
-          account = 'Suthen';
-          break;
-        case "ashley@smartboxdentalmarketing.com":
-          account = 'Andrew';
-          break;
-        case 'qing@clearbanc.com':
-          account = 'Nizar';
-          break;
-        case "11sa82@queensu.ca":
-          account = 'Dave'
-          break;
-        case "jeremeholiman@gmail.com":
-          account = 'Suthen'
-          break;
-        case "sassnorth":
-          account = 'Suthen'
-          break;
-        case "reitano":
-          account = 'Suthen'
-          break;
-        case "riipen":
-          account = 'Suthen'
-          break;
-        case "noticed":
-          account = 'Suthen'
-          break;
-        case "fundscott":
-          account = 'Andrew'
-          break;
-        case "lng":
-          account = 'Andrew'
-          break;
-        case "papaya":
-          account = 'Andrew'
-          break;
-        case "papaya":
-          account = 'Andrew'
-          break;
-        case "shelf":
-          account = 'Andrew'
-          break;
-        case "icm_hub":
-          account = 'Dave'
-          break;
-      }
 	    stats.push({
 	      name: name,
-	      num_crs_sent: get_stat(collection, "First Message Sent", true),
-	      new_CR: get_stat(collection, "CR Accepted", true),
+	      num_crs_sent: get_stat(collection, "requestSent", true),
+	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),
-	      positives: get_stat(collection, "Third Message Reply Sentiment", 'positive'),
-	      neutrals: get_stat(collection, "Third Message Reply Sentiment", 'neutral'),
-	      negatives: get_stat(collection, "Third Message Reply Sentiment", 'negative'),
-	      points: 2*get_stat(collection, "Third Message Reply Sentiment", 'positive') + get_stat(collection, "First Message Reply Sentiment", 'neutral') - get_stat(collection, "First Message Reply Sentiment", 'negative')
+	      positives: get_stat(collection, "sentiment", 'positive'),
+	      neutrals: get_stat(collection, "sentiment", 'neutral'),
+	      negatives: get_stat(collection, "sentiment", 'negative'),
 	    })
 	  })
-
-    // stats.push({
-    //   name: "GrowthGenius",
-    //   num_crs_sent: first_msgs,
-    //   new_CR: ncs,
-    //   replies: replies,
-    //   positives: prtime
-    // })
 
 	  stats = _.sortBy(stats, ['positives'])
 

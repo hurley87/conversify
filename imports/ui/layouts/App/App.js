@@ -44,6 +44,7 @@ import ContactsContainer from '../../pages/ContactsContainer/ContactsContainer';
 import Responses from '../../pages/Responses/Responses';
 import NewSequence from '../../pages/NewSequence/NewSequence';
 import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
+import Contacts from '../../pages/Contacts/Contacts';
 import './App.scss';
 
 class App extends React.Component {
@@ -73,7 +74,8 @@ class App extends React.Component {
                 <Authenticated exact path="/nextopia" component={Nextopias} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/q4launch" component={Q4Launchs} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/reitano" component={Reitanos} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/reitano_responses" component={Reitano_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/nextopia_responses" component={Nextopia_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/apploi_responses" component={Apploi_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
