@@ -13,7 +13,6 @@ import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
 import Documents from '../../pages/Documents/Documents';
-import Votes from '../../pages/Votes/Votes';
 import NewDocument from '../../pages/NewDocument/NewDocument';
 import ViewDocument from '../../pages/ViewDocument/ViewDocument';
 import EditDocument from '../../pages/EditDocument/EditDocument';
@@ -30,15 +29,6 @@ import Privacy from '../../pages/Privacy/Privacy';
 import ExamplePage from '../../pages/ExamplePage/ExamplePage';
 import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert';
 import getUserName from '../../../modules/get-user-name';
-import Applois from '../../pages/Applois/Applois';
-import Nextopias from '../../pages/Nextopias/Nextopias';
-import Q4Launchs from '../../pages/Q4Launchs/Q4Launchs';
-import Reitanos from '../../pages/Reitanos/Reitanos';
-import Reitano_Responses from '../../pages/Reitano_Responses/Reitano_Responses';
-import Nextopia_Responses from '../../pages/Nextopia_Responses/Nextopia_Responses';
-import Q4Launch_Responses from '../../pages/Q4Launch_Responses/Q4Launch_Responses';
-import Apploi_Responses from '../../pages/Apploi_Responses/Apploi_Responses';
-import All from '../../pages/All/All';
 import LeaderboardsPage from '../../pages/LeaderboardsPage/LeaderboardsPage';
 import ContactsContainer from '../../pages/ContactsContainer/ContactsContainer';
 import Responses from '../../pages/Responses/Responses';
@@ -70,18 +60,8 @@ class App extends React.Component {
                 <Route exact name="index" path="/" component={Index} />
                 <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/apploi" component={Applois} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/nextopia" component={Nextopias} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/q4launch" component={Q4Launchs} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/reitano" component={Reitanos} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/reitano_responses" component={Reitano_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/nextopia_responses" component={Nextopia_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/apploi_responses" component={Apploi_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/q4launch_responses" component={Q4Launch_Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/all" component={All} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/votes" component={Votes} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

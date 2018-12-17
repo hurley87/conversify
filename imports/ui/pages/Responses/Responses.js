@@ -4,15 +4,10 @@ import { Link } from 'react-router-dom';
 import { Table, Alert, Button, Row, Col } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Bert } from 'meteor/themeteorchef:bert';
-import LeaderboardsCollection from '../../../api/Leaderboards/Leaderboards';
+import ContactsCollection from '../../../api/Contacts/Contacts';
 import Loading from '../../components/Loading/Loading';
 
 const updateSentiment = (linkedInUrl, sentiment) => {
-
-  console.log(linkedInUrl)
-  console.log(sentiment)
-
   Meteor.call('updateSentiment', linkedInUrl, sentiment, (error) => {
     if (error) {
       console.log(error.reason, 'success');
@@ -30,14 +25,14 @@ const Responses = ({
     <br />
     <a href='/results'>Back</a>
     <br />
-    <br />
     { Responses.length == 0 ? <p>All responses are labeled</p> : null }
     {
       Responses.map((response) => {
 
       return(
-          <div>
-            <h5>{response["account_owner"]+ " - " + response["username"]}</h5>
+        <div><hr />
+          <h5><a target='_blank' href={response['linkedinUrl']}>{response["firstName"] + " " + response["lastName"]}</a></h5>
+            <p>{response['title']} of {response['company']}</p>
             <br />
             {
               response.messages.map((message) =>{
@@ -47,9 +42,9 @@ const Responses = ({
               })
 
             }
-            <Button onClick={() => updateSentiment(response['linkedin_url'], 'positive')} bsStyle="success">Positive</Button>
-            <Button  onClick={() => updateSentiment(response['linkedin_url'], 'neutral')}  bsStyle="warning">Neutral</Button>
-            <Button  onClick={() => updateSentiment(response['linkedin_url'], 'negative')}  bsStyle="danger">Negative</Button>
+          <Button style={{ marginLeft: "0" }} onClick={() => updateSentiment(response['linkedInUsername'], 'positive')} bsStyle="success">Positive</Button>
+          <Button onClick={() => updateSentiment(response['linkedInUsername'], 'neutral')}  bsStyle="warning">Neutral</Button>
+          <Button onClick={() => updateSentiment(response['linkedInUsername'], 'negative')}  bsStyle="danger">Negative</Button>
             <br/><hr/>
           </div>
         )
@@ -68,12 +63,10 @@ Responses.propTypes = {
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('leaderboards');
+  const subscription = Meteor.subscribe('contacts.responses');
 
-  let Responses = LeaderboardsCollection.find({
-    "replied": true,
-    "Third Message Reply Sentiment": "",
-    "owner": Meteor.userId()
+  let Responses = ContactsCollection.find({
+    sentiment: '',
   }).fetch();
 
   console.log(Responses)
@@ -81,6 +74,6 @@ export default withTracker(() => {
 
   return {
     loading: !subscription.ready(),
-    Responses: Responses
+    Responses,
   };
 })(Responses);

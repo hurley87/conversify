@@ -66,8 +66,8 @@ Meteor.methods({
       newContact.connection = false;
       newContact.connectionDate = '';
       newContact.replied = false;
-      newContact.sentiment = false;
-      newContact.messages = false;
+      newContact.sentiment = '';
+      newContact.messages = [];
       newContact.championText = uploadedContact.championText;
       newContact.challengerText = uploadedContact.challengerText;
       newContact.firstFollowUpSent = false;
@@ -86,6 +86,20 @@ Meteor.methods({
       } else {
         Contacts.insert(newContact);
       }
+    }
+  },
+  updateSentiment: function updateSentiment(linkedInUsername, sentiment) {
+    check(linkedInUsername, String);
+    check(sentiment, String);
+
+    try {
+      return Contacts.update({ linkedInUsername }, {
+        $set: {
+          sentiment,
+        },
+      });
+    } catch (exception) {
+      handleMethodException(exception);
     }
   },
 });

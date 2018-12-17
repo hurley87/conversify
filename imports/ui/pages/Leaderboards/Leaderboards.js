@@ -9,10 +9,8 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import LeaderboardsCollection from '../../../api/Leaderboards/Leaderboards';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
-import Card from "../Card/Card";
 import _ from 'lodash';
 import moment from 'moment'
-import Votes from '../Votes/Votes'
 
 const handleRemove = (email) => {
   Meteor.call('Leaderboards.remove', email, (error) => {

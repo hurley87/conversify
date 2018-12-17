@@ -20,3 +20,12 @@ Meteor.publish('contacts.list', function contactsList(startDate, endDate) {
 
   return Contacts.find(selector);
 });
+
+Meteor.publish('contacts.responses', function contactsResponses() {
+
+  let selector = {
+    "replied": true
+  }
+
+  return Contacts.find(selector);
+});

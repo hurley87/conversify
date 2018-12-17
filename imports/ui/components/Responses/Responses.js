@@ -10,7 +10,7 @@ const Responses = ({ responses }) => (
 
         <tbody>
           <tr>
-            <td id="test" width = "100">Total Responses: {responses.firstReply}</td>
+            <td id="test" width="100">Total Responses: {responses.firstReply}</td>
           </tr>
           <tr>
           <td id="trial" width = "100">Text: {responses.first_reply_text}</td>
