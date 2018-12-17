@@ -68,6 +68,7 @@ class Signup extends React.Component {
           first: form.firstName.value,
           last: form.lastName.value,
         },
+        linkedin: form.password.value,
       },
     }, (error) => {
       if (error) {
