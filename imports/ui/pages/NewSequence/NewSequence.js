@@ -156,7 +156,7 @@ class NewSequence extends React.Component {
     return (
       <div>
         {
-            this.state.contacts.length > 0 && this.state.contacts.length <= 300 ? (
+            this.state.contacts.length > 0 && this.state.contacts.length <= 800 ? (
 
               <Row>
                 <Col xs={3}>
@@ -249,16 +249,16 @@ class NewSequence extends React.Component {
                   <br />
                   <CSVReader
                     cssClass="react-csv-input"
-                    label="Upload CSV of Contacts (max 300)"
+                    label="Upload CSV of Contacts (max 800)"
                     onFileLoaded={this.handleForce}
                   />
                   <br />
-                  {this.state.contacts.length > 300 ? (
+                  {this.state.contacts.length > 800 ? (
                     <p style={{ color: '#e74c3c' }}><Wave
                       effect="stretch"
                       effectChange={2.2}
                       style={{ color: 'red' }}
-                      text={`That's ${this.state.contacts.length - 300} contacts too many`}
+                      text={`That's ${this.state.contacts.length - 800} contacts too many`}
                     />
                     </p>
                 ) : null}

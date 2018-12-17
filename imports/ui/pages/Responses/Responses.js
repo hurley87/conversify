@@ -67,10 +67,10 @@ export default withTracker(() => {
 
   let Responses = ContactsCollection.find({
     sentiment: '',
-    userId: Meteor.userId()
+    userId: Meteor.userId(),
   }).fetch();
 
-  console.log(Responses)
+  console.log(Responses);
 
 
   return {
