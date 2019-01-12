@@ -23,16 +23,14 @@ const Responses = ({
 }) => (!loading ?  (
   <div className="Responses">
     <br />
-    <a href='/results'>Back</a>
-    <br />
-    { Responses.length == 0 ? <p>All responses are labeled</p> : null }
+      {Responses.length == 0 ? <p>All responses are labeled <img height='20' src="https://s3.us-east-2.amazonaws.com/snapmortgages/shwing3.gif" /></p> : null }
     {
       Responses.map((response) => {
-
       return(
         <div><hr />
           <h5><a target='_blank' href={response['linkedinUrl']}>{response["firstName"] + " " + response["lastName"]}</a></h5>
             <p>{response['title']} of {response['company']}</p>
+            <p><a target='_blank' href={response['threadUrl']}>Respond to {response['firstName']}</a></p>
             <br />
             {
               response.messages.map((message) =>{
@@ -45,10 +43,9 @@ const Responses = ({
           <Button style={{ marginLeft: "0" }} onClick={() => updateSentiment(response['linkedInUsername'], 'positive')} bsStyle="success">Positive</Button>
           <Button onClick={() => updateSentiment(response['linkedInUsername'], 'neutral')}  bsStyle="warning">Neutral</Button>
           <Button onClick={() => updateSentiment(response['linkedInUsername'], 'negative')}  bsStyle="danger">Negative</Button>
-            <br/><hr/>
+            <br/>
           </div>
         )
-
       })
 
     }

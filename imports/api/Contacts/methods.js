@@ -25,6 +25,23 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
+  'contacts.skip': function contactsSkip(_id) {
+    check(_id, String);
+
+    const email = Meteor.users.findOne(this.userId).emails[0].address;
+    console.log(email)
+
+    try {
+      return Contacts.update(_id, {
+        $set: {
+          owner: 'skip',
+          userId: this.userId,
+        },
+      });
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },
   'contacts.remove': function contactsRemove(_id) {
     check(_id, String);
 

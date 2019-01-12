@@ -21,6 +21,16 @@ const handleAdd = (contactId) => {
   });
 };
 
+const handleSkip = (contactId) => {
+  Meteor.call('contacts.skip', contactId, (error) => {
+    if (error) {
+      Bert.alert(error.reason, 'danger');
+    } else {
+      console.log('added');
+    }
+  });
+};
+
 const handleRemove = (contactId) => {
   Meteor.call('contacts.remove', contactId, (error) => {
     if (error) {
@@ -32,50 +42,13 @@ const handleRemove = (contactId) => {
 };
 
 const Contacts = ({
-  loading, contacts, myContacts, match, history,
+  loading, contact, myContacts, limit, message, match, history,
 }) => (!loading ? (
   <div className="Contacts">
-    <div className="page-header clearfix">
-      <h4 className="pull-left">Prospects</h4>
-    </div>
     <Row>
-      <Col xs={6}>
-        {contacts.length ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Company</th>
-                <th>City</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map(({
-                _id, firstName, lastName, title, city, company, linkedinUrl,
-              }) => (
-                <tr key={_id}>
-                  <td><a target="_blank" href={linkedinUrl}>{firstName} {lastName}</a></td>
-                  <td>{title}</td>
-                  <td>{company}</td>
-                  <td>{city}</td>
-                  <td>
-                    <Button
-                      bsStyle="success"
-                      style={{ margin: '0', padding: '2px 10px' }}
-                      onClick={() => handleAdd(_id)}
-                    >
-                      Add
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table> : <Alert bsStyle="warning">No prospects yet!</Alert>}
-      </Col>
-      <Col xs={6}>
-        {myContacts.length ?
+      <Col xs={12}>
+        { 
+        myContacts.length > limit ?
           <Table responsive>
             <thead>
               <tr>
@@ -99,15 +72,69 @@ const Contacts = ({
                     <Button
                       bsStyle="success"
                       style={{ margin: '0', padding: '2px 10px' }}
-                      onClick={() => handleRemove(_id)}
+                      onClick={() => handleSkip(_id)}
                     >
-                      Remove
+                      -
                     </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </Table> : <Alert bsStyle="warning">Add prospects!</Alert>}
+              </Table> : 
+              <div>
+                <Row>
+                  <Col xs={12} sm={3}>
+                    <h3><a target="_blank" href={contact.linkedinUrl}>{contact.firstName}</a></h3>
+                    <p>{contact.title} at <a target="_blank" href={contact.website}>{contact.company}</a></p>
+                    <p>{contact.city}</p>
+                    <br />
+                    <Button
+                      bsStyle="success"
+                      style={{ margin: '0', width: '100%', marginBottom: '10px' }}
+                      onClick={() => handleAdd(contact._id)}
+                    >
+                      Add
+                    </Button>
+                    <Button
+                      bsStyle="success"
+                      style={{ margin: '0', width: '100%', border: "1px solid #5cb85c", color: "#5cb85c", backgroundColor: '#fff' }}
+                      onClick={() => handleSkip(contact._id)}
+                    >
+                      Skip
+                    </Button>
+                    <br />
+                    <br />
+                    <p>{message + 1} left</p>
+                  </Col>
+                  <Col xs={12} smOffset={1} sm={8}>
+                     <Row>
+                       <Col xs={12}>
+                        <h3>Sequence</h3>
+                       </Col>
+                      <Col xs={12} xs={6}>
+                        <h5>Champion Template</h5>
+                        <p>{contact.championText}</p>
+                       </Col>
+                      <Col xs={12} xs={6}>
+                        <h5>Challenger Template</h5>
+                        <p>{contact.challengerText}</p>
+                      </Col>
+                      <Col xs={12} xs={12}>
+                        <hr />
+                        <h5>First Followup</h5>
+                        <p>{contact.firstFollowUpText}</p>
+                      </Col>
+                      <Col xs={12} xs={12}>
+                        <hr />
+                        <h5>Second Followup</h5>
+                        <p>{contact.secondFollowUpText}</p>
+                      </Col>
+                     </Row>
+                  </Col>
+                </Row>
+              </div>
+        
+        }
       </Col>
     </Row>
   </div>
@@ -115,7 +142,6 @@ const Contacts = ({
 
 Contacts.propTypes = {
   loading: PropTypes.bool.isRequired,
-  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
@@ -123,14 +149,26 @@ Contacts.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe('contacts');
   const contacts = ContactsCollection.find({
-    owner: ''
-  }).fetch();
+    owner: "",
+  }).fetch()
+  let contact = []
+  if (contacts.length > 0) contact = contacts[0];
+  console.log(contact)
+
+  const limit = 10;
+
   const myContacts = ContactsCollection.find({
     userId: Meteor.userId(),
+    owner: Meteor.user().emails[0].address,
   }).fetch();
+
+  const message = limit - myContacts.length;
+
   return {
     loading: !subscription.ready(),
-    contacts,
+    contact,
     myContacts,
+    limit,
+    message,
   };
 })(Contacts);
