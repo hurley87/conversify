@@ -80,12 +80,12 @@ const Contacts = ({
                 </tr>
               ))}
             </tbody>
-              </Table> : 
+              </Table> : myContacts.length == 0 ? <div>Email dave for more leads: dhurls99@gmail.com <img height='20' src="https://s3.us-east-2.amazonaws.com/snapmortgages/shwing3.gif" /></div> : 
               <div>
                 <Row>
                   <Col xs={12} sm={3}>
-                    <h3><a target="_blank" href={contact.linkedinUrl}>{contact.firstName}</a></h3>
-                    <p>{contact.title} at <a target="_blank" href={contact.website}>{contact.company}</a></p>
+                    <h3><a target="_blank" href={contact.linkedinUrl}>{contact.firstName} {contact.lastName}</a></h3>
+                    <p>{contact.title} at <a target="_blank" href={`http://${contact.website}`}>{contact.company}</a></p>
                     <p>{contact.city}</p>
                     <br />
                     <Button
@@ -155,7 +155,7 @@ export default withTracker(() => {
   if (contacts.length > 0) contact = contacts[0];
   console.log(contact)
 
-  const limit = 10;
+  const limit = 50;
 
   const myContacts = ContactsCollection.find({
     userId: Meteor.userId(),

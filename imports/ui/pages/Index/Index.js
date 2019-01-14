@@ -19,7 +19,7 @@ const Index = () => (
         <p>4. you can only send 50 connection requests a day</p>
         <p>4. download the linkedin app and turn on notifications</p>
         <br />
-        <p><a className='btn btn-default' href="/signup">Get Started</a></p>
+        <p><a className='btn btn-default' href="/login">Get Started</a></p>
       </Col>
     </Row>
     
