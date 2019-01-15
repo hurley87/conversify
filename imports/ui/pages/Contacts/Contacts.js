@@ -80,7 +80,7 @@ const Contacts = ({
                 </tr>
               ))}
             </tbody>
-              </Table> : myContacts.length == 0 ? <div>Email dave for more leads: dhurls99@gmail.com <img height='20' src="https://s3.us-east-2.amazonaws.com/snapmortgages/shwing3.gif" /></div> : 
+              </Table> : 
               <div>
                 <Row>
                   <Col xs={12} sm={3}>
