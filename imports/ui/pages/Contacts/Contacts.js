@@ -155,7 +155,7 @@ export default withTracker(() => {
   if (contacts.length > 0) contact = contacts[0];
   console.log(contact)
 
-  const limit = 50;
+  const limit = 100;
 
   const myContacts = ContactsCollection.find({
     userId: Meteor.userId(),
