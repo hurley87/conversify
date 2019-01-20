@@ -35,6 +35,8 @@ import Responses from '../../pages/Responses/Responses';
 import NewSequence from '../../pages/NewSequence/NewSequence';
 import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
 import Contacts from '../../pages/Contacts/Contacts';
+import ViewContact from '../../pages/ViewContact/ViewContact';
+import EditContact from '../../pages/EditContact/EditContact';
 import './App.scss';
 
 class App extends React.Component {
@@ -62,6 +64,8 @@ class App extends React.Component {
                 <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

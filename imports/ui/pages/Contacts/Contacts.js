@@ -32,7 +32,7 @@ const handleSkip = (contactId) => {
 };
 
 const handleRemove = (contactId) => {
-  Meteor.call('contacts.remove', contactId, (error) => {
+  Meteor.call('contacts.skip', contactId, (error) => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
@@ -41,21 +41,80 @@ const handleRemove = (contactId) => {
   });
 };
 
+const handleDelete = (contactId, history) => {
+  if (confirm('Are you sure you want to permanently delete this prospect?')) {
+    Meteor.call('contacts.remove', contactId, (error) => {
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('Contact deleted!', 'danger');
+        history.push('/prospects');
+      }
+    });
+  }
+};
+
 const Contacts = ({
-  loading, contact, myContacts, limit, message, match, history,
+  loading, contacts, myContacts, limit, message, match, history,
 }) => (!loading ? (
   <div className="Contacts">
     <Row>
-      <Col xs={12}>
+      <Col xs={12} sm={9}>
+          <h5>Available ({contacts.length})</h5>
+          <p>Add prospects to your team from the list below.</p>
         { 
-        myContacts.length > limit ?
+        contacts.length > 0 ?
           <Table responsive>
             <thead>
               <tr>
                 <th>Name</th>
+                <th />
                 <th>Title</th>
                 <th>Company</th>
                 <th>City</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map(({
+                _id, firstName, lastName, title, city, company, linkedinUrl,
+              }) => (
+                <tr key={_id}>
+                  <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
+                  <td>
+                    <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
+                  </td>
+                  <td>{title.length > 30 ? title.slice(0,30) + "..." : title }</td>
+                  <td>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</td>
+                  <td>{city}</td>
+
+                  <td>
+                    <Button
+                      bsStyle="success"
+                      style={{ margin: '0', padding: '2px 10px', display: "inline", float: 'left' }}
+                      onClick={() => handleAdd(_id)}
+                    >
+                      +
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+              </Table> : 
+              <Alert bsStyle="warning">Add prospects to your team</Alert>
+        
+        }
+      </Col>
+      <Col xs={12} sm={3}>
+          {myContacts.length > 100 ? <Alert bsStyle="warning">You should only send 100 connection requests at a time.</Alert> : null }
+        <h5>Invitations ({myContacts.length})</h5>
+        <p>Connection requests will be sent to these prospects tomorrow morning.</p>
+        { 
+        myContacts.length > 0 ?
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Name</th>
                 <th />
               </tr>
             </thead>
@@ -64,15 +123,12 @@ const Contacts = ({
                 _id, firstName, lastName, title, city, company, linkedinUrl,
               }) => (
                 <tr key={_id}>
-                  <td><a target="_blank" href={linkedinUrl}>{firstName} {lastName}</a></td>
-                  <td>{title}</td>
-                  <td>{company}</td>
-                  <td>{city}</td>
+                    <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                    </td>
                   <td>
                     <Button
-                      bsStyle="success"
                       style={{ margin: '0', padding: '2px 10px' }}
-                      onClick={() => handleSkip(_id)}
+                      onClick={() => handleRemove(_id)}
                     >
                       -
                     </Button>
@@ -81,58 +137,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <div>
-                <Row>
-                  <Col xs={12} sm={3}>
-                    <h3><a target="_blank" href={contact.linkedinUrl}>{contact.firstName} {contact.lastName}</a></h3>
-                    <p>{contact.title} at <a target="_blank" href={`http://${contact.website}`}>{contact.company}</a></p>
-                    <p>{contact.city}</p>
-                    <br />
-                    <Button
-                      bsStyle="success"
-                      style={{ margin: '0', width: '100%', marginBottom: '10px' }}
-                      onClick={() => handleAdd(contact._id)}
-                    >
-                      Add
-                    </Button>
-                    <Button
-                      bsStyle="success"
-                      style={{ margin: '0', width: '100%', border: "1px solid #5cb85c", color: "#5cb85c", backgroundColor: '#fff' }}
-                      onClick={() => handleSkip(contact._id)}
-                    >
-                      Skip
-                    </Button>
-                    <br />
-                    <br />
-                    <p>{message + 1} left</p>
-                  </Col>
-                  <Col xs={12} smOffset={1} sm={8}>
-                     <Row>
-                       <Col xs={12}>
-                        <h3>Sequence</h3>
-                       </Col>
-                      <Col xs={12} xs={6}>
-                        <h5>Champion Template</h5>
-                        <p>{contact.championText}</p>
-                       </Col>
-                      <Col xs={12} xs={6}>
-                        <h5>Challenger Template</h5>
-                        <p>{contact.challengerText}</p>
-                      </Col>
-                      <Col xs={12} xs={12}>
-                        <hr />
-                        <h5>First Followup</h5>
-                        <p>{contact.firstFollowUpText}</p>
-                      </Col>
-                      <Col xs={12} xs={12}>
-                        <hr />
-                        <h5>Second Followup</h5>
-                        <p>{contact.secondFollowUpText}</p>
-                      </Col>
-                     </Row>
-                  </Col>
-                </Row>
-              </div>
+              <Alert bsStyle="warning">No prospects available</Alert>
         
         }
       </Col>
@@ -170,5 +175,6 @@ export default withTracker(() => {
     myContacts,
     limit,
     message,
+    contacts,
   };
 })(Contacts);

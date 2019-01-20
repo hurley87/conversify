@@ -19,7 +19,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
     <Row>
-      <Col sm={12}>
+      <Col xs={12} sm={10}>
         <Table responsive>
           <thead>
             <tr>
@@ -77,6 +77,20 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           </tbody>
         </Table>
       </Col>
+        <Col xs={12} sm={2}>
+          <h5>Requests</h5>
+          <p>{first_msgs}</p>
+          <hr />
+          <h5>New Connections</h5>
+          <p>{ncs}</p>
+          <hr />
+          <h5>Replies</h5>
+          <p>{replies}</p>
+          <hr />
+          <h5>PRs</h5>
+          <p>{prtime}</p>
+          
+        </Col>
     </Row>
   </div>:
   <div>

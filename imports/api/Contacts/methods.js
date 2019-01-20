@@ -34,7 +34,7 @@ Meteor.methods({
     try {
       return Contacts.update(_id, {
         $set: {
-          owner: 'skip',
+          owner: '',
           userId: this.userId,
         },
       });
@@ -42,16 +42,11 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
-  'contacts.remove': function contactsRemove(_id) {
-    check(_id, String);
+  'contacts.remove': function contactsRemove(contactId) {
+    check(contactId, String);
 
     try {
-      return Contacts.update(_id, {
-        $set: {
-          owner: '',
-          userId: '',
-        },
-      });
+      return Contacts.remove(contactId);
     } catch (exception) {
       handleMethodException(exception);
     }
@@ -115,6 +110,22 @@ Meteor.methods({
           sentiment,
         },
       });
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },
+  'contacts.update': function contactsUpdate(doc) {
+    check(doc, {
+      _id: String,
+      championText: String,
+      firstFollowUpText: String,
+      secondFollowUpText: String,
+    });
+
+    try {
+      const contactId = doc._id;
+      Contacts.update(contactId, { $set: doc });
+      return contactId; // Return _id so we can redirect to contact after update.
     } catch (exception) {
       handleMethodException(exception);
     }

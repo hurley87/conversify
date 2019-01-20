@@ -24,8 +24,15 @@ Meteor.publish('contacts.list', function contactsList(startDate, endDate) {
 Meteor.publish('contacts.responses', function contactsResponses() {
 
   let selector = {
-    "replied": true
+    "replied": true,
+    "userId": this.userId,
   }
 
   return Contacts.find(selector);
+});
+
+// Note: contacts.view is also used when editing an existing contact.
+Meteor.publish('contacts.view', function contactsView(contactId) {
+  check(contactId, String);
+  return Contacts.find({ _id: contactId });
 });
