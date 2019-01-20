@@ -77,7 +77,7 @@ const Contacts = ({
             </thead>
             <tbody>
               {contacts.map(({
-                _id, firstName, lastName, title, city, company, linkedinUrl,
+                _id, firstName, lastName, title, city, company, linkedinUrl, website
               }) => (
                 <tr key={_id}>
                   <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
@@ -85,7 +85,7 @@ const Contacts = ({
                     <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
                   </td>
                   <td>{title.length > 30 ? title.slice(0,30) + "..." : title }</td>
-                  <td>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</td>
+                    <td><a target="_blank" href={`http://${website}`}>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</a></td>
                   <td>{city}</td>
 
                   <td>
