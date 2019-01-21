@@ -34,10 +34,13 @@ const displayResponses = (responses, sentiment) =>
       </thead>
       <tbody>
         {responses.filter((response) => response.sentiment == sentiment).map(({
-          _id, firstName, lastName, title, city, company, linkedinUrl, website, threadUrl
+          _id, firstName, lastName, title, city, company, linkedinUrl, website, threadUrl, linkedInUsername
         }) => (
             <tr key={_id}>
               <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
+              <td>
+                <Button style={{ margin: '0', padding: '0', fontSize: "17px" }} onClick={() => updateSentiment(linkedInUsername, '')} className="fa fa-edit"></Button>
+              </td>
               <td>{title.length > 30 ? title.slice(0, 30) + "..." : title}</td>
               <td><a target="_blank" href={`http://${website}`}>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</a></td>
               <td>{city}</td>
@@ -69,15 +72,15 @@ const noResponses = (respones) => (
     <Row>
       <Col xs={12}>
         <h5>Positives ({respones.filter(response => response.sentiment === "positive").length})</h5>
-        { displayResponses(respones, 'positive') }
+      {respones.filter(response => response.sentiment === "positive").length > 0 ? displayResponses(respones, 'positive') : null }
       </Col>
       <Col xs={12}>
         <h5>Neutrals ({respones.filter(response => response.sentiment === "neutral").length})</h5>
-        {displayResponses(respones, 'neutral')}
+        { respones.filter(response => response.sentiment === "neutral").length > 0 ? displayResponses(respones, 'neutral') : null}
       </Col>
       <Col xs={12}>
         <h5>Negatives ({respones.filter(response => response.sentiment === "negative").length})</h5>
-        {displayResponses(respones, 'negative')}
+      {respones.filter(response => response.sentiment === "negative").length > 0 ? displayResponses(respones, 'negative') : null }
       </Col>
     </Row>  );
 
