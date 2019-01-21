@@ -101,7 +101,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">Add prospects to your team</Alert>
+              <Alert bsStyle="warning">Email dhurls99@gmail.com for more prospects</Alert>
         
         }
       </Col>
@@ -137,7 +137,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">No prospects available</Alert>
+              <Alert bsStyle="warning">Add prospects to your invitation list</Alert>
         
         }
       </Col>
