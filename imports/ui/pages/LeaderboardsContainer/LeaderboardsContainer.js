@@ -27,7 +27,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
-              <th>PRs</th>
+              <th>Invites</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +87,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <h5>Replies</h5>
           <p>{replies}</p>
           <hr />
-          <h5>PRs</h5>
+          <h5>Invites</h5>
           <p>{prtime}</p>
           
         </Col>
