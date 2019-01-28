@@ -69,7 +69,7 @@ Meteor.methods({
       newContact.email = uploadedContact.email1;
       newContact.linkedinUrl = uploadedContact.LIProfileUrl;
       newContact.badLinkedinUrl = false;
-      newContact.linkedInUsername = uploadedContact.LIProfileUrl.split('/')[4];
+      newContact.linkedInUsername = '';
       newContact.userId = '';
       newContact.owner = '';
       newContact.badFit = false;

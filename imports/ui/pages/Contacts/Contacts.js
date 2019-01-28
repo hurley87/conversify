@@ -61,7 +61,7 @@ const Contacts = ({
     <Row>
       <Col xs={12} sm={9}>
           <h5>Available ({contacts.length})</h5>
-          <p>Add prospects to your team from the list below.</p>
+          <p>Add prospects to your invitation list</p>
         { 
         contacts.length > 0 ?
           <Table responsive>
@@ -107,7 +107,7 @@ const Contacts = ({
       </Col>
       <Col xs={12} sm={3}>
           {myContacts.length > 100 ? <Alert bsStyle="warning">You should only send 100 connection requests at a time.</Alert> : null }
-        <h5>Invitations ({myContacts.length})</h5>
+        <h5>Invitation List ({myContacts.length})</h5>
         <p>Connection requests will be sent to these prospects tomorrow morning.</p>
         { 
         myContacts.length > 0 ?

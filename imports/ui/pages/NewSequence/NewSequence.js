@@ -156,24 +156,22 @@ class NewSequence extends React.Component {
     return (
       <div>
         {
-            this.state.contacts.length > 0 && this.state.contacts.length <= 800 ? (
+            this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
 
               <Row>
-                <Col xs={3}>
-                  <p> {this.state.contact_index + 1} / {this.state.contacts.length} </p>
-                  <button style={{margin: '0'}} onClick={this.handleNext} className="btn btn-default">Next</button>
-                  <br />
-                  <br />
-                  <div>
+                <Col xs={12}>
+                  <h4>Invitation Sequence for {this.state.contacts[this.state.contact_index].firstName} <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small></h4>
+                  <Row>
                     {
-                    this.state.variables.map(variable => (['firstName', 'lastName', 'Title', 'CompanyCleaned', 'Website', 'City', 'email1', 'LIProfileUrl'].includes(variable) ? (<div><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></div>) : null))
+                      this.state.variables.map(variable => (['firstName', 'Title', 'CompanyCleaned', 'Website', 'City'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
                     }
-                  </div>
+                  </Row>
+                  <br />
                 </Col>
-                <Col xs={6}>
+                <Col className='well' sm={6} xs={12}>
                   <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
                     <FormGroup>
-                      <ControlLabel>Champion Connect Request</ControlLabel>
+                      <ControlLabel>Connection Request</ControlLabel>
                       <textarea
                         style={{ minHeight: '100px' }}
                         type="text"
@@ -183,7 +181,7 @@ class NewSequence extends React.Component {
                         onChange={this.handleCra}
                       />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup className='hidden'>
                       <ControlLabel>Challenger Connection Request</ControlLabel>
                       <textarea
                         style={{ minHeight: '100px' }}
@@ -229,13 +227,16 @@ class NewSequence extends React.Component {
                     </FormGroup>
                   </form>
                 </Col>
-                <Col xs={3}>
-                  <h5>Champion Connection Request</h5>
+                <Col sm={6} xs={12} style={{padding: '0px 40px'}}>
+                  <h4>Preview</h4>
+                  <h5>Connection Request</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.cra, this.state.contact_index)}</div>
                   <hr />
+                  <div className='hidden'>
                   <h5>Challenger Connection Request</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
                   <hr />
+                </div>
                   <h5>1st Follow-up</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow1, this.state.contact_index)}</div>
                   <hr />
@@ -249,16 +250,16 @@ class NewSequence extends React.Component {
                   <br />
                   <CSVReader
                     cssClass="react-csv-input"
-                    label="Upload CSV of Contacts (max 800)"
+                    label="Upload CSV of Contacts (max 1000)"
                     onFileLoaded={this.handleForce}
                   />
                   <br />
-                  {this.state.contacts.length > 800 ? (
+                  {this.state.contacts.length > 1000 ? (
                     <p style={{ color: '#e74c3c' }}><Wave
                       effect="stretch"
                       effectChange={2.2}
                       style={{ color: 'red' }}
-                      text={`That's ${this.state.contacts.length - 800} contacts too many`}
+                      text={`That's ${this.state.contacts.length - 1000} contacts too many`}
                     />
                     </p>
                 ) : null}

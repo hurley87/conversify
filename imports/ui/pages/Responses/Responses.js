@@ -71,16 +71,12 @@ const displayResponses = (responses, sentiment) =>
 const noResponses = (respones) => (
     <Row>
       <Col xs={12}>
-        <h5>Positives ({respones.filter(response => response.sentiment === "positive").length})</h5>
+        <h5>Invites Sent ({respones.filter(response => response.sentiment === "positive").length})</h5>
       {respones.filter(response => response.sentiment === "positive").length > 0 ? displayResponses(respones, 'positive') : null }
       </Col>
       <Col xs={12}>
-        <h5>Neutrals ({respones.filter(response => response.sentiment === "neutral").length})</h5>
+        <h5>Invites Declined ({respones.filter(response => response.sentiment === "neutral").length})</h5>
         { respones.filter(response => response.sentiment === "neutral").length > 0 ? displayResponses(respones, 'neutral') : null}
-      </Col>
-      <Col xs={12}>
-        <h5>Negatives ({respones.filter(response => response.sentiment === "negative").length})</h5>
-      {respones.filter(response => response.sentiment === "negative").length > 0 ? displayResponses(respones, 'negative') : null }
       </Col>
     </Row>  );
 
@@ -95,7 +91,7 @@ const Responses = ({
       Responses.filter(response => response.sentiment == '').map((response) => {
         console.log(response);
       return (
-        <div><hr />
+        <div>
           <h5><a target="_blank" href={response.linkedinUrl}>{`${response["firstName"]  } ${  response["lastName"]}`}</a></h5>
           <p>{response.title} of {response.company}</p>
           <p><a target="_blank" href={response.threadUrl}>Respond to {response.firstName}</a></p>
@@ -106,9 +102,8 @@ const Responses = ({
                 ))
 
             }
-          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Positive</Button>
-          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Neutral</Button>
-          <Button onClick={() => updateSentiment(response.linkedInUsername, 'negative')} bsStyle="danger">Negative</Button>
+          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Send Invite</Button>
+          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Decline Invite</Button>
           <br />
         </div>
         );

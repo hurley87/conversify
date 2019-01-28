@@ -8,13 +8,13 @@ const AuthenticatedNavigation = ({ name, history }) => (
   <div>
     <Nav pullRight>
       <LinkContainer to="/prospects">
-        <NavItem eventKey={2.1} href="/prospects">Prospects</NavItem>
+        <NavItem eventKey={2.1} href="/prospects">Invitations</NavItem>
       </LinkContainer>
       <LinkContainer to="/results">
-        <NavItem eventKey={2.1} href="/results">Results</NavItem>
+        <NavItem eventKey={2.1} href="/results">Events</NavItem>
       </LinkContainer>
       <LinkContainer to="/responses">
-        <NavItem eventKey={2.1} href="/responses">Responses</NavItem>
+        <NavItem eventKey={2.1} href="/responses">Invites</NavItem>
       </LinkContainer>
       <NavDropdown eventKey={2} title={name} id="user-nav-dropdown">
         <MenuItem eventKey={2.2} onClick={() => history.push('/logout')}>Logout</MenuItem>

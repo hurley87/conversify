@@ -6,20 +6,56 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import ContactsCollection from '../../../api/Contacts/Contacts';
 import Loading from '../../components/Loading/Loading';
-import Leaderboards from '../Leaderboards/Leaderboards';
+import tooltip from 'chartist-plugin-tooltip';
+import ChartistGraph from 'react-chartist';
 import moment from 'moment';
 import { DateRangePicker } from 'react-dates';
 import _ from 'lodash';
+
+import './Leaderboards.scss';
+import { STATUS_CODES } from 'http';
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats }) => ( !loading ? (
+const enumerateDaysBetweenDates = function (startDate, endDate) {
+  const dates = [];
+
+  const currDate = moment(startDate).startOf('day');
+  const lastDate = moment(endDate).startOf('day');
+
+  while (currDate.add(1, 'days').diff(lastDate) < 0) {
+    dates.push(currDate.format("MMM D"));
+  }
+
+  return dates;
+};
+
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, }) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
+
     <Row>
       <Col xs={12} sm={10}>
+          <h5>Connections</h5>
+          <ChartistGraph className='ct-chart-line' data={{
+            labels,
+            series,
+          }} options={{
+            low: 0,
+            showArea: false,
+            showLine: true,
+            showPoint: true,
+            axisX: {
+              labelInterpolationFnc: function (value, index) {
+                return value;
+              }
+            },
+            plugins: [
+              tooltip()
+            ]
+          }} type={'Line'} />
         <Table responsive>
           <thead>
             <tr>
@@ -81,7 +117,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <h5>Requests</h5>
           <p>{first_msgs}</p>
           <hr />
-          <h5>New Connections</h5>
+          <h5>Connections</h5>
           <p>{ncs}</p>
           <hr />
           <h5>Replies</h5>
@@ -105,9 +141,13 @@ LeaderboardsContainer.propTypes = {
 
 export default createContainer((props) => {
 
-	const subscription = Meteor.subscribe('contacts.list', props.startDate, props.endDate);
+  const subscription = Meteor.subscribe('contacts.list', props.startDate, props.endDate);
 
-	let leaderboards = ContactsCollection.find().fetch();
+  const labels = enumerateDaysBetweenDates(props.startDate, props.endDate)
+
+  console.log(labels)
+
+  let leaderboards = ContactsCollection.find().fetch();
 
 	  const first_msgs = leaderboards.reduce(function (n, first_msgs) {
 	        return n + (first_msgs["requestSent"] == true);
@@ -144,9 +184,48 @@ export default createContainer((props) => {
 	      neutrals: get_stat(collection, "sentiment", 'neutral'),
 	      negatives: get_stat(collection, "sentiment", 'negative'),
 	    })
-	  })
+    })
 
-	  stats = _.sortBy(stats, ['positives'])
+    let series = []
+
+    names.map(name => {
+      console.log(name)
+      const collection = accounts[name];
+      const connections = collection.filter(contact => contact.connection)
+      connections.map(connection => {
+        connection['day'] = moment(connection.connectionDate).format("MMM D")
+      })
+      // console.log(name)
+      const groupByDay = connections.groupBy('day')
+      const dateByDates = [];
+      for(let label in labels) {
+        const dateLabel = labels[label];
+        if(dateLabel in groupByDay) {
+          console.log('contains')
+          console.log(dateLabel)
+          dateByDates.push({
+            meta: name,
+            value: groupByDay[dateLabel].length
+          })
+        } else {
+          if (typeof dateLabel === 'string' || dateLabel instanceof String) {
+            console.log('does not contain')
+            console.log(dateLabel)
+            dateByDates.push({
+              meta: name,
+              value: 0
+            })
+          }
+        }
+      }
+      console.log('labels')
+      console.log(labels)
+      series.push(dateByDates);
+    })
+
+    console.log(series)
+
+    stats = _.sortBy(stats, ['positives'])
 
     let leads = stats.groupBy('account')
 
@@ -184,8 +263,9 @@ export default createContainer((props) => {
 	    ncs: ncs,
 	    replies: replies,
       prtime: prtime,
-      owner_stats: owner_stats
-
+      owner_stats: owner_stats,
+      labels,
+      series,
 	  };
 }, LeaderboardsContainer);
 
