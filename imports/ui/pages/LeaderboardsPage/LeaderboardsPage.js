@@ -16,8 +16,8 @@ class HomePageDatePicker extends React.Component {
 	dateObj.setHours(dateObj.getHours() - 4);
 	var month = dateObj.getUTCMonth();
 	var month2 = dateObj.getUTCMonth() + 1;
-	var day = dateObj.getUTCDate() - 1;
-	var day2 = dateObj.getUTCDate()
+	var day = dateObj.getUTCDate();
+	var day2 = moment(dateObj).add(1, 'days').toDate().getUTCDate();
 	var year = dateObj.getUTCFullYear();
 
 	if(month.toString().length == 1){ month = '0' + month }
