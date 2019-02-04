@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len, no-return-assign */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,11 +16,12 @@ class NewSequence extends React.Component {
     super(props);
     autoBind(this);
     this.state = {
-      view: 'upload',
       variables: [],
       contacts: [],
+      upload: false,
       contact_index: 0,
       loading: false,
+      cohort: '',
       cra: 'Hi {{firstName}}, I’m looking to connect with and learn from experienced marketers. if you’re open to expanding your network. Looking forward to seeing how I can help.',
       crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
       follow1: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
@@ -95,6 +97,7 @@ class NewSequence extends React.Component {
       newContacts[contact]['challengerText'] = this.parseCopy(form.crb.value, contact);
       newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.follow1.value, contact);
       newContacts[contact]['secondFollowUpText'] = this.parseCopy(form.follow2.value, contact);
+      newContacts[contact]['cohort'] = this.state.cohort;
     }
 
     this.setState({
@@ -107,7 +110,7 @@ class NewSequence extends React.Component {
       } else {
         this.form.reset();
         Bert.alert('Prospects uploaded', 'success');
-        history.push('/prospects');
+        history.push('/invitations');
       }
     });
   }
@@ -119,6 +122,16 @@ class NewSequence extends React.Component {
   handleCra(evt) {
     this.setState({
       cra: evt.target.value,
+    });
+  }
+
+  handleSubmitCohort(){
+    this.setState({ upload: true })
+  }
+
+  handleCohort(evt) {
+    this.setState({
+      cohort: evt.target.value,
     });
   }
 
@@ -156,8 +169,23 @@ class NewSequence extends React.Component {
     return (
       <div>
         {
-            this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
-
+            !this.state.upload ? 
+            <Row>
+              <Col xs={12} sm={4}>
+                <h5>Cohort Name</h5>
+                <input
+                  type='text'
+                  className="form-control"
+                  name="cohort"
+                  defaultValue={this.state.cohort}
+                  onChange={this.handleCohort}
+                />
+                <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
+                  Continue
+                </Button>
+              </Col>
+            </Row> 
+          : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
                 <Col xs={12}>
                   <h4>Invitation Sequence for {this.state.contacts[this.state.contact_index].firstName} <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small></h4>
@@ -187,7 +215,7 @@ class NewSequence extends React.Component {
                         style={{ minHeight: '100px' }}
                         className="form-control"
                         name="crb"
-                        defaultValue={this.state.crb}
+                        defaultValue={this.state.cra}
                         onChange={this.handleCrb}
                       />
                     </FormGroup>

@@ -26,6 +26,7 @@ const displayResponses = (responses, sentiment) =>
       <thead>
         <tr>
           <th>Name</th>
+          <th />
           <th>Title</th>
           <th>Company</th>
           <th>City</th>
@@ -37,7 +38,7 @@ const displayResponses = (responses, sentiment) =>
           _id, firstName, lastName, title, city, company, linkedinUrl, website, threadUrl, linkedInUsername
         }) => (
             <tr key={_id}>
-              <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
+              <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
               <td>
                 <Button style={{ margin: '0', padding: '0', fontSize: "17px" }} onClick={() => updateSentiment(linkedInUsername, '')} className="fa fa-edit"></Button>
               </td>
@@ -59,7 +60,7 @@ const displayResponses = (responses, sentiment) =>
   // responses.filter((response) => response.sentiment == sentiment).map((response) => {
   //     return (
   //       <div>
-  //         <h5><a href={`/prospects/${response._id}`}>{response["firstName"] + " " + response["lastName"]}</a> <Button style={{margin: '0', marginLeft: "5px", padding: '0', fontSize: "17px"}} onClick={() => updateSentiment(response['linkedInUsername'], '')} className="fa fa-edit"></Button></h5>
+  //         <h5><a href={`/invitations/${response._id}`}>{response["firstName"] + " " + response["lastName"]}</a> <Button style={{margin: '0', marginLeft: "5px", padding: '0', fontSize: "17px"}} onClick={() => updateSentiment(response['linkedInUsername'], '')} className="fa fa-edit"></Button></h5>
   //         <p>{response['title']} of {response['company']}</p>
   //         <p><a >Respond to {response['firstName']}</a></p>
 

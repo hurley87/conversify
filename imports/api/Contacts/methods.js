@@ -60,6 +60,7 @@ Meteor.methods({
       const newContact = {}
       const uploadedContact = contacts[idx];
       newContact.createdAt = new Date();
+      newContact.cohort = uploadedContact.cohort;
       newContact.firstName = uploadedContact.firstName;
       newContact.lastName = uploadedContact.lastName;
       newContact.title = uploadedContact.Title;

@@ -62,16 +62,16 @@ class App extends React.Component {
                 <Route exact name="index" path="/" component={Index} />
                 <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/invitations/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/invitations" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/invitations/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/invitations/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/results" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/campaigns" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state} />

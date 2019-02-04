@@ -12,20 +12,20 @@ import ContactsContainer from '../ContactsContainer/ContactsContainer';
 class HomePageDatePicker extends React.Component {
   constructor(props) {
     super(props);
-	var dateObj = new Date();
-	dateObj.setHours(dateObj.getHours() - 4);
-	var month = dateObj.getUTCMonth();
-	var month2 = dateObj.getUTCMonth() + 1;
-	var day = dateObj.getUTCDate();
-	var day2 = moment(dateObj).add(1, 'days').toDate().getUTCDate();
-	var year = dateObj.getUTCFullYear();
+		var dateObj = new Date();
+		dateObj.setHours(dateObj.getHours() - 4);
+		var month = dateObj.getUTCMonth();
+		var month2 = dateObj.getUTCMonth() + 1;
+		var day = dateObj.getUTCDate();
+		var day2 = moment(dateObj).add(1, 'days').toDate().getUTCDate();
+		var year = dateObj.getUTCFullYear();
 
-	if(month.toString().length == 1){ month = '0' + month }
-	if(month2.toString().length == 1){ month2 = '0' + month2 }
-	if(day.toString().length == 1){ day = '0' + day }
+		if(month.toString().length == 1){ month = '0' + month }
+		if(month2.toString().length == 1){ month2 = '0' + month2 }
+		if(day.toString().length == 1){ day = '0' + day }
 
-	let today = year + "-" + month2 + '-' + day
-	let tomorrow = year + "-" + month2 + '-' + day2
+		let today = year + "-" + month2 + '-' + day
+		let tomorrow = year + "-" + month2 + '-' + day2
 
     this.state = {
       focusedInput: null,

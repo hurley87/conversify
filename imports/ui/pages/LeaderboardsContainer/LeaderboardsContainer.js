@@ -37,25 +37,34 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
   <div className="Leaderboards">
 
     <Row>
+      <Col xs={12}>
+        <h3>First Cohort</h3>
+      </Col>
+      <hr />
       <Col xs={12} sm={10}>
-          <h5>Connections</h5>
-          <ChartistGraph className='ct-chart-line' data={{
-            labels,
-            series,
-          }} options={{
-            low: 0,
-            showArea: false,
-            showLine: true,
-            showPoint: true,
-            axisX: {
-              labelInterpolationFnc: function (value, index) {
-                return value;
-              }
-            },
-            plugins: [
-              tooltip()
-            ]
-          }} type={'Line'} />
+        <Row>
+          <Col xs={12} sm={12}>
+            <h5>Connections</h5>
+            <ChartistGraph className='ct-chart-line' data={{
+              labels,
+              series,
+            }} options={{
+              low: 0,
+              showArea: false,
+              showLine: true,
+              showPoint: true,
+              axisX: {
+                labelInterpolationFnc: function (value, index) {
+                  return value;
+                }
+              },
+              plugins: [
+                tooltip()
+              ]
+            }} type={'Line'} />
+          </Col>
+        </Row>
+        
         <Table responsive>
           <thead>
             <tr>
@@ -222,8 +231,6 @@ export default createContainer((props) => {
       console.log(labels)
       series.push(dateByDates);
     })
-
-    console.log(series)
 
     stats = _.sortBy(stats, ['positives'])
 

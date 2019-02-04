@@ -36,7 +36,7 @@ const handleAdd = (contactId, history) => {
 const renderContact = (doc, match, history) => (doc ? (
   <div className="ViewContact">
     <Row>
-        <Col xs={12} sm={8}>
+        <Col xs={12} sm={6}>
             <div className="page-header clearfix">
             <h4 className="pull-left">{doc.firstName} {doc.lastName} <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
                 <a target="_blank" href={doc.linkedinUrl}><div style={{ backgroundColor: "#0077B5", marginLeft: "5px" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
@@ -116,9 +116,10 @@ export default withTracker(({ match }) => {
   const contactId = match.params._id;
   console.log(contactId)
   const subscription = Meteor.subscribe('contacts.view', contactId);
-
+  const doc = Contacts.findOne(contactId);
+  console.log(doc)
   return {
     loading: !subscription.ready(),
-    doc: Contacts.findOne(contactId),
+    doc,
   };
 })(ViewContact);
