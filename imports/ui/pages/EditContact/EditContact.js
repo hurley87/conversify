@@ -16,7 +16,7 @@ const handleRemove = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/prospects');
+        history.push('/invitations');
       }
     });
   }
@@ -28,7 +28,7 @@ const handleAdd = (contactId, history) => {
             Bert.alert(error.reason, 'danger');
         } else {
             Bert.alert('Contact added!', 'success');
-            history.push('/prospects');
+          history.push('/invitations');
         }
     });
 };
@@ -38,7 +38,7 @@ const renderContact = (doc, match, history) => (doc ? (
     <Row>
         <Col xs={12} sm={8}>
             <div className="page-header clearfix">
-                    <h4 className="pull-left"><a href={`/prospects/${doc._id}`}>{doc.firstName} {doc.lastName}</a>  <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
+          <h4 className="pull-left"><a href={`/invitations/${doc._id}`}>{doc.firstName} {doc.lastName}</a>  <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
                 <a target="_blank" href={doc.linkedinUrl}><div style={{ backgroundColor: "#0077B5", marginLeft: "5px" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
             </h4>
             </div>

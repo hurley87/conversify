@@ -16,7 +16,7 @@ const handleRemove = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/prospects');
+        history.push('/invitations');
       }
     });
   }
@@ -28,7 +28,7 @@ const handleAdd = (contactId, history) => {
             Bert.alert(error.reason, 'danger');
         } else {
             Bert.alert('Contact added!', 'success');
-            history.push('/prospects');
+          history.push('/invitations');
         }
     });
 };

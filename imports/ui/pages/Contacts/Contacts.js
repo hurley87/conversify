@@ -48,7 +48,7 @@ const handleDelete = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/prospects');
+        history.push('/invitations');
       }
     });
   }
@@ -80,7 +80,7 @@ const Contacts = ({
                 _id, firstName, lastName, title, city, company, linkedinUrl, website
               }) => (
                 <tr key={_id}>
-                  <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
+                  <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
                   <td>
                     <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
                   </td>
@@ -123,7 +123,7 @@ const Contacts = ({
                 _id, firstName, lastName, title, city, company, linkedinUrl,
               }) => (
                 <tr key={_id}>
-                    <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                    <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a>  
                     </td>
                   <td>
                     <Button
