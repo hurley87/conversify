@@ -37,32 +37,33 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
   <div className="Leaderboards">
 
     <Row>
-      <Col xs={12}>
-        <h3>First Cohort</h3>
-      </Col>
-      <hr />
       <Col xs={12} sm={10}>
         <Row>
-          <Col xs={12} sm={12}>
-            <h5>Connections</h5>
-            <ChartistGraph className='ct-chart-line' data={{
-              labels,
-              series,
-            }} options={{
-              low: 0,
-              showArea: false,
-              showLine: true,
-              showPoint: true,
-              axisX: {
-                labelInterpolationFnc: function (value, index) {
-                  return value;
-                }
-              },
-              plugins: [
-                tooltip()
-              ]
-            }} type={'Line'} />
-          </Col>
+          {
+            [].concat.apply([], series).length > 0 ? (
+              <Col xs={12} sm={12}>
+              <h5>Connections</h5>
+              <ChartistGraph className='ct-chart-line' data={{
+                labels,
+                series,
+              }} options={{
+                low: 0,
+                showArea: false,
+                showLine: true,
+                showPoint: true,
+                axisX: {
+                  labelInterpolationFnc: function (value, index) {
+                    return value;
+                  }
+                },
+                plugins: [
+                  tooltip()
+                ]
+              }} type={'Line'} />
+            </Col>
+            ) : null
+          }
+
         </Row>
         
         <Table responsive>
@@ -72,7 +73,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
-              <th>Invites</th>
+              <th>Meetings</th>
             </tr>
           </thead>
           <tbody>
@@ -132,7 +133,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <h5>Replies</h5>
           <p>{replies}</p>
           <hr />
-          <h5>Invites</h5>
+          <h5>Meetings</h5>
           <p>{prtime}</p>
           
         </Col>
@@ -182,8 +183,8 @@ export default createContainer((props) => {
 	  }
 
 	  names.map(name => {
-	    const collection = accounts[name]
-      let account = 'na'
+      const collection = accounts[name]
+      console.log
 	    stats.push({
 	      name: name,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
@@ -261,6 +262,8 @@ export default createContainer((props) => {
     })
 
     owner_stats = _.sortBy(owner_stats, ['positives'])
+
+    console.log([].concat.apply([], series))
 
 	  return {
 	    loading: !subscription.ready(),

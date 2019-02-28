@@ -103,9 +103,10 @@ const Responses = ({
                 ))
 
             }
-          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Send Invite</Button>
-          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Decline Invite</Button>
+          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Accepted</Button>
+          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Declined</Button>
           <br />
+          <hr />
         </div>
         );
       })
