@@ -82,12 +82,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               return (
                 <tr>
                   <td>{stat.name}
-                    <img height='20' style={{ display: (stat.positives >= 1 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/cool.gif" />
-                    <img height='20' style={{ display: (stat.positives >= 2 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/fireball.gif" />
-                    <img height='20' style={{ display: (stat.positives >= 3 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/charmander_dancing.gif" />
-                    <img height='20' style={{ display: (stat.positives >= 4 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/shwing3.gif" />
-                    <img height='20' style={{ display: (stat.positives >= 5 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/giphy.gif" />
-                    <img height='20' style={{ display: (stat.positives >= 6 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/a-parrot-3.gif" />  
                   </td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
