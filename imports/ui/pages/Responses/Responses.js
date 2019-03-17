@@ -29,7 +29,6 @@ const displayResponses = (responses, sentiment) =>
           <th />
           <th>Title</th>
           <th>Company</th>
-          <th>City</th>
           <th />
         </tr>
       </thead>

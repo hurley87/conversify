@@ -22,9 +22,9 @@ class NewSequence extends React.Component {
       contact_index: 0,
       loading: false,
       cohort: '',
-      cra: 'Hi {{firstName}}, I’m looking to connect with and learn from experienced marketers. if you’re open to expanding your network. Looking forward to seeing how I can help.',
+      cra: 'Hi {{firstName}}, as you probably know the OSC will start to crack down on mortgage syndication in the spring when the new regulations are introduced. Just curious, do you handle the compliance work in-house or hire an outside firm?',
       crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
-      follow1: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
+      follow1: "Thanks for connecting, {{firstName}}.\n\nTo help us at Fundscraper I put together a cheat sheet that's helped us identify the 9 major issues that we have to be concerned about as dealers.\n\nWould you like to take a look and see if we missed anything?",
       follow2: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
     };
   }
@@ -78,9 +78,7 @@ class NewSequence extends React.Component {
       contacts.push(contact);
     }
     contacts = contacts.slice(0, contacts.length - 1);
-    contacts.map(contact => {
-      contact['City'] = contact['Contact Location'].split(',')[0]
-    });
+
     this.setState({
       contacts,
       variables,
@@ -191,7 +189,7 @@ class NewSequence extends React.Component {
                   <h4>Invitation Sequence for {this.state.contacts[this.state.contact_index].firstName} <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small></h4>
                   <Row>
                     {
-                      this.state.variables.map(variable => (['firstName', 'Title', 'CompanyCleaned', 'Website', 'City'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
+                      this.state.variables.map(variable => (['firstName', 'Title', 'CompanyCleaned'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
                     }
                   </Row>
                   <br />
@@ -230,16 +228,6 @@ class NewSequence extends React.Component {
                       />
                     </FormGroup>
                     <FormGroup>
-                      <ControlLabel>2nd Follow-up</ControlLabel>
-                      <textarea
-                        style={{ minHeight: '200px' }}
-                        className="form-control"
-                        name="follow2"
-                        defaultValue={this.state.follow2}
-                        onChange={this.handleFollow2}
-                      />
-                    </FormGroup>
-                    <FormGroup>
                       {
                         this.state.loading ? (
                           <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" disabled>
@@ -256,7 +244,6 @@ class NewSequence extends React.Component {
                   </form>
                 </Col>
                 <Col sm={6} xs={12} style={{padding: '0px 40px'}}>
-                  <h4>Preview</h4>
                   <h5>Connection Request</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.cra, this.state.contact_index)}</div>
                   <hr />
@@ -267,9 +254,6 @@ class NewSequence extends React.Component {
                 </div>
                   <h5>1st Follow-up</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow1, this.state.contact_index)}</div>
-                  <hr />
-                  <h5>2nd Follow-up</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow2, this.state.contact_index)}</div>
                 </Col>
               </Row>
             ) : (

@@ -10,11 +10,11 @@ const AuthenticatedNavigation = ({ name, history }) => (
       <LinkContainer to="/invitations">
         <NavItem eventKey={2.1} href="/invitations">Invitations</NavItem>
       </LinkContainer>
-      <LinkContainer to="/campaigns">
-        <NavItem eventKey={2.1} href="/campaigns">Campaigns</NavItem>
-      </LinkContainer>
       <LinkContainer to="/responses">
-        <NavItem eventKey={2.1} href="/responses">Meetings</NavItem>
+        <NavItem eventKey={2.1} href="/responses">Responses</NavItem>
+      </LinkContainer>
+      <LinkContainer to="/results">
+        <NavItem eventKey={2.1} href="/results">Results</NavItem>
       </LinkContainer>
       <NavDropdown eventKey={2} title={name} id="user-nav-dropdown">
         <MenuItem eventKey={2.2} onClick={() => history.push('/logout')}>Logout</MenuItem>
@@ -24,7 +24,7 @@ const AuthenticatedNavigation = ({ name, history }) => (
 );
 
 AuthenticatedNavigation.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired, 
   history: PropTypes.object.isRequired,
 };
 

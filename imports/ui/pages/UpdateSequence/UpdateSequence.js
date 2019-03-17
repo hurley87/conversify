@@ -8,12 +8,12 @@ import Loading from '../../components/Loading/Loading';
 const UpdateSequence = ({ loading, docs, history }) => (!loading ? (
   <div className="UpdateSequence">
     <br />
-   <p><a href="/campaigns">Back</a></p>
+   <p><a href="/results">Back</a></p>
    <p>{docs.length} contacts left to prospect</p>
   </div>
 ) : <Loading />);
 
-UpdateSequence.defaultProps = {
+UpdateSequence.defaultProps =  {
   doc: null,
 };
 

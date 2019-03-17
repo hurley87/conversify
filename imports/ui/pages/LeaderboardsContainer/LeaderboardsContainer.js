@@ -32,7 +32,7 @@ const enumerateDaysBetweenDates = function (startDate, endDate) {
   return dates;
 };
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, }) => ( !loading ? (
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, cohort_stats, }) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
 
@@ -69,11 +69,68 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <Table responsive>
           <thead>
             <tr>
+              <th>Cohort</th>
+              <th>Requests</th>
+              <th>Connections</th>
+              <th>Replies</th>
+              <th>Leads</th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            cohort_stats.reverse().map((stat, i) =>{
+              return (
+                <tr>
+                  <td>{stat.name}
+                    <img height='20' style={{ display: (stat.positives >= 1 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/cool.gif" />
+                    <img height='20' style={{ display: (stat.positives >= 2 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/fireball.gif" />
+                    <img height='20' style={{ display: (stat.positives >= 3 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/charmander_dancing.gif" />
+                    <img height='20' style={{ display: (stat.positives >= 4 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/shwing3.gif" />
+                    <img height='20' style={{ display: (stat.positives >= 5 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/giphy.gif" />
+                    <img height='20' style={{ display: (stat.positives >= 6 ? 'inline' : 'none') }} src="https://s3.us-east-2.amazonaws.com/snapmortgages/a-parrot-3.gif" />  
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.num_crs_sent)}
+                  </td>
+                  <td>
+                  { numberWithCommas(stat.new_CR) } 
+                  { 
+                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
+                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
+                    )
+                  } 
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.replies)} 
+                  {
+                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.positives)} 
+                  {
+                    stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </Table>
+
+        <Table responsive>
+          <thead>
+            <tr>
               <th>Account</th>
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
-              <th>Meetings</th>
+              <th>Leads</th>
             </tr>
           </thead>
           <tbody>
@@ -133,7 +190,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <h5>Replies</h5>
           <p>{replies}</p>
           <hr />
-          <h5>Meetings</h5>
+          <h5>Leads</h5>
           <p>{prtime}</p>
           
         </Col>
@@ -168,15 +225,19 @@ export default createContainer((props) => {
 	  const replies = leaderboards.reduce(function (n, replies) {
 	        return n + (replies["replied"] == true);
 	    }, 0);
-	  const accounts = leaderboards.groupBy('owner')
-	  const names = []
-	  for(var k in accounts) names.push(k)
+    const accounts = leaderboards.groupBy('owner')
+    const cohorts = leaderboards.groupBy("cohort")
+    const names = []
+    const cohort_names = []
+    for(var k in accounts) names.push(k)
+    for(var k in cohorts) cohort_names.push(k)
 
     const prtime = leaderboards.reduce(function (n, replies) {
           return n + (replies["sentiment"] == 'positive');
       }, 0);
 
-	  let stats = []
+    let stats = []
+    let cohort_stats = []
 
 	  function get_stat(collection, str, result) {
 	    return collection.reduce(function (n, collection) { return n + (collection[str] == result)}, 0);
@@ -184,7 +245,6 @@ export default createContainer((props) => {
 
 	  names.map(name => {
       const collection = accounts[name]
-      console.log
 	    stats.push({
 	      name: name,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
@@ -193,7 +253,20 @@ export default createContainer((props) => {
 	      positives: get_stat(collection, "sentiment", 'positive'),
 	      neutrals: get_stat(collection, "sentiment", 'neutral'),
 	      negatives: get_stat(collection, "sentiment", 'negative'),
-	    })
+      })
+    })
+
+	  cohort_names.map(name => {
+      const collection = cohorts[name]
+	    cohort_stats.push({
+	      name: name,
+	      num_crs_sent: get_stat(collection, "requestSent", true),
+	      new_CR: get_stat(collection, "connection", true),
+	      replies: get_stat(collection, "replied", true),
+	      positives: get_stat(collection, "sentiment", 'positive'),
+	      neutrals: get_stat(collection, "sentiment", 'neutral'),
+	      negatives: get_stat(collection, "sentiment", 'negative'),
+      })
     })
 
     let series = []
@@ -234,6 +307,7 @@ export default createContainer((props) => {
     })
 
     stats = _.sortBy(stats, ['positives'])
+    cohort_stats = _.sortBy(cohort_stats, ['positives'])
 
     let leads = stats.groupBy('account')
 
@@ -276,6 +350,7 @@ export default createContainer((props) => {
       owner_stats: owner_stats,
       labels,
       series,
+      cohort_stats,
 	  };
 }, LeaderboardsContainer);
 

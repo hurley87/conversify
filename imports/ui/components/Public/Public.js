@@ -13,7 +13,7 @@ const Public = ({
         (React.createElement(component, {
           ...props, ...rest, loggingIn, authenticated,
         })) :
-        (<Redirect to={afterLoginPath || '/campaigns'} />)
+        (<Redirect to={afterLoginPath || '/results'} />)
     )}
   />
 );
