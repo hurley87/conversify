@@ -26,25 +26,30 @@ const displayResponses = (responses, sentiment) =>
       <thead>
         <tr>
           <th>Name</th>
-          <th />
-          <th>Title</th>
-          <th>Company</th>
+          <th>Cohort</th>
+          <th>Messages</th>
+          <th>Response</th>
           <th />
         </tr>
       </thead>
       <tbody>
         {responses.filter((response) => response.sentiment == sentiment).map(({
-          _id, firstName, lastName, title, city, company, linkedinUrl, website, threadUrl, linkedInUsername
+          _id, firstName, lastName, messages, cohort, responseText, threadUrl, linkedInUsername
         }) => (
             <tr key={_id}>
               <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
               <td>
+                {cohort}
+              </td>
+              <td>
+                {messages.length}
+              </td>
+              <td>
+                {responseText}
+              </td>
+              <td>
                 <Button style={{ margin: '0', padding: '0', fontSize: "17px" }} onClick={() => updateSentiment(linkedInUsername, '')} className="fa fa-edit"></Button>
               </td>
-              <td>{title.length > 30 ? title.slice(0, 30) + "..." : title}</td>
-              <td><a target="_blank" href={`http://${website}`}>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</a></td>
-              <td>{city}</td>
-
               <td>
                 <a target='_blank' href={threadUrl}>
                   Chat
@@ -92,8 +97,6 @@ const Responses = ({
         console.log(response);
       return (
         <div>
-          <h5><a target="_blank" href={response.linkedinUrl}>{`${response["firstName"]  } ${  response["lastName"]}`}</a></h5>
-          <p>{response.title} of {response.company}</p>
           <p><a target="_blank" href={response.threadUrl}>Respond to {response.firstName}</a></p>
           <br />
           {
@@ -102,8 +105,8 @@ const Responses = ({
                 ))
 
             }
-          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Accepted</Button>
-          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Declined</Button>
+          <Button style={{ marginLeft: '0' }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')} bsStyle="success">Add</Button>
+          <Button onClick={() => updateSentiment(response.linkedInUsername, 'neutral')} bsStyle="warning">Pass</Button>
           <br />
           <hr />
         </div>
@@ -125,6 +128,17 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('contacts.responses');
 
   const Responses = ContactsCollection.find({}).fetch();
+
+  Responses.map(response => {
+    console.log(response.messages[0]);
+    response['responseText'] = "";
+    for(var i = 0; i < response.messages.length; i++) {
+      if(response.messages[i]['name'] != response.messages[0]['name']) {
+        response['responseText'] = response.messages[i]['text']
+        break;
+      }
+    }
+  })
 
   console.log(Responses);
 
