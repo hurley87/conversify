@@ -103,7 +103,6 @@ const Contacts = ({
         }
       </Col>
       <Col xs={12} sm={3}>
-          {myContacts.length > 100 ? <Alert bsStyle="warning">You should only send 100 connection requests at a time.</Alert> : null }
         <h5>Invitation List ({myContacts.length})</h5>
         <p>Connection requests will be sent to these prospects tomorrow morning.</p>
         { 
