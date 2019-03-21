@@ -24,7 +24,7 @@ class HomePageDatePicker extends React.Component {
 		if(month2.toString().length == 1){ month2 = '0' + month2 }
 		if(day.toString().length == 1){ day = '0' + day }
 
-		let today = year + "-" + month2 + '-' + day
+		let today = "2019-02-24"
 		let tomorrow = year + "-" + month2 + '-' + day2
 
     this.state = {
