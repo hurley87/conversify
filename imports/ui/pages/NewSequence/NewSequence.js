@@ -94,7 +94,6 @@ class NewSequence extends React.Component {
       newContacts[contact]['championText'] = this.parseCopy(form.cra.value, contact);
       newContacts[contact]['challengerText'] = this.parseCopy(form.crb.value, contact);
       newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.follow1.value, contact);
-      newContacts[contact]['secondFollowUpText'] = this.parseCopy(form.follow2.value, contact);
       newContacts[contact]['cohort'] = this.state.cohort;
     }
 

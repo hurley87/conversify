@@ -70,7 +70,6 @@ const Contacts = ({
                 <th>Name</th>
                 <th />
                 <th>Title</th>
-                <th>Company</th>
                 <th>City</th>
                 <th />
               </tr>
@@ -84,9 +83,7 @@ const Contacts = ({
                   <td>
                     <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
                   </td>
-                  <td>{title.length > 30 ? title.slice(0,30) + "..." : title }</td>
-                    <td><a target="_blank" href={`http://${website}`}>{company.split(" ").length > 1 ? company.split(" ")[0] + " " + company.split(" ")[1] : company}</a></td>
-                  <td>{city}</td>
+                  <td>{ title }</td>
 
                   <td>
                     <Button
