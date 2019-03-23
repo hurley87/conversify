@@ -59,9 +59,8 @@ const Contacts = ({
 }) => (!loading ? (
   <div className="Contacts">
     <Row>
-      <Col xs={12} sm={9}>
-          <h5>Available ({contacts.length})</h5>
-          <p>Add prospects to your invitation list</p>
+      <Col xs={12} sm={8}>
+          <h5>Prospects ({contacts.length})</h5>
         { 
         contacts.length > 0 ?
           <Table responsive>
@@ -102,9 +101,8 @@ const Contacts = ({
         
         }
       </Col>
-      <Col xs={12} sm={3}>
+      <Col xs={12} sm={4}>
         <h5>Invitation List ({myContacts.length})</h5>
-        <p>Connection requests will be sent to these prospects tomorrow morning.</p>
         { 
         myContacts.length > 0 ?
           <Table responsive>
@@ -121,6 +119,9 @@ const Contacts = ({
                 <tr key={_id}>
                     <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a>  
                     </td>
+                    <td>
+                    <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
+                  </td>
                   <td>
                     <Button
                       style={{ margin: '0', padding: '2px 10px' }}

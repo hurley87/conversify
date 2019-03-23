@@ -32,7 +32,7 @@ const enumerateDaysBetweenDates = function (startDate, endDate) {
   return dates;
 };
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, cohort_stats, }) => ( !loading ? (
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, meetings, clients, cohort_stats, }) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
 
@@ -74,6 +74,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Connections</th>
               <th>Replies</th>
               <th>Leads</th>
+              <th>Meetings</th>
+              <th>Clients</th>
             </tr>
           </thead>
           <tbody>
@@ -110,6 +112,22 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                     )
                   }
                   </td>
+                  <td>
+                  {numberWithCommas(stat.meetings)} 
+                  {
+                    stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.meetings / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.clients)} 
+                  {
+                    stat.clients == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.clients / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
                 </tr>
               )
             })
@@ -125,6 +143,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Connections</th>
               <th>Replies</th>
               <th>Leads</th>
+              <th>Meetings</th>
+              <th>Clients</th>
             </tr>
           </thead>
           <tbody>
@@ -161,6 +181,22 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                     )
                   }
                   </td>
+                  <td>
+                  {numberWithCommas(stat.meetings)} 
+                  {
+                    stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.meetings / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.clients)} 
+                  {
+                    stat.clients == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.clients / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
                 </tr>
               )
             })
@@ -180,7 +216,12 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <hr />
           <h5>Leads</h5>
           <p>{prtime}</p>
-          
+          <hr />
+          <h5>Meetings</h5>
+          <p>{meetings + clients} <small>({((meetings + clients)/first_msgs*100).toFixed(1)}%)</small></p>
+          <hr />
+          <h5>Clients</h5>
+          <p>{clients} <small>({(clients/first_msgs*100).toFixed(1)}%)</small></p>
         </Col>
     </Row>
   </div>:
@@ -224,6 +265,14 @@ export default createContainer((props) => {
           return n + (replies["sentiment"] == 'positive');
       }, 0);
 
+    const meetings = leaderboards.reduce(function (n, replies) {
+        return n + (replies["sentiment"] == 'meeting');
+    }, 0);
+
+    const clients = leaderboards.reduce(function (n, replies) {
+      return n + (replies["sentiment"] == 'client');
+  }, 0);
+
     let stats = []
     let cohort_stats = []
 
@@ -238,7 +287,9 @@ export default createContainer((props) => {
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),
-	      positives: get_stat(collection, "sentiment", 'positive'),
+        positives: get_stat(collection, "sentiment", 'positive'),
+        meetings: get_stat(collection, "sentiment", "meeting") + get_stat(collection, "sentiment", "client"),
+        clients: get_stat(collection, "sentiment", "client"),
 	      neutrals: get_stat(collection, "sentiment", 'neutral'),
 	      negatives: get_stat(collection, "sentiment", 'negative'),
       })
@@ -251,7 +302,9 @@ export default createContainer((props) => {
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),
-	      positives: get_stat(collection, "sentiment", 'positive'),
+        positives: get_stat(collection, "sentiment", 'positive'),
+        meetings: get_stat(collection, "sentiment", "meeting") + get_stat(collection, "sentiment", "client"),
+        clients: get_stat(collection, "sentiment", "client"),
 	      neutrals: get_stat(collection, "sentiment", 'neutral'),
 	      negatives: get_stat(collection, "sentiment", 'negative'),
       })
@@ -338,6 +391,8 @@ export default createContainer((props) => {
       owner_stats: owner_stats,
       labels,
       series,
+      meetings, 
+      clients,
       cohort_stats,
 	  };
 }, LeaderboardsContainer);
