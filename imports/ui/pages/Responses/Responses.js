@@ -49,10 +49,10 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
                 {responseText.slice(0, 70)}
               </td>
               <td>
-                <i style={{ fontSize: "15px", color: "#337ab7", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, upSentiment)} class="fa fa-chevron-circle-up"></i>
+                <i style={{ fontSize: "15px", color: "#4285f4", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, upSentiment)} class="fa fa-chevron-circle-up"></i>
               </td>
               <td>
-                <i style={{ fontSize: "15px", color: "#337ab7", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, downSentiment)} class="fa fa-chevron-circle-down"></i>
+                <i style={{ fontSize: "15px", color: "#4285f4", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, downSentiment)} class="fa fa-chevron-circle-down"></i>
               </td>
               <td>
                 <a target='_blank' href={threadUrl}>
