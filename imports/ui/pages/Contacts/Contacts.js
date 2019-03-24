@@ -102,7 +102,7 @@ const Contacts = ({
         }
       </Col>
       <Col xs={12} sm={4}>
-        <h5>Invitation List ({myContacts.length})</h5>
+        <h5>Invitations ({myContacts.length})</h5>
         { 
         myContacts.length > 0 ?
           <Table responsive>
