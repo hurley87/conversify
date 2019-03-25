@@ -107,8 +107,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   <td>
                   {numberWithCommas(stat.positives + stat.meetings + stat.clients)} 
                   {
-                    (stat.positives + stat.meetings + stat.clients) == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({( (stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({((stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>
@@ -209,13 +209,13 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           <p>{first_msgs}</p>
           <hr />
           <h5>Connections</h5>
-          <p>{ncs}</p>
+          <p>{ncs} <small>({((ncs)/first_msgs*100).toFixed(1)}%)</small></p>
           <hr />
           <h5>Replies</h5>
-          <p>{replies}</p>
+          <p>{replies} <small>({((replies)/first_msgs*100).toFixed(1)}%)</small></p>
           <hr />
           <h5>Leads</h5>
-          <p>{prtime}</p>
+          <p>{prtime} <small>({((meetings + clients + prtime)/first_msgs*100).toFixed(1)}%)</small></p>
           <hr />
           <h5>Meetings</h5>
           <p>{meetings + clients} <small>({((meetings + clients)/first_msgs*100).toFixed(1)}%)</small></p>
@@ -396,6 +396,3 @@ export default createContainer((props) => {
       cohort_stats,
 	  };
 }, LeaderboardsContainer);
-
-
-
