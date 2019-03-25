@@ -105,18 +105,18 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   }
                   </td>
                   <td>
-                  {numberWithCommas(stat.positives)} 
+                  {numberWithCommas(stat.positives + stat.meetings + stat.clients)} 
                   {
                     stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                      <small>({((stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>
                   <td>
-                  {numberWithCommas(stat.meetings)} 
+                  {numberWithCommas(stat.meetings + stat.clients)} 
                   {
                     stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.meetings / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                      <small>({((stat.meetings + stat.clients)/ stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>
@@ -174,18 +174,18 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                   }
                   </td>
                   <td>
-                  {numberWithCommas(stat.positives)} 
+                  {numberWithCommas(stat.positives + stat.meetings + stat.clients)} 
                   {
                     stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.positives / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                      <small>({((stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>
                   <td>
-                  {numberWithCommas(stat.meetings)} 
+                  {numberWithCommas(stat.meetings + stat.clients)} 
                   {
                     stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.meetings / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                      <small>({((stat.meetings + stat.clients)/ stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>

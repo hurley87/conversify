@@ -110,7 +110,7 @@ const Contacts = ({
             </thead>
             <tbody>
               {myContacts.map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title,
+                _id, firstName, lastName, linkedinUrl, cohort, email, title
               }) => (
                 <tr key={_id}>
                   <td>
