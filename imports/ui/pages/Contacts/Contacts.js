@@ -59,7 +59,7 @@ const Contacts = ({
 }) => (!loading ? (
   <div className="Contacts">
     <Row>
-      <Col xs={12} sm={8}>
+      <Col xs={12} sm={6}>
           <h5>Prospects ({contacts.length})</h5>
         { 
         contacts.length > 0 ?
@@ -67,23 +67,18 @@ const Contacts = ({
             <thead>
               <tr>
                 <th>Name</th>
-                <th />
                 <th>Title</th>
-                <th>City</th>
                 <th />
               </tr>
             </thead>
             <tbody>
               {contacts.map(({
-                _id, firstName, lastName, title, city, company, linkedinUrl, website
+                _id, firstName, lastName, title, city, company, linkedinUrl, website, cohort, email,
               }) => (
                 <tr key={_id}>
-                  <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
-                  <td>
-                    <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
-                  </td>
-                  <td>{ title }</td>
+                  <td> <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
 
+                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
                   <td>
                     <Button
                       bsStyle="success"
@@ -97,11 +92,11 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">Email dhurls99@gmail.com for more prospects</Alert>
+              <Alert bsStyle="warning">No more prospects</Alert>
         
         }
       </Col>
-      <Col xs={12} sm={4}>
+      <Col xs={12} sm={6}>
         <h5>Invitations ({myContacts.length})</h5>
         { 
         myContacts.length > 0 ?
@@ -109,20 +104,21 @@ const Contacts = ({
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Title</th>
                 <th />
               </tr>
             </thead>
             <tbody>
               {myContacts.map(({
-                _id, firstName, lastName, title, city, company, linkedinUrl,
+                _id, firstName, lastName, linkedinUrl, cohort, email, title,
               }) => (
                 <tr key={_id}>
-                    <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a>  
-                    </td>
-                    <td>
-                    <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
-                  </td>
                   <td>
+                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/invitations/${_id}`}>{firstName} {lastName}</a>  
+                  </td>
+                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                  <td>
+
                     <Button
                       style={{ margin: '0', padding: '2px 10px' }}
                       onClick={() => handleRemove(_id)}
@@ -162,6 +158,7 @@ export default withTracker(() => {
   const myContacts = ContactsCollection.find({
     userId: Meteor.userId(),
     owner: Meteor.user().emails[0].address,
+    requestSent: false,
   }).fetch();
 
   const message = limit - myContacts.length;

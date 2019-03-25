@@ -28,7 +28,7 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
           <th>Name</th>
           <th>Cohort</th>
           <th>Messages</th>
-          <th>Response</th>
+          <th>First Response</th>
           <th />
           <th />
         </tr>
@@ -80,20 +80,20 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
 const noResponses = (respones) => (
     <Row>
       <Col xs={12}>
-        <h5>Clients ({respones.filter(response => response.sentiment === "client").length})</h5>
-      {respones.filter(response => response.sentiment === "client").length > 0 ? displayResponses(respones, 'client', 'client', 'meeting') : null }
-      </Col>
-      <Col xs={12}>
-        <h5>Meetings ({respones.filter(response => response.sentiment === "meeting").length})</h5>
-      {respones.filter(response => response.sentiment === "meeting").length > 0 ? displayResponses(respones, 'meeting', 'client', 'positive') : null }
+        <h5>Connections ({respones.filter(response => response.sentiment === "neutral").length})</h5>
+        { respones.filter(response => response.sentiment === "neutral").length > 0 ? displayResponses(respones, 'neutral', 'neutral', 'positive') : null}
       </Col>
       <Col xs={12}>
         <h5>Leads ({respones.filter(response => response.sentiment === "positive").length})</h5>
-      {respones.filter(response => response.sentiment === "positive").length > 0 ? displayResponses(respones, 'positive', 'meeting', 'neutral') : null }
+      {respones.filter(response => response.sentiment === "positive").length > 0 ? displayResponses(respones, 'positive', 'neutral', 'meeting') : null }
       </Col>
       <Col xs={12}>
-        <h5>Connections ({respones.filter(response => response.sentiment === "neutral").length})</h5>
-        { respones.filter(response => response.sentiment === "neutral").length > 0 ? displayResponses(respones, 'neutral', 'positive', 'neutral') : null}
+        <h5>Meetings ({respones.filter(response => response.sentiment === "meeting").length})</h5>
+      {respones.filter(response => response.sentiment === "meeting").length > 0 ? displayResponses(respones, 'meeting', 'positive', 'client') : null }
+      </Col>
+      <Col xs={12}>
+        <h5>Clients ({respones.filter(response => response.sentiment === "client").length})</h5>
+      {respones.filter(response => response.sentiment === "client").length > 0 ? displayResponses(respones, 'client', 'meeting', 'client') : null }
       </Col>
     </Row>  );
 
