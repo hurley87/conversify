@@ -95,6 +95,8 @@ class NewSequence extends React.Component {
       newContacts[contact]['challengerText'] = this.parseCopy(form.crb.value, contact);
       newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.follow1.value, contact);
       newContacts[contact]['cohort'] = this.state.cohort;
+      newContacts[contact]['owner'] = Meteor.user().emails[0].address;
+      newContacts[contact]['userId'] = Meteor.userId();
     }
 
     this.setState({

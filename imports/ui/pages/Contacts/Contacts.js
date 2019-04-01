@@ -61,7 +61,7 @@ const Contacts = ({
   <div className="Contacts">
     <Row>
       <Col xs={12}>
-        {myContacts.length > 0 ? <h5>Invitations ({myContacts.length})</h5>:null}
+        { myContacts.length > 0 ?  <h5>Prospects ({myContacts.length})</h5> : null }
         { 
         myContacts.length > 0 ?
           <Table responsive>
@@ -83,19 +83,24 @@ const Contacts = ({
                   </td>
                   <td>{cohort}</td>
                   <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                  <td>{ email }</td>
                   <td>
 
-                    <Button
-                      style={{ margin: '0', padding: '2px 10px' }}
-                      onClick={() => handleRemove(_id)}
-                    >
-                      -
-                    </Button>
+               {     
+                    // <Button
+                    //   style={{ margin: '0', padding: '2px 10px' }}
+                    //   onClick={() => handleRemove(_id)}
+                    // >
+                    //   -
+                    // </Button>
+
+                    }
                   </td>
                 </tr>
               ))}
             </tbody>
-              </Table> : <NewSequence />
+              </Table> : 
+              <NewSequence />
         
         }
       </Col>
@@ -127,6 +132,8 @@ export default withTracker(() => {
   }).fetch();
 
   const message = limit - myContacts.length;
+
+  console.log(myContacts)
 
   return {
     loading: !subscription.ready(),
