@@ -8,6 +8,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import ContactsCollection from '../../../api/Contacts/Contacts';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
+import NewSequence from "../NewSequence/NewSequence";
 
 // import './Contacts.scss';
 
@@ -59,46 +60,8 @@ const Contacts = ({
 }) => (!loading ? (
   <div className="Contacts">
     <Row>
-      <Col xs={12} sm={6}>
-          <h5>Prospects ({contacts.length})</h5>
-        { 
-        contacts.length > 0 ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Cohort</th>
-                <th>Title</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map(({
-                _id, firstName, lastName, title, city, company, linkedinUrl, website, cohort, email,
-              }) => (
-                <tr key={_id}>
-                  <td> <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
-                  <td>{cohort}</td>
-                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>
-                    <Button
-                      bsStyle="success"
-                      style={{ margin: '0', padding: '2px 10px', display: "inline", float: 'left' }}
-                      onClick={() => handleAdd(_id)}
-                    >
-                      +
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-              </Table> : 
-              <Alert bsStyle="warning">No more prospects</Alert>
-        
-        }
-      </Col>
-      <Col xs={12} sm={6}>
-        <h5>Invitations ({myContacts.length})</h5>
+      <Col xs={12}>
+        {myContacts.length > 0 ? <h5>Invitations ({myContacts.length})</h5>:null}
         { 
         myContacts.length > 0 ?
           <Table responsive>
@@ -132,8 +95,7 @@ const Contacts = ({
                 </tr>
               ))}
             </tbody>
-              </Table> : 
-              <Alert bsStyle="warning">Add prospects to your invitation list</Alert>
+              </Table> : <NewSequence />
         
         }
       </Col>
