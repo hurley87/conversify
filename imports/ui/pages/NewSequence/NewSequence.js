@@ -22,9 +22,9 @@ class NewSequence extends React.Component {
       contact_index: 0,
       loading: false,
       cohort: '',
-      cra: 'Hi {{firstName}}, as you probably know the OSC will start to crack down on mortgage syndication in the spring when the new regulations are introduced. Just curious, do you handle the compliance work in-house or hire an outside firm?',
+      cra: 'Hi {{firstName}}, I’m working with Lufthansa Airlines to help automate requests going to their travel agent portal, eXperts. I’ve prepared a ‘coles notes’ explaining our process. Would you like to take a look and see if it’s useful?',
       crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
-      follow1: "Thanks for connecting, {{firstName}}.\n\nTo help us at Fundscraper I put together a cheat sheet that's helped us identify the 9 major issues that we have to be concerned about as dealers.\n\nWould you like to take a look and see if we missed anything?",
+      follow1: "Thanks for connecting, {{firstName}}.\n\nDoes {{Company}} handle customer service requests in house or are they outsourced?",
       follow2: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
     };
   }
@@ -188,7 +188,7 @@ class NewSequence extends React.Component {
                   <h4>Invitation Sequence for {this.state.contacts[this.state.contact_index].firstName} <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small></h4>
                   <Row>
                     {
-                      this.state.variables.map(variable => (['firstName', 'Title', 'CompanyCleaned'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
+                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
                     }
                   </Row>
                   <br />
@@ -217,7 +217,7 @@ class NewSequence extends React.Component {
                       />
                     </FormGroup>
                     <FormGroup>
-                      <ControlLabel>1st Follow-up</ControlLabel>
+                      <ControlLabel>Follow-up</ControlLabel>
                       <textarea
                         style={{ minHeight: '200px' }}
                         className="form-control"
