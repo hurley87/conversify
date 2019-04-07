@@ -49,7 +49,7 @@ const handleDelete = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/invitations');
+        history.push('/prospects');
       }
     });
   }
@@ -59,9 +59,13 @@ const Contacts = ({
   loading, contacts, myContacts, limit, message, match, history,
 }) => (!loading ? (
   <div className="Contacts">
+    <div className="page-header clearfix">
+      <h4 className="pull-left">Prospects</h4>
+      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link>
+    </div>
     <Row>
       <Col xs={12}>
-        { myContacts.length > 0 ?  <h5>Prospects ({myContacts.length})</h5> : null }
+        { myContacts.length > 0 ?  <p>{myContacts.length} Remaining</p> : null }
         { 
         myContacts.length > 0 ?
           <Table responsive>
@@ -79,7 +83,7 @@ const Contacts = ({
               }) => (
                 <tr key={_id}>
                   <td>
-                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/invitations/${_id}`}>{firstName} {lastName}</a>  
+                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                   </td>
                   <td>{cohort}</td>
                   <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
@@ -100,7 +104,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <NewSequence />
+              <Alert bsStyle="warning">No prospects yet!</Alert>
         
         }
       </Col>

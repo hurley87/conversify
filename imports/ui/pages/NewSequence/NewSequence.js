@@ -10,6 +10,7 @@ import autoBind from 'react-autobind';
 import CSVReader from 'react-csv-reader';
 import { Row, Col } from 'react-bootstrap';
 import { Wave, Random } from 'react-animated-text';
+import TemplatesList from "../TemplatesList/TemplatesList"
 
 class NewSequence extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class NewSequence extends React.Component {
       contact_index: 0,
       loading: false,
       cohort: '',
+      template: "",
       cra: 'Hi {{firstName}}, I’m working with Lufthansa Airlines to help automate requests going to their travel agent portal, eXperts. I’ve prepared a ‘coles notes’ explaining our process. Would you like to take a look and see if it’s useful?',
       crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
       follow1: "Thanks for connecting, {{firstName}}.\n\nDoes {{Company}} handle customer service requests in house or are they outsourced?",
@@ -91,9 +93,9 @@ class NewSequence extends React.Component {
     const newContacts = this.state.contacts;
 
     for (const contact in newContacts) {
-      newContacts[contact]['championText'] = this.parseCopy(form.cra.value, contact);
-      newContacts[contact]['challengerText'] = this.parseCopy(form.crb.value, contact);
-      newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.follow1.value, contact);
+      newContacts[contact]['championText'] = this.parseCopy(form.request.value, contact);
+      newContacts[contact]['challengerText'] = this.parseCopy(form.request.value, contact);
+      newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.followup.value, contact);
       newContacts[contact]['cohort'] = this.state.cohort;
       newContacts[contact]['owner'] = Meteor.user().emails[0].address;
       newContacts[contact]['userId'] = Meteor.userId();
@@ -109,7 +111,7 @@ class NewSequence extends React.Component {
       } else {
         this.form.reset();
         Bert.alert('Prospects uploaded', 'success');
-        history.push('/invitations');
+        history.push('/prospects');
       }
     });
   }
@@ -162,16 +164,27 @@ class NewSequence extends React.Component {
     return copy;
   }
 
+  handleChange(template) {
+    console.log(this.state.template)
+    console.log(template)
+    this.setState({ 
+      template: template
+    });
+  }
+
   render() {
     const { doc } = this.props;
 
     return (
       <div>
+        <div className="page-header clearfix">
+          <h4 className="pull-left">New Prospects</h4>
+        </div>
         {
             !this.state.upload ? 
             <Row>
               <Col xs={12} sm={4}>
-                <h5>Cohort Name</h5>
+                <h5>Cohort Name (eg. "Startup Founders in Toronto")</h5>
                 <input
                   type='text'
                   className="form-control"
@@ -184,27 +197,39 @@ class NewSequence extends React.Component {
                 </Button>
               </Col>
             </Row> 
-          : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
+          : this.state.template == "" ? (
+            <Row>
+              <Col xs={12} sm={4}>
+                <h5>Choose Template</h5>
+                <TemplatesList  handleChange={this.handleChange} />
+              </Col>
+            </Row> 
+          ) : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
-                <Col xs={12}>
-                  <h4>Invitation Sequence for {this.state.contacts[this.state.contact_index].firstName} <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small></h4>
-                  <Row>
-                    {
-                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={4}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
-                    }
-                  </Row>
-                  <br />
-                </Col>
-                <Col className='well' sm={6} xs={12}>
+
+                <Col sm={6} xs={12}>
+                <h5>Template</h5>
+                <TemplatesList  handleChange={this.handleChange} />
+                <hr />
+                <h5>Connection Request</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</div>
+                  <hr />
+                  <div className='hidden'>
+                  <h5>Challenger Connection Request</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
+                  <hr />
+                </div>
+                  <h5>1st Follow-up</h5>
+                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.followup, this.state.contact_index)}</div>
                   <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
-                    <FormGroup>
+                    <FormGroup className='hidden'>
                       <ControlLabel>Connection Request</ControlLabel>
                       <textarea
                         style={{ minHeight: '100px' }}
                         type="text"
                         className="form-control"
-                        name="cra"
-                        defaultValue={this.state.cra}
+                        name="request"
+                        defaultValue={this.state.template.request}
                         onChange={this.handleCra}
                       />
                     </FormGroup>
@@ -214,29 +239,29 @@ class NewSequence extends React.Component {
                         style={{ minHeight: '100px' }}
                         className="form-control"
                         name="crb"
-                        defaultValue={this.state.cra}
+                        defaultValue={this.state.template.request}
                         onChange={this.handleCrb}
                       />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup className='hidden'>
                       <ControlLabel>Follow-up</ControlLabel>
                       <textarea
                         style={{ minHeight: '200px' }}
                         className="form-control"
-                        name="follow1"
-                        defaultValue={this.state.follow1}
+                        name="followup"
+                        defaultValue={this.state.template.followup}
                         onChange={this.handleFollow1}
                       />
                     </FormGroup>
                     <FormGroup>
                       {
                         this.state.loading ? (
-                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" disabled>
-                            <Wave text="Your contacts are entering the matrix" />
+                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" disabled>
+                            <Wave text="Uploading..." />
                           </Button>
                         ) : (
-                          <Button className="pull-right" style={{ marginRight: '0px' }} type="submit" bsStyle="success" >
-                        Create Sequence
+                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
+                            Upload prospects
                           </Button>
                         )
                       }
@@ -244,17 +269,13 @@ class NewSequence extends React.Component {
                     </FormGroup>
                   </form>
                 </Col>
-                <Col sm={6} xs={12} style={{padding: '0px 40px'}}>
-                  <h5>Connection Request</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.cra, this.state.contact_index)}</div>
-                  <hr />
-                  <div className='hidden'>
-                  <h5>Challenger Connection Request</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
-                  <hr />
-                </div>
-                  <h5>1st Follow-up</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.follow1, this.state.contact_index)}</div>
+                <Col xs={12} sm={6}>
+                <h4><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small> </h4>
+                  <Row>
+                    {
+                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={12}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
+                    }
+                  </Row>                  
                 </Col>
               </Row>
             ) : (

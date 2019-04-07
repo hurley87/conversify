@@ -37,6 +37,10 @@ import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
 import Contacts from '../../pages/Contacts/Contacts';
 import ViewContact from '../../pages/ViewContact/ViewContact';
 import EditContact from '../../pages/EditContact/EditContact';
+import Templates from '../../pages/Templates/Templates';
+import NewTemplate from '../../pages/NewTemplate/NewTemplate';
+import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
+import EditTemplate from '../../pages/EditTemplate/EditTemplate';
 import './App.scss';
 
 class App extends React.Component {
@@ -62,10 +66,10 @@ class App extends React.Component {
                 <Route exact name="index" path="/" component={Index} />
                 <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/invitations/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/invitations" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/invitations/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/invitations/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
@@ -73,6 +77,10 @@ class App extends React.Component {
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/results" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/templates/:_id/edit" component={EditTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state} />
                 <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />

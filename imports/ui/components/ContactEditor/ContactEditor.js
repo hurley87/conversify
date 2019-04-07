@@ -50,7 +50,7 @@ class ContactEditor extends React.Component {
         const confirmation = existingContact ? 'Contact updated!' : 'Contact added!';
         this.form.reset();
         Bert.alert(confirmation, 'success');
-        history.push(`/invitations/${contactId}`);
+        history.push(`/prospects/${contactId}`);
       }
     });
   }
@@ -73,14 +73,6 @@ class ContactEditor extends React.Component {
             className="form-control"
             name="firstFollowUpText"
             defaultValue={doc && doc.firstFollowUpText}
-          />
-        </FormGroup>
-        <FormGroup>
-          <ControlLabel>Second Followup</ControlLabel>
-          <textarea style={{ minHeight: '100px' }}
-            className="form-control"
-            name="secondFollowUpText"
-            defaultValue={doc && doc.secondFollowUpText}
           />
         </FormGroup>
         <Button type="submit" bsStyle="success" style={{margin: "0px"}}>

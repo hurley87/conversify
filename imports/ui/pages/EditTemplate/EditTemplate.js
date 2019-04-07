@@ -4,48 +4,46 @@ import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
-import Contacts from '../../../api/Contacts/Contacts';
+import Templates from '../../../api/Templates/Templates';
 import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
-import ContactEditor from '../../components/ContactEditor/ContactEditor';
+import TemplateEditor from '../../components/TemplateEditor/TemplateEditor';
 
-const handleRemove = (contactId, history) => {
+const handleRemove = (templateId, history) => {
   if (confirm('Are you sure? This is permanent!')) {
-    Meteor.call('contacts.remove', contactId, (error) => {
+    Meteor.call('templates.remove', templateId, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
-        Bert.alert('Contact deleted!', 'danger');
+        Bert.alert('Template deleted!', 'danger');
         history.push('/prospects');
       }
     });
   }
 };
 
-const handleAdd = (contactId, history) => {
-    Meteor.call('contacts.add', contactId, (error) => {
+const handleAdd = (templateId, history) => {
+    Meteor.call('templates.add', templateId, (error) => {
         if (error) {
             Bert.alert(error.reason, 'danger');
         } else {
-            Bert.alert('Contact added!', 'success');
+            Bert.alert('Template added!', 'success');
           history.push('/prospects');
         }
     });
 };
 
-const renderContact = (doc, match, history) => (doc ? (
-  <div className="EditContact">
+const renderTemplate = (doc, match, history) => (doc ? (
+  <div className="EditTemplate">
     <Row>
-        <Col xs={12} sm={8} smOffset={2}>
+        <Col xs={12} sm={6} smOffset={3}>
             <div className="page-header clearfix">
-            <h4 className="pull-left">{doc.firstName} {doc.lastName} <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
-                <a target="_blank" href={doc.linkedinUrl}><div style={{ backgroundColor: "#0077B5", marginLeft: "5px" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
-            </h4>
+            <h4 className="pull-left">{doc.title}</h4>
             {
               !doc.replied ? (
                 <ButtonToolbar className="pull-right">
                   <ButtonGroup bsSize="small">
-                    <Button onClick={() => history.push(`/prospects/${doc._id}`)}>View</Button>
+                    <Button onClick={() => history.push(`/templates/${doc._id}`)}>View</Button>
                     <Button onClick={() => handleRemove(doc._id, history)} className="text-danger">
                       Delete
                   </Button>
@@ -55,23 +53,23 @@ const renderContact = (doc, match, history) => (doc ? (
 
             }
             </div>
-            <ContactEditor doc={doc} history={history} />
+            <TemplateEditor doc={doc} history={history} />
         </Col>
     </Row>
   </div>
 ) : <NotFound />);
 
-const EditContact = ({
+const EditTemplate = ({
   loading, doc, match, history,
 }) => (
-  !loading ? renderContact(doc, match, history) : <Loading />
+  !loading ? renderTemplate(doc, match, history) : <Loading />
 );
 
-EditContact.defaultProps = {
+EditTemplate.defaultProps = {
   doc: null,
 };
 
-EditContact.propTypes = {
+EditTemplate.propTypes = {
   loading: PropTypes.bool.isRequired,
   doc: PropTypes.object,
   match: PropTypes.object.isRequired,
@@ -79,12 +77,12 @@ EditContact.propTypes = {
 };
 
 export default withTracker(({ match }) => {
-  const contactId = match.params._id;
-  console.log(contactId)
-  const subscription = Meteor.subscribe('contacts.view', contactId);
+  const templateId = match.params._id;
+  console.log(templateId)
+  const subscription = Meteor.subscribe('templates.view', templateId);
 
   return {
     loading: !subscription.ready(),
-    doc: Contacts.findOne(contactId),
+    doc: Templates.findOne(templateId),
   };
-})(EditContact);
+})(EditTemplate);

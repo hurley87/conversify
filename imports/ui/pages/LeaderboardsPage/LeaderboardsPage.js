@@ -7,7 +7,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import LeaderboardsContainer from '../LeaderboardsContainer/LeaderboardsContainer'
 import ContactsContainer from '../ContactsContainer/ContactsContainer';
-
+import Responses from '../Responses/Responses';
 
 class HomePageDatePicker extends React.Component {
   constructor(props) {
@@ -67,10 +67,12 @@ class HomePageDatePicker extends React.Component {
     const { focusedInput, startDate, endDate, startDateString, endDateString } = this.state;
     return (
         <div>
+			<div className="page-header clearfix">
+				<h4 className="pull-left">Results</h4>
+			</div>
 	    <Row>
 	      <Col xs={12}>
           </Col>
-          <br />
           <Col xs={12} sm={12}>
 	          <DateRangePicker
 	            {...this.props}
@@ -90,6 +92,9 @@ class HomePageDatePicker extends React.Component {
 	           <br />
 	           <br />
 	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
+           </Col>
+					 <Col xs={12} sm={12}>
+						 <Responses />
            </Col>
         </Row>   
         </div>

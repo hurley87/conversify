@@ -38,7 +38,7 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
           _id, firstName, lastName, messages, cohort, responseText, threadUrl, linkedInUsername
         }) => (
             <tr key={_id}>
-              <td><a href={`/invitations/${_id}`}>{firstName} {lastName}</a></td>
+              <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
               <td>
                 {cohort}
               </td>
@@ -68,7 +68,7 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
   // responses.filter((response) => response.sentiment == sentiment).map((response) => {
   //     return (
   //       <div>
-  //         <h5><a href={`/invitations/${response._id}`}>{response["firstName"] + " " + response["lastName"]}</a> <Button style={{margin: '0', marginLeft: "5px", padding: '0', fontSize: "17px"}} onClick={() => updateSentiment(response['linkedInUsername'], '')} className="fa fa-edit"></Button></h5>
+  //         <h5><a href={`/prospects/${response._id}`}>{response["firstName"] + " " + response["lastName"]}</a> <Button style={{margin: '0', marginLeft: "5px", padding: '0', fontSize: "17px"}} onClick={() => updateSentiment(response['linkedInUsername'], '')} className="fa fa-edit"></Button></h5>
   //         <p>{response['title']} of {response['company']}</p>
   //         <p><a >Respond to {response['firstName']}</a></p>
 
@@ -102,7 +102,6 @@ const Responses = ({
   loading, Responses,
 }) => (!loading ? (
   <div className="Responses">
-    <br />
     {Responses.filter(response => response.sentiment == '').length == 0 ? noResponses(Responses) : null }
     {
       Responses.filter(response => response.sentiment == '').map((response) => {

@@ -16,7 +16,7 @@ const handleRemove = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/invitations');
+        history.push('/prospects');
       }
     });
   }
@@ -28,7 +28,7 @@ const handleAdd = (contactId, history) => {
             Bert.alert(error.reason, 'danger');
         } else {
             Bert.alert('Contact added!', 'success');
-          history.push('/invitations');
+          history.push('/prospects');
         }
     });
 };
@@ -36,7 +36,7 @@ const handleAdd = (contactId, history) => {
 const renderContact = (doc, match, history) => (doc ? (
   <div className="ViewContact">
     <Row>
-        <Col xs={12} sm={6}>
+        <Col xs={12} sm={8} smOffset={2}>
             <div className="page-header clearfix">
             <h4 className="pull-left">{doc.firstName} {doc.lastName} <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
                 <a target="_blank" href={doc.linkedinUrl}><div style={{ backgroundColor: "#0077B5", marginLeft: "5px" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
@@ -46,7 +46,6 @@ const renderContact = (doc, match, history) => (doc ? (
               !doc.replied ? (
                 <ButtonToolbar className="pull-right">
                   <ButtonGroup bsSize="small">
-                    <Button onClick={() => handleAdd(doc._id, history)} className="btn btn-success">Add</Button>
                     <Button onClick={() => history.push(`${match.url}/edit`)}>Edit</Button>
                     <Button onClick={() => handleRemove(doc._id, history)} className="text-danger">
                       Delete
@@ -68,10 +67,6 @@ const renderContact = (doc, match, history) => (doc ? (
                   <hr />
                   <h5>First Followup</h5>
                   <p>{doc.firstFollowUpText}</p>
-                  <hr />
-                  <h5>Second Followup</h5>
-                  <p>{doc.secondFollowUpText}</p>
-                  <hr />
                 </div>
 
               ) : (
