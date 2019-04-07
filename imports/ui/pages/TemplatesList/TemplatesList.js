@@ -10,13 +10,14 @@ import Loading from '../../components/Loading/Loading';
 import Templates from '../../../api/Templates/Templates';
 import Select from 'react-select';
 
-const TemplatesList = ({ loading, templates, select, handleChange,  match, history }) => (
+const TemplatesList = ({ loading, templates, select, handleChange, defaultValue,  match, history }) => (
   !loading ? 
     <div className="TemplatesList">
       <Select
         name="template"
         onChange={handleChange}
         options={select}
+        value={defaultValue}
       />
     </div> : <Loading />
 );
@@ -52,6 +53,7 @@ export default createContainer((props) => {
     loading: !subscription.ready(),
     templates: templates,
     select: select,
-    handleChange: props.handleChange
+    handleChange: props.handleChange,
+    defaultValue: props.defaultValue,
   };
 }, TemplatesList);

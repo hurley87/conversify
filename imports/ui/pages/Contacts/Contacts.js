@@ -72,22 +72,24 @@ const Contacts = ({
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Cohort</th>
                 <th>Title</th>
+                <th>Cohort</th>
+                <th>Template</th>
                 <th />
               </tr>
             </thead>
             <tbody>
               {myContacts.map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title
+                _id, firstName, lastName, linkedinUrl, cohort, email, title, template
               }) => (
                 <tr key={_id}>
                   <td>
                   <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                   </td>
-                  <td>{cohort}</td>
+                  
                   <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>{ email }</td>
+                  <td>{cohort}</td>
+                  <td>{ template }</td>
                   <td>
 
                {     

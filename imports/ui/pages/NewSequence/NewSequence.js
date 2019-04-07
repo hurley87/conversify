@@ -92,14 +92,20 @@ class NewSequence extends React.Component {
 
     const newContacts = this.state.contacts;
 
+    
+
     for (const contact in newContacts) {
+      console.log(this.state.template)
       newContacts[contact]['championText'] = this.parseCopy(form.request.value, contact);
       newContacts[contact]['challengerText'] = this.parseCopy(form.request.value, contact);
       newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.followup.value, contact);
       newContacts[contact]['cohort'] = this.state.cohort;
       newContacts[contact]['owner'] = Meteor.user().emails[0].address;
       newContacts[contact]['userId'] = Meteor.userId();
+      newContacts[contact]['template'] = this.state.template.label;
     }
+
+    console.log(newContacts)
 
     this.setState({
       loading: true,
@@ -206,10 +212,17 @@ class NewSequence extends React.Component {
             </Row> 
           ) : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
-
+                <Col xs={12} sm={4}>
+                <h4><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small> </h4>
+                  <Row>
+                    {
+                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={12}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
+                    }
+                  </Row>                  
+                </Col>
                 <Col sm={6} xs={12}>
                 <h5>Template</h5>
-                <TemplatesList  handleChange={this.handleChange} />
+                <TemplatesList  handleChange={this.handleChange} defaultValue={this.state.template} />
                 <hr />
                 <h5>Connection Request</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</div>
@@ -269,14 +282,7 @@ class NewSequence extends React.Component {
                     </FormGroup>
                   </form>
                 </Col>
-                <Col xs={12} sm={6}>
-                <h4><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small> </h4>
-                  <Row>
-                    {
-                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={12}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
-                    }
-                  </Row>                  
-                </Col>
+
               </Row>
             ) : (
               <Row>
