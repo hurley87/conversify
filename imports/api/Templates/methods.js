@@ -21,6 +21,7 @@ Meteor.methods({
   'templates.update': function templatesUpdate(doc) {
     check(doc, {
       _id: String,
+      title: String,
       request: String,
       followup: String,
     });
