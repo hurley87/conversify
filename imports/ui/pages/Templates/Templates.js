@@ -37,7 +37,7 @@ const Templates = ({
             _id, title, createdAt, updatedAt, request, followup,
           }) => (
             <Col xs ={12} sm={6} key={_id}>
-              <div className='templateCard'>
+              <div style={{height: "250px", overflow: "scroll"}} className='well'>
                 <h4><a href={`${match.url}/${_id}`}>{title}</a></h4>
                 <h5>Connection Request</h5>
                 <p>{request}</p>
