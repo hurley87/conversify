@@ -73,6 +73,7 @@ const Contacts = ({
               <tr>
                 <th>Name</th>
                 <th>Title</th>
+                <th>Company</th>
                 <th>Cohort</th>
                 <th>Template</th>
                 <th />
@@ -80,7 +81,7 @@ const Contacts = ({
             </thead>
             <tbody>
               {myContacts.map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title, template
+                _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
               }) => (
                 <tr key={_id}>
                   <td>
@@ -88,6 +89,7 @@ const Contacts = ({
                   </td>
                   
                   <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                  <td>{company}</td>
                   <td>{cohort}</td>
                   <td>{ template }</td>
                   <td>

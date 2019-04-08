@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, ControlLabel, Button } from 'react-bootstrap';
+import { FormGroup, ControlLabel, Button, Row, Col } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import validate from '../../../modules/validate';
@@ -64,39 +64,65 @@ class TemplateEditor extends React.Component {
   render() {
     const { doc } = this.props;
     return (
-      <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
-        <FormGroup>
-          <ControlLabel>Title</ControlLabel>
-          <input
-            type="text"
-            className="form-control"
-            name="title"
-            defaultValue={doc && doc.title}
-            placeholder="Oh, The Places You'll Go!"
-          />
-        </FormGroup>
-        <FormGroup>
-          <ControlLabel>Connection Request</ControlLabel>
-          <textarea
-            className="form-control"
-            name="request"
-            defaultValue={doc && doc.request}
-            placeholder="Congratulations! Today is your day. You're off to Great Places! You're off and away!"
-          />
-        </FormGroup>
-        <FormGroup>
-          <ControlLabel>Follow Up</ControlLabel>
-          <textarea
-            className="form-control"
-            name="followup"
-            defaultValue={doc && doc.followup}
-            placeholder="Congratulations! Today is your day. You're off to Great Places! You're off and away!"
-          />
-        </FormGroup>
-        <Button style={{margin: '0px'}} type="submit" bsStyle="success">
-          {doc && doc._id ? 'Save Changes' : 'Add Template'}
-        </Button>
-      </form>
+      <Row>
+        <Col sm={6}>
+          <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
+            <FormGroup>
+              <ControlLabel>Title</ControlLabel>
+              <input
+                type="text"
+                className="form-control"
+                name="title"
+                defaultValue={doc && doc.title}
+                placeholder="Startup Founders"
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Connection Request</ControlLabel>
+              <textarea
+                className="form-control"
+                name="request"
+                defaultValue={doc && doc.request}
+                style={{height: "100px"}}security
+                placeholder="Hi {{firstName}}, I came across {{Company}} and thought you would interested in a case study I've prepared on your industry. Would you like to take a look?"
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Follow Up</ControlLabel>
+              <textarea
+                className="form-control"
+                name="followup"
+                defaultValue={doc && doc.followup}
+                style={{height: "100px"}}
+                placeholder="Thanks for connecting, {{firstName}}. As {{Title}}, I think you would be interested in an app we are developing. Any chance you can take a look and give me some feedback?"
+              />
+            </FormGroup>
+            <Button style={{margin: '0px'}} type="submit" bsStyle="success">
+              {doc && doc._id ? 'Save Changes' : 'Add Template'}
+            </Button>
+          </form>
+        </Col>
+        <Col sm={6}>
+          <h5>Variables</h5>
+          <Row>
+            <Col sm={4}>
+              <p>{`{{firstName}}`}</p>
+            </Col>
+            <Col sm={4}>
+              <p>{`{{Company}}`}</p>
+            </Col>
+            <Col sm={4}>
+              <p>{`{{Title}}`}</p>
+            </Col>
+            <Col sm={4}>
+              <p>{`{{City}}`}</p>
+            </Col>
+            <Col sm={4}>
+              <p>{`{{Website}}`}</p>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     );
   }
 }
