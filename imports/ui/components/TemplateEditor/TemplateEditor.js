@@ -56,7 +56,7 @@ class TemplateEditor extends React.Component {
         const confirmation = existingTemplate ? 'Template updated!' : 'Template added!';
         this.form.reset();
         Bert.alert(confirmation, 'success');
-        history.push(`/templates/${templateId}`);
+        history.push(`/prospects/new`);
       }
     });
   }

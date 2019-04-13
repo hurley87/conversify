@@ -8,7 +8,8 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import ContactsCollection from '../../../api/Contacts/Contacts';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
-import NewSequence from "../NewSequence/NewSequence";
+import NewProspects from "../NewProspects/NewProspects";
+import NewSequence from '../NewSequence/NewSequence';
 
 // import './Contacts.scss';
 
@@ -61,7 +62,7 @@ const Contacts = ({
   <div className="Contacts">
     <div className="page-header clearfix">
       <h4 className="pull-left">Prospects</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link>
+      { myContacts.length > 0 ?  <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
     </div>
     <Row>
       <Col xs={12}>
@@ -91,7 +92,7 @@ const Contacts = ({
                   <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
                   <td>{company}</td>
                   <td>{cohort}</td>
-                  <td>{ template }</td>
+                  <td>{template}</td>
                   <td>
 
                {     
@@ -108,7 +109,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">No prospects yet!</Alert>
+              <NewProspects />
         
         }
       </Col>

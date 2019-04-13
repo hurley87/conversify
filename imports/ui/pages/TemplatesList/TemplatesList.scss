@@ -1,0 +1,32 @@
+.templateCard {
+    background-color: "#fff" !important; 
+    border: 1px solid #4285f4;
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    height: 300px;
+
+    .content {
+        height: 250px;
+        overflow: scroll;
+        padding: 10px;
+    }
+
+    button {
+        margin: 0;
+        width: 100%;
+        background-color: #4285f4;
+        color: #fff;
+        border-radius: 0px 0px 1px 1px;
+        position: absolute;
+        bottom: 0px;
+        border: 1px solid #4285f4;
+
+        &:hover {
+            background-color: #4285f4;
+            color: #fff;
+            opacity: 0.9;
+            border: 1px solid #4285f4;
+        }
+    }
+}

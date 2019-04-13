@@ -10,15 +10,33 @@ import Loading from '../../components/Loading/Loading';
 import Templates from '../../../api/Templates/Templates';
 import Select from 'react-select';
 
+import './TemplatesList.scss';
+
 const TemplatesList = ({ loading, templates, select, handleChange, defaultValue,  match, history }) => (
   !loading ? 
     <div className="TemplatesList">
-      <Select
-        name="template"
-        onChange={handleChange}
-        options={select}
-        value={defaultValue}
-      />
+      {templates.length ?
+          <Row>
+            {templates.map(({
+              _id, title, createdAt, updatedAt, request, followup,
+            }) => (
+              <Col xs ={12} sm={6} key={_id}>
+                <div className='templateCard'>
+                  <div className='content'>
+                    <p><a href={`/templates/${_id}`}>{title}</a></p>
+                    <h5>Connection Request</h5>
+                    <p>{request}</p>
+                    <h5>Follow Up</h5>
+                    <p>{followup}</p>
+                  </div>
+                  <Button onClick={() => handleChange({
+                    'label': title,
+                    'request': request,
+                    'followup': followup
+                  })}>Choose Template</Button>
+                </div>
+              </Col>
+            ))} </Row> : <Alert bsStyle="warning">No templates yet!</Alert>}
     </div> : <Loading />
 );
 

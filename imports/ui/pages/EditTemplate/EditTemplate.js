@@ -36,7 +36,7 @@ const handleAdd = (templateId, history) => {
 const renderTemplate = (doc, match, history) => (doc ? (
   <div className="EditTemplate">
     <Row>
-        <Col xs={12} sm={6} smOffset={3}>
+        <Col xs={12}>
             <div className="page-header clearfix">
             <h4 className="pull-left">{doc.title}</h4>
             {

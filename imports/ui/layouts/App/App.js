@@ -41,6 +41,7 @@ import Templates from '../../pages/Templates/Templates';
 import NewTemplate from '../../pages/NewTemplate/NewTemplate';
 import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
 import EditTemplate from '../../pages/EditTemplate/EditTemplate';
+import NewProspects from '../../pages/NewProspects/NewProspects';
 import './App.scss';
 
 class App extends React.Component {
@@ -66,7 +67,7 @@ class App extends React.Component {
                 <Route exact name="index" path="/" component={Index} />
                 <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/new" component={NewSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/prospects/new" component={NewProspects} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
