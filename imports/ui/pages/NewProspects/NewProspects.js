@@ -185,6 +185,12 @@ class NewProspects extends React.Component {
       })
   }
 
+  changeCohort() {
+    this.setState({
+      upload: false
+    })
+  }
+
   render() {
     const { doc } = this.props;
 
@@ -193,6 +199,16 @@ class NewProspects extends React.Component {
         {
           !this.state.upload ? 
             <Row>
+              <Col xs={12} sm={3}>
+                <h5>Cohort</h5>
+                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Template</h5>
+                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Propsects</h5>
+                <p>{this.state.contacts.length}</p>
+              </Col>
               <Col xs={12} sm={4}>
                 <h5>Cohort</h5>
                 <input
@@ -209,7 +225,17 @@ class NewProspects extends React.Component {
             </Row> 
           : this.state.template == "" ? (
             <Row>
-              <Col xs={12}>
+              <Col xs={12} sm={3}>
+                <h5>Cohort</h5>
+                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Template</h5>
+                <p>{this.state.template} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Propsects</h5>
+                <p>{this.state.contacts.length}</p>
+              </Col>
+              <Col xs={12} sm={9}>
                 <Link to="/templates/new">Add Template</Link>  
                 <br />
                 <br />
@@ -219,16 +245,18 @@ class NewProspects extends React.Component {
             </Row> 
           ) : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
-                <Col xs={12} sm={4}>
-                <h4><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <button style={{ margin: '0' }} onClick={this.handleNext} className="btn btn-default">Next</button></small> </h4>
-                  <Row>
-                    {
-                      this.state.variables.map(variable => (['firstName', 'Title', 'Company'].includes(variable) ? (<Col xs={12}><h5>{variable}</h5> <p>{this.state.contacts[this.state.contact_index][variable]}</p></Col>) : null))
-                    }
-                  </Row>                  
+                <Col xs={12} sm={3}>
+                <h5>Cohort</h5>
+                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Template</h5>
+                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Propsects</h5>
+                <p>{this.state.contacts.length}</p>                
                 </Col>
                 <Col sm={6} xs={12}>
-                <p><a onClick={this.changeTemplate} href=''>Change Template</a></p>
+                <h5><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <a  onClick={this.handleNext}>Next</a></small> </h5>
                 <h5>Connection Request</h5>
                   <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</div>
                   <hr />
@@ -291,8 +319,17 @@ class NewProspects extends React.Component {
               </Row>
             ) : (
               <Row>
-                <Col xs={12}>
-                  <br />
+                <Col xs={12} sm={3}>
+                <h5>Cohort</h5>
+                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Template</h5>
+                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                <hr />
+                <h5>Propsects</h5>
+                <p>{this.state.contacts.length}</p>  
+                </Col>
+                <Col xs={12} sm={9}>
                   <CSVReader
                     cssClass="react-csv-input"
                     label="Upload CSV of Contacts (max 1000)"
