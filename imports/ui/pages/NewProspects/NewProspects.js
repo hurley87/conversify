@@ -196,6 +196,9 @@ class NewProspects extends React.Component {
 
     return (
       <div>
+        <div className="page-header clearfix">
+          <h4 className="pull-left">Add Prospects</h4>
+        </div>
         {
           !this.state.upload ? 
             <Row>

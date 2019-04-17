@@ -2,7 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import Contacts from '../Contacts';
 import { check } from 'meteor/check';
 
-Meteor.publish('contacts', () => Contacts.find({ requestSent: false }));
+Meteor.publish('contacts', function contacts() {
+
+  let selector = {
+    "userId": this.userId,
+  }
+
+  return Contacts.find(selector);
+});
 
 Meteor.publish('contacts.list', function contactsList(startDate, endDate) {
   check(startDate, String);

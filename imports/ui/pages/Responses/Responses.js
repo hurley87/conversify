@@ -102,7 +102,12 @@ const Responses = ({
   loading, Responses,
 }) => (!loading ? (
   <div className="Responses">
-    {Responses.filter(response => response.sentiment == '').length == 0 ? noResponses(Responses) : null }
+    <div className="page-header clearfix">
+      <h4 className="pull-left">Responses</h4>
+    </div>
+    { 
+      Responses.filter(response => response.sentiment == '').length == 0 ? noResponses(Responses) : null 
+    }
     {
       Responses.filter(response => response.sentiment == '').map((response) => {
         console.log(response);
@@ -143,7 +148,9 @@ Responses.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe('contacts.responses');
 
-  const Responses = ContactsCollection.find({}).fetch();
+  const Responses = ContactsCollection.find({
+    "replied": true
+  }).fetch();
 
   Responses.map(response => {
     console.log(response.messages[0]);

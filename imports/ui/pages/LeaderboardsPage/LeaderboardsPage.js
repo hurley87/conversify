@@ -93,9 +93,6 @@ class HomePageDatePicker extends React.Component {
 	           <br />
 	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
            </Col>
-					 <Col xs={12} sm={12}>
-						 <Responses />
-           </Col>
         </Row>   
         </div>
     );
