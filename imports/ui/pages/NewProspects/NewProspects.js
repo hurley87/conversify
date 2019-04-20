@@ -200,43 +200,15 @@ class NewProspects extends React.Component {
           <h4 className="pull-left">Add Prospects</h4>
         </div>
         {
-          !this.state.upload ? 
+          this.state.template == "" ? (
             <Row>
               <Col xs={12} sm={3}>
-                <h5>Cohort</h5>
-                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Template</h5>
-                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Propsects</h5>
-                <p>{this.state.contacts.length}</p>
-              </Col>
-              <Col xs={12} sm={4}>
-                <h5>Cohort</h5>
-                <input
-                  type='text'
-                  className="form-control"
-                  name="cohort"
-                  defaultValue={this.state.cohort}
-                  onChange={this.handleCohort}
-                />
-                <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
-                  Continue
-                </Button>
-              </Col>
-            </Row> 
-          : this.state.template == "" ? (
-            <Row>
-              <Col xs={12} sm={3}>
-                <h5>Cohort</h5>
-                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Template</h5>
-                <p>{this.state.template} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Propsects</h5>
-                <p>{this.state.contacts.length}</p>
+              <h5>Template</h5>
+              <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+              <hr />
+              <h5>Audience</h5>
+              <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+              <p>{this.state.contacts.length} Uploaded</p>
               </Col>
               <Col xs={12} sm={9}>
                 <Link to="/templates/new">Add Template</Link>  
@@ -246,17 +218,39 @@ class NewProspects extends React.Component {
                 <TemplatesList  handleChange={this.handleChange} />
               </Col>
             </Row> 
-          ) : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
+          ) : !this.state.upload ? 
+          <Row>
+            <Col xs={12} sm={3}>
+              <h5>Template</h5>
+              <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+              <hr />
+              <h5>Audience</h5>
+              <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+              <p>{this.state.contacts.length} Uploaded</p>
+            </Col>
+            <Col xs={12} sm={4}>
+              <h5>Cohort</h5>
+              <input
+                type='text'
+                className="form-control"
+                name="cohort"
+                defaultValue={this.state.cohort}
+                onChange={this.handleCohort}
+              />
+              <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
+                Continue
+              </Button>
+            </Col>
+          </Row> 
+        : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
                 <Col xs={12} sm={3}>
-                <h5>Cohort</h5>
-                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Template</h5>
-                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Propsects</h5>
-                <p>{this.state.contacts.length}</p>                
+                  <h5>Template</h5>
+                  <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                  <hr />
+                  <h5>Audience</h5>
+                  <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                  <p>{this.state.contacts.length} Uploaded</p>             
                 </Col>
                 <Col sm={6} xs={12}>
                 <h5><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <a  onClick={this.handleNext}>Next</a></small> </h5>
@@ -323,14 +317,12 @@ class NewProspects extends React.Component {
             ) : (
               <Row>
                 <Col xs={12} sm={3}>
-                <h5>Cohort</h5>
-                <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Template</h5>
-                <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                <hr />
-                <h5>Propsects</h5>
-                <p>{this.state.contacts.length}</p>  
+                  <h5>Template</h5>
+                  <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
+                  <hr />
+                  <h5>Audience</h5>
+                  <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
+                  <p>{this.state.contacts.length} Uploaded</p>
                 </Col>
                 <Col xs={12} sm={9}>
                   <CSVReader

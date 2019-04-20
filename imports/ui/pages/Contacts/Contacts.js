@@ -62,7 +62,7 @@ const Contacts = ({
   <div className="Contacts">
     <div className="page-header clearfix">
       <h4 className="pull-left">Prospects ({myContacts.length})</h4>
-      { myContacts.length > 0 ?  <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
+      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link>
     </div>
     <Row>
       <Col xs={12}>
@@ -154,7 +154,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">No prospects.</Alert>
+              null
         }
       </Col>
       <Col xs={12}>
@@ -200,7 +200,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">No prospects.</Alert>
+              null
         }
       </Col>
       <Col xs={12}>
@@ -246,7 +246,7 @@ const Contacts = ({
               ))}
             </tbody>
               </Table> : 
-              <Alert bsStyle="warning">No prospects.</Alert>
+              null
         }
       </Col>
     </Row>
