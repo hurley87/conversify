@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Table, Alert, Button, Row, Col, TabContainer, NavItem, TabContent, TabPane, NavLink, Nav } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -62,193 +62,214 @@ const Contacts = ({
   <div className="Contacts">
     <div className="page-header clearfix">
       <h4 className="pull-left">Prospects ({myContacts.length})</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link>
+      { myContacts.length > 0 ?  <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
     </div>
     <Row>
-      <Col xs={12}>
-        { myContacts.filter(contact => contact.requestSent == false).length > 0 ?  <p>{myContacts.filter(contact => contact.requestSent == false).length} prospects have not received a connection request.</p> : null }
-        { 
-        myContacts.filter(contact => contact.requestSent == false).length > 0 ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Company</th>
-                <th>Cohort</th>
-                <th>Template</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {myContacts.map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
-              }) => (
-                <tr key={_id}>
-                  <td>
-                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
-                  </td>
-                  
-                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>{company}</td>
-                  <td>{cohort}</td>
-                  <td>{template}</td>
-                  <td>
 
-                  {     
-                    // <Button
-                    //   style={{ margin: '0', padding: '2px 10px' }}
-                    //   onClick={() => handleRemove(_id)}
-                    // >
-                    //   -
-                    // </Button>
-                  }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-              </Table> : 
-              <Alert bsStyle="warning">No prospects.</Alert>
-        }
-      </Col>
-      <Col xs={12}>
-        { myContacts.filter(contact => contact.requestSent == true).length > 0 ?  <p>{myContacts.filter(contact => contact.requestSent == true).length} prospects have received a connection request.</p> : null }
-        { 
-        myContacts.length > 0 ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Company</th>
-                <th>Cohort</th>
-                <th>Template</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {myContacts.filter(contact => contact.requestSent == true).map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
-              }) => (
-                <tr key={_id}>
-                  <td>
-                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
-                  </td>
-                  
-                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>{company}</td>
-                  <td>{cohort}</td>
-                  <td>{template}</td>
-                  <td>
+      <TabContainer id="left-tabs-example" defaultActiveKey="first">
+        <Row>
+          <Col sm={3}>
+            <Nav variant="pills" className="flex-column">
+              <NavItem eventKey="first">
+                <p>{myContacts.filter(contact => contact.requestSent == false).length} upcoming</p> 
+              </NavItem>
+              <NavItem eventKey="second">
+                <p>{myContacts.filter(contact => contact.requestSent == true).length} connection requests</p> 
+              </NavItem>
+              <NavItem eventKey="third">
+               <p>{myContacts.filter(contact => contact.firstFollowUpSent == true).length} follow ups</p>            
+              </NavItem>
+              <NavItem eventKey="fourth">
+                <p>{myContacts.filter(contact => contact.sequenceOver == true).length} finished sequence</p> 
+              </NavItem>
+            </Nav>
+          </Col>
+          <Col sm={9}>
+            <TabContent>
+              <TabPane eventKey="first">
+                { 
+                  myContacts.filter(contact => contact.requestSent == false).length > 0 ?
+                    <Table responsive>
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Title</th>
+                          <th>Company</th>
+                          <th>Cohort</th>
+                          <th>Template</th>
+                          <th />
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {myContacts.map(({
+                          _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
+                        }) => (
+                          <tr key={_id}>
+                            <td>
+                            <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                            </td>
+                            
+                            <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                            <td>{company}</td>
+                            <td>{cohort}</td>
+                            <td>{template}</td>
+                            <td>
 
-                  {     
-                    // <Button
-                    //   style={{ margin: '0', padding: '2px 10px' }}
-                    //   onClick={() => handleRemove(_id)}
-                    // >
-                    //   -
-                    // </Button>
+                            {     
+                              // <Button
+                              //   style={{ margin: '0', padding: '2px 10px' }}
+                              //   onClick={() => handleRemove(_id)}
+                              // >
+                              //   -
+                              // </Button>
+                            }
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                        </Table> : 
+                        <Alert bsStyle="warning">No prospects.</Alert>
                   }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-              </Table> : 
-              null
-        }
-      </Col>
-      <Col xs={12}>
-        { myContacts.filter(contact => contact.firstFollowUpSent == true).length > 0 ?  <p>{myContacts.filter(contact => contact.firstFollowUpSent == true).length} prospects have received a follow up message.</p> : null }
-        { 
-        myContacts.length > 0 ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Company</th>
-                <th>Cohort</th>
-                <th>Template</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {myContacts.filter(contact => contact.firstFollowUpSent == true).map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
-              }) => (
-                <tr key={_id}>
-                  <td>
-                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
-                  </td>
-                  
-                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>{company}</td>
-                  <td>{cohort}</td>
-                  <td>{template}</td>
-                  <td>
+              </TabPane>
+              <TabPane eventKey="second">
+              { 
+                myContacts.length > 0 ?
+                  <Table responsive>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Cohort</th>
+                        <th>Template</th>
+                        <th />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myContacts.filter(contact => contact.requestSent == true).map(({
+                        _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
+                      }) => (
+                        <tr key={_id}>
+                          <td>
+                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          </td>
+                          
+                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{company}</td>
+                          <td>{cohort}</td>
+                          <td>{template}</td>
+                          <td>
 
-                  {     
-                    // <Button
-                    //   style={{ margin: '0', padding: '2px 10px' }}
-                    //   onClick={() => handleRemove(_id)}
-                    // >
-                    //   -
-                    // </Button>
-                  }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-              </Table> : 
-              null
-        }
-      </Col>
-      <Col xs={12}>
-        { myContacts.filter(contact => contact.sequenceOver == true).length > 0 ?  <p>{myContacts.filter(contact => contact.sequenceOver == true).length} prospects have ended their sequence.</p> : null }
-        { 
-        myContacts.length > 0 ?
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Company</th>
-                <th>Cohort</th>
-                <th>Template</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {myContacts.filter(contact => contact.sequenceOver == true).map(({
-                _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
-              }) => (
-                <tr key={_id}>
-                  <td>
-                  <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
-                  </td>
-                  
-                  <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
-                  <td>{company}</td>
-                  <td>{cohort}</td>
-                  <td>{template}</td>
-                  <td>
+                          {     
+                            // <Button
+                            //   style={{ margin: '0', padding: '2px 10px' }}
+                            //   onClick={() => handleRemove(_id)}
+                            // >
+                            //   -
+                            // </Button>
+                          }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                      </Table> : 
+                      null
+                }
+              </TabPane>
+              <TabPane eventKey="third">
+              { 
+                myContacts.length > 0 ?
+                  <Table responsive>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Cohort</th>
+                        <th>Template</th>
+                        <th />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myContacts.filter(contact => contact.firstFollowUpSent == true).map(({
+                        _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
+                      }) => (
+                        <tr key={_id}>
+                          <td>
+                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          </td>
+                          
+                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{company}</td>
+                          <td>{cohort}</td>
+                          <td>{template}</td>
+                          <td>
 
-                  {     
-                    // <Button
-                    //   style={{ margin: '0', padding: '2px 10px' }}
-                    //   onClick={() => handleRemove(_id)}
-                    // >
-                    //   -
-                    // </Button>
-                  }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-              </Table> : 
-              null
-        }
-      </Col>
+                          {     
+                            // <Button
+                            //   style={{ margin: '0', padding: '2px 10px' }}
+                            //   onClick={() => handleRemove(_id)}
+                            // >
+                            //   -
+                            // </Button>
+                          }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                      </Table> : 
+                      null
+                }
+              </TabPane>
+              <TabPane eventKey="fourth">
+              { 
+                myContacts.length > 0 ?
+                  <Table responsive>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Cohort</th>
+                        <th>Template</th>
+                        <th />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myContacts.filter(contact => contact.sequenceOver == true).map(({
+                        _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
+                      }) => (
+                        <tr key={_id}>
+                          <td>
+                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          </td>
+                          
+                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{company}</td>
+                          <td>{cohort}</td>
+                          <td>{template}</td>
+                          <td>
+
+                          {     
+                            // <Button
+                            //   style={{ margin: '0', padding: '2px 10px' }}
+                            //   onClick={() => handleRemove(_id)}
+                            // >
+                            //   -
+                            // </Button>
+                          }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                      </Table> : 
+                      null
+                }
+              </TabPane>
+            </TabContent>
+          </Col>
+        </Row>
+      </TabContainer>
     </Row>
   </div>
 ) : <Loading />);
