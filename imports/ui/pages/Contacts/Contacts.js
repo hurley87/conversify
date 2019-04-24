@@ -74,13 +74,13 @@ const Contacts = ({
                 <p>{myContacts.filter(contact => contact.requestSent == false).length} upcoming</p> 
               </NavItem>
               <NavItem eventKey="second">
-                <p>{myContacts.filter(contact => contact.requestSent == true).length} connection requests</p> 
+                <p>{myContacts.filter(contact => contact.requestSent == true).length} sent</p> 
               </NavItem>
               <NavItem eventKey="third">
-               <p>{myContacts.filter(contact => contact.firstFollowUpSent == true).length} follow ups</p>            
+               <p>{myContacts.filter(contact => contact.firstFollowUpSent == true).length} follow-ups</p>            
               </NavItem>
               <NavItem eventKey="fourth">
-                <p>{myContacts.filter(contact => contact.sequenceOver == true).length} finished sequence</p> 
+                <p>{myContacts.filter(contact => contact.sequenceOver == true).length} finished </p> 
               </NavItem>
             </Nav>
           </Col>
@@ -101,7 +101,7 @@ const Contacts = ({
                         </tr>
                       </thead>
                       <tbody>
-                        {myContacts.map(({
+                        {myContacts.filter(contact => contact.requestSent == false).map(({
                           _id, firstName, lastName, linkedinUrl, cohort, email, title, template, company,
                         }) => (
                           <tr key={_id}>
@@ -133,7 +133,7 @@ const Contacts = ({
               </TabPane>
               <TabPane eventKey="second">
               { 
-                myContacts.length > 0 ?
+                myContacts.filter(contact => contact.requestSent == true).length > 0 ?
                   <Table responsive>
                     <thead>
                       <tr>
@@ -178,7 +178,7 @@ const Contacts = ({
               </TabPane>
               <TabPane eventKey="third">
               { 
-                myContacts.length > 0 ?
+                myContacts.filter(contact => contact.firstFollowUpSent == true).length > 0 ?
                   <Table responsive>
                     <thead>
                       <tr>
