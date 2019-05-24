@@ -62,7 +62,7 @@ const Contacts = ({
   <div className="Contacts">
     <div className="clearfix">
       <h1 className="pull-left">Prospects ({myContacts.length})</h1>
-      { myContacts.length > 0 ?  <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
+      <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Prospects</Link>
     </div>
     <Row>
       <TabContainer id="left-tabs-example" defaultActiveKey="first">
