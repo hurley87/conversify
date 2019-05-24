@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import Templates from '../Templates';
 
 Meteor.publish('templates', function templates() {
-  return Templates.find({ owner: this.userId });
+  return Templates.find({ });
 });
 
 // Note: templates.view is also used when editing an existing template.
