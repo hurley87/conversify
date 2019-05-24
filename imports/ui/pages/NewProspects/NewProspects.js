@@ -228,7 +228,7 @@ class NewProspects extends React.Component {
             <Col xs={12} sm={4}>
               <div className='box'>
                 <h5>Template</h5>
-                <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
               </div>
               </Col>
               <Col xs={12} sm={4}>
@@ -259,28 +259,32 @@ class NewProspects extends React.Component {
                 <Col xs={12} sm={4}>
                   <div className='box'>
                     <h5>Template</h5>
-                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
                   </div>
                 </Col>
                 <Col xs={12} sm={4}>
                   <div className='box'>
                     <h5>Audience</h5>
-                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
                     <p>{this.state.contacts.length} prospects uploaded</p>
                   </div>
                 </Col>
                 <Col xs={12} sm={4}>
                   <div className='box'>
                     <h5>Preview <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <a  onClick={this.handleNext}>Next</a></small> </h5>
-                    <h6>Connection Request</h6>
-                    <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</p>
+                    <div className='inner-card'>
+                      <h6>Connection Request</h6>
+                      <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</p>
+                      <h6>1st Follow-up</h6>
+                      <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.followup, this.state.contact_index)}</p>
+                    </div>
+
                     <div className='hidden'>
                       <h6>Challenger Connection Request</h6>
                       <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</p>
                       <hr />
                     </div>
-                    <h6>1st Follow-up</h6>
-                    <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.followup, this.state.contact_index)}</p>
+
                     <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
                       <FormGroup className='hidden'>
                         <ControlLabel>Connection Request</ControlLabel>
@@ -337,16 +341,16 @@ class NewProspects extends React.Component {
                 <Col xs={12} sm={4}>
                   <div className='box'>
                     <h5>Template</h5>
-                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
                   </div>
                 </Col>
                 <Col xs={12} sm={4}>
                   <div className='box'>
                     <h5>Audience</h5>
-                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
                     <p style={{paddingTop: "0px"}}><CSVReader
                       cssClass="react-csv-input"
-                      label="Upload CSV of prospects (max 1000)"
+                      label="Upload Seamless.ai CSV (max 1000)"
                       onFileLoaded={this.handleForce}
                     /></p>
                     {this.state.contacts.length > 1000 ? (

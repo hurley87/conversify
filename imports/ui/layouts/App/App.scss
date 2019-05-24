@@ -113,6 +113,7 @@ body {
     border-radius: 5px;	
     background-color: #FFFFFF;	
     box-shadow: 0 2px 4px 0 #D7E0E7;
+    font-size: 12px;
     td, th {
       padding: 15px !important;
     }
@@ -140,7 +141,12 @@ body {
   }
 }
 
-
+.edit {
+  margin-left: 5px;
+  position: relative;
+  bottom: 2px;
+  cursor: pointer;
+}
 
 .Templates {
   padding-top: 50px;
@@ -195,6 +201,7 @@ body {
       max-height: 200px;
       h5 {
         font-size: 12px !important;
+        margin-top: 0px;
       }
       p {
         color: #536476; 
@@ -263,13 +270,12 @@ body {
   .response-card {
     background: #fff;
     box-shadow: 0 2px 4px 0 #D7E0E7;
-    border-radius: 5px;
     margin-bottom: 15px;
     h4 {
       font-size: 12px;
-      border-bottom: 1px solid #EBEEF3;
-      padding: 20px 15px;
+      padding: 0px 15px;
       margin: 0px;
+      margin-top: 20px;
       .edit {
         margin-left: 15px;
         position: relative;
@@ -402,6 +408,22 @@ body {
       color: #fff;
       opacity: 0.8;
       text-decoration: none;
+    }
+  }
+  .inner-card {
+    border-radius: 10px;
+    border: 1px solid #EBEEF3;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    overflow: scroll;
+    max-height: 250px;
+    h5 {
+      font-size: 12px !important;
+      margin-top: 0px;
+    }
+    p {
+      color: #536476; 
     }
   }
   .box {
