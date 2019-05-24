@@ -56,7 +56,7 @@ class TemplateEditor extends React.Component {
         const confirmation = existingTemplate ? 'Template updated!' : 'Template added!';
         this.form.reset();
         Bert.alert(confirmation, 'success');
-        history.push(`/prospects/new`);
+        history.push(`/templates`);
       }
     });
   }
@@ -102,7 +102,7 @@ class TemplateEditor extends React.Component {
             </Button>
           </form>
         </Col>
-        <Col sm={6}>
+        <Col sm={5} smOffset={1}>
           <h5>Variables</h5>
           <Row>
             <Col sm={4}>
@@ -119,6 +119,9 @@ class TemplateEditor extends React.Component {
             </Col>
             <Col sm={4}>
               <p>{`{{Website}}`}</p>
+            </Col>
+            <Col sm={12}>
+              <img height='250px' src="/add-guy.png"/>
             </Col>
           </Row>
         </Col>

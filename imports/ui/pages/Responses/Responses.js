@@ -23,22 +23,12 @@ const updateSentiment = (linkedInUrl, sentiment) => {
 const displayResponses = (responses, sentiment, upSentiment, downSentiment) => 
    (
     <Table responsive>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Cohort</th>
-          <th>Messages</th>
-          <th>First Response</th>
-          <th />
-          <th />
-        </tr>
-      </thead>
       <tbody>
         {responses.filter((response) => response.sentiment == sentiment).map(({
-          _id, firstName, lastName, messages, cohort, responseText, threadUrl, linkedInUsername
+          _id, firstName, lastName, messages, cohort, responseText, threadUrl, linkedInUsername, linkedinUrl
         }) => (
             <tr key={_id}>
-              <td><a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
+              <td><a target='_blank' href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a></td>
               <td>
                 {cohort}
               </td>
@@ -49,14 +39,14 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
                 {responseText.slice(0, 70)}
               </td>
               <td>
-                <i style={{ fontSize: "15px", color: "#4285f4", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, upSentiment)} class="fa fa-chevron-circle-up"></i>
+                <img onClick={() => updateSentiment(linkedInUsername, upSentiment)} height="15px" src="up.svg"/>
               </td>
               <td>
-                <i style={{ fontSize: "15px", color: "#4285f4", cursor: 'pointer' }} onClick={() => updateSentiment(linkedInUsername, downSentiment)} class="fa fa-chevron-circle-down"></i>
+                <img onClick={() => updateSentiment(linkedInUsername, downSentiment)} height="15px" src="down.svg"/>
               </td>
               <td>
                 <a target='_blank' href={threadUrl}>
-                  <i class="fa fa-comments"></i>
+                  <img height="15px" src="chat.svg"/>
                 </a>
               </td>
             </tr>
@@ -102,32 +92,46 @@ const Responses = ({
   loading, Responses,
 }) => (!loading ? (
   <div className="Responses">
-    <div className="page-header clearfix">
-      <h4 className="pull-left">Responses</h4>
+    <div className="clearfix">
+      <h1>Responses</h1>
     </div>
-    { 
+    <div className='inner'>
+      <Table responsive>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Cohort</th>
+            <th>Messages</th>
+            <th>First Response</th>
+            <th />
+            <th />
+          </tr>
+        </thead>
+      </Table>
+      { 
       Responses.filter(response => response.sentiment == '').length == 0 ? noResponses(Responses) : null 
     }
     {
       Responses.filter(response => response.sentiment == '').map((response) => {
         console.log(response);
       return (
-        <div style={{ backgroundColor: "#EBEFF2", borderRadius: "3px", padding: '10px', marginBottom: "10px"}}>
+        <div className='response-card'>
           <Row>
           <Col xs={12}>
-          <p><a target="_blank" href={response.linkedinUrl}>{response.firstName} {response.lastName}</a>  <a target="_blank" href={response.threadUrl}><i class="fa fa-comments"></i></a></p>
-          </Col>
-          <Col xs={12}>
+            <h4>{response.firstName} {response.lastName} <a target="_blank" href={response.threadUrl} className='delete'><img height="15px" src="followup.svg"/></a></h4>
+            <div className='inner-response'>
             {
               response.messages.map((message) => (
                   <p><b>{ message.name  }</b>: {message.text}</p>
                 ))
 
             }
+            </div>
             </Col>
             <Col xs={12}>
-            <Button style={{ margin: '0', position:'relative', marginRight: "5px" }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')}><i class="fa fa-thumbs-up"></i></Button>
-            <Button style={{ margin: '0', position:'relative', marginRight: "5px" }} onClick={() => updateSentiment(response.linkedInUsername, 'neutral')}><i class="fa fa-thumbs-down"></i></Button>
+            
+            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginLeft: "15px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')}><img height="15px" src="up.svg"/></Button>
+            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'neutral')}><img height="15px" src="down.svg"/></Button>
             </Col>
           </Row>
         </div>
@@ -135,6 +139,7 @@ const Responses = ({
       })
 
     } 
+    </div>
   </div>
 ) : <Loading />);
 

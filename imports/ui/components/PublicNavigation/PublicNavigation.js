@@ -5,7 +5,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 const PublicNavigation = () => (
   <Nav pullRight>
     <LinkContainer to="/login">
-      <NavItem eventKey={2} href="/login">Log In</NavItem>
+      <NavItem eventKey={2} href="/login">Sign In</NavItem>
     </LinkContainer>
   </Nav>
 );

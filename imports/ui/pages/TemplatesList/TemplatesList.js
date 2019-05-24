@@ -16,27 +16,12 @@ const TemplatesList = ({ loading, templates, select, handleChange, defaultValue,
   !loading ? 
     <div className="TemplatesList">
       {templates.length ?
-          <Row>
-            {templates.map(({
-              _id, title, createdAt, updatedAt, request, followup,
-            }) => (
-              <Col xs ={12} sm={6} key={_id}>
-                <div className='templateCard'>
-                  <div className='content'>
-                    <p><a href={`/templates/${_id}`}>{title}</a></p>
-                    <h5>Connection Request</h5>
-                    <p>{request}</p>
-                    <h5>Follow Up</h5>
-                    <p>{followup}</p>
-                  </div>
-                  <Button onClick={() => handleChange({
-                    'label': title,
-                    'request': request,
-                    'followup': followup
-                  })}>Choose Template</Button>
-                </div>
-              </Col>
-            ))} </Row> : <Alert bsStyle="warning">No templates yet!</Alert>}
+            <p><Select
+            name="template"
+            onChange={handleChange}
+            options={select}
+            value={defaultValue}
+          /></p> : <p><Link className='add-btn' to="/templates/new">Add Template</Link></p>}
     </div> : <Loading />
 );
 

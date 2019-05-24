@@ -37,21 +37,8 @@ const renderTemplate = (doc, match, history) => (doc ? (
   <div className="EditTemplate">
     <Row>
         <Col xs={12}>
-            <div className="page-header clearfix">
-            <h4 className="pull-left">{doc.title}</h4>
-            {
-              !doc.replied ? (
-                <ButtonToolbar className="pull-right">
-                  <ButtonGroup bsSize="small">
-                    <Button onClick={() => history.push(`/templates/${doc._id}`)}>View</Button>
-                    <Button onClick={() => handleRemove(doc._id, history)} className="text-danger">
-                      Delete
-                  </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
-              ) : null
-
-            }
+            <div className="clearfix">
+            <h1 className="pull-left">Edit {doc.title}</h1>
             </div>
             <TemplateEditor doc={doc} history={history} />
         </Col>

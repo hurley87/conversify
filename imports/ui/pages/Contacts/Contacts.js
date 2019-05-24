@@ -60,31 +60,30 @@ const Contacts = ({
   loading, contacts, myContacts, limit, message, requestSent, match, history,
 }) => (!loading ? (
   <div className="Contacts">
-    <div className="page-header clearfix">
-      <h4 className="pull-left">Prospects ({myContacts.length})</h4>
-      { myContacts.length > 0 ?  <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
+    <div className="clearfix">
+      <h1 className="pull-left">Prospects ({myContacts.length})</h1>
+      { myContacts.length > 0 ?  <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Prospects</Link> : null }
     </div>
     <Row>
-
       <TabContainer id="left-tabs-example" defaultActiveKey="first">
         <Row>
-          <Col sm={3}>
+          <Col sm={2}>
             <Nav variant="pills" className="flex-column">
               <NavItem eventKey="first">
-                <p>{myContacts.filter(contact => contact.requestSent == false).length} upcoming</p> 
+                <p><img height='20px' src="Upcoming.svg"/> {myContacts.filter(contact => contact.requestSent == false).length} upcoming</p> 
               </NavItem>
               <NavItem eventKey="second">
-                <p>{myContacts.filter(contact => contact.requestSent == true).length} sent</p> 
+                <p><img height='20px' src="Sent.svg"/> {myContacts.filter(contact => contact.requestSent == true).length} sent</p> 
               </NavItem>
               <NavItem eventKey="third">
-               <p>{myContacts.filter(contact => contact.firstFollowUpSent == true).length} follow-ups</p>            
+               <p><img height='20px' src="followup.svg"/> {myContacts.filter(contact => contact.firstFollowUpSent == true).length} follow-ups</p>            
               </NavItem>
               <NavItem eventKey="fourth">
-                <p>{myContacts.filter(contact => contact.sequenceOver == true).length} finished </p> 
+                <p><img height='20px' src="Finished.svg"/> {myContacts.filter(contact => contact.sequenceOver == true).length} finished </p> 
               </NavItem>
             </Nav>
           </Col>
-          <Col sm={9}>
+          <Col sm={10}>
             <TabContent>
               <TabPane eventKey="first">
                 { 
@@ -106,7 +105,7 @@ const Contacts = ({
                         }) => (
                           <tr key={_id}>
                             <td>
-                            <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                            <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                             </td>
                             
                             <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
@@ -128,7 +127,11 @@ const Contacts = ({
                         ))}
                       </tbody>
                         </Table> : 
-                        <Alert bsStyle="warning">No prospects.</Alert>
+                        <div className='no-prospects'>
+                          <h1>You have no prospects uploaded</h1>
+                          <p>Upload a Seamless.ai CSV to start</p>
+                          <p><img height="280px" src="No-Prospects.png"/></p>
+                        </div>
                   }
               </TabPane>
               <TabPane eventKey="second">
@@ -151,7 +154,7 @@ const Contacts = ({
                       }) => (
                         <tr key={_id}>
                           <td>
-                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
                           <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
@@ -196,7 +199,7 @@ const Contacts = ({
                       }) => (
                         <tr key={_id}>
                           <td>
-                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
                           <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
@@ -241,7 +244,7 @@ const Contacts = ({
                       }) => (
                         <tr key={_id}>
                           <td>
-                          <a target="_blank" href={linkedinUrl}><div style={{ backgroundColor: "#0077B5" }} className='badge'><span className="fa fa-linkedin"></span></div></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
+                          <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
                           <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>

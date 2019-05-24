@@ -37,39 +37,25 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
   <div className="Leaderboards">
 
     <Row>
+      <Col xs={12} sm={2}>
+        <h5>Requests</h5>
+        <p>{first_msgs}</p>
+        <h5>Connections</h5>
+        <p>{ncs} <small>({((ncs)/first_msgs*100).toFixed(1)}%)</small></p>
+        <h5>Replies</h5>
+        <p>{replies} <small>({((replies)/first_msgs*100).toFixed(1)}%)</small></p>
+        <h5>Leads</h5>
+        <p>{prtime} <small>({((meetings + clients + prtime)/first_msgs*100).toFixed(1)}%)</small></p>
+        <h5>Meetings</h5>
+        <p>{meetings + clients} <small>({((meetings + clients)/first_msgs*100).toFixed(1)}%)</small></p>
+        <h5>Clients</h5>
+        <p>{clients} <small>({(clients/first_msgs*100).toFixed(1)}%)</small></p>
+      </Col>
       <Col xs={12} sm={10}>
-        <Row>
-          {
-            [].concat.apply([], series).length > 0 ? (
-              <Col xs={12} sm={12}>
-              <h5>Connections</h5>
-              <ChartistGraph className='ct-chart-line' data={{
-                labels,
-                series,
-              }} options={{
-                low: 0,
-                showArea: false,
-                showLine: true,
-                showPoint: true,
-                axisX: {
-                  labelInterpolationFnc: function (value, index) {
-                    return value;
-                  }
-                },
-                plugins: [
-                  tooltip()
-                ]
-              }} type={'Line'} />
-            </Col>
-            ) : null
-          }
-
-        </Row>
-        
         <Table responsive>
           <thead>
             <tr>
-              <th>Cohort</th>
+              <th>Audience</th>
               <th>Requests</th>
               <th>Connections</th>
               <th>Replies</th>
@@ -204,25 +190,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           </tbody>
         </Table>
       </Col>
-        <Col xs={12} sm={2}>
-          <h5>Requests</h5>
-          <p>{first_msgs}</p>
-          <hr />
-          <h5>Connections</h5>
-          <p>{ncs} <small>({((ncs)/first_msgs*100).toFixed(1)}%)</small></p>
-          <hr />
-          <h5>Replies</h5>
-          <p>{replies} <small>({((replies)/first_msgs*100).toFixed(1)}%)</small></p>
-          <hr />
-          <h5>Leads</h5>
-          <p>{prtime} <small>({((meetings + clients + prtime)/first_msgs*100).toFixed(1)}%)</small></p>
-          <hr />
-          <h5>Meetings</h5>
-          <p>{meetings + clients} <small>({((meetings + clients)/first_msgs*100).toFixed(1)}%)</small></p>
-          <hr />
-          <h5>Clients</h5>
-          <p>{clients} <small>({(clients/first_msgs*100).toFixed(1)}%)</small></p>
-        </Col>
     </Row>
   </div>:
   <div>

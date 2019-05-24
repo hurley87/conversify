@@ -19,27 +19,6 @@ $text: #4b507a;
 $primaryColor: #702c91;
 $secondaryColor: #7cc242;
 
-
-body {
-  background: $background;
-  border-top: 3px solid #4285f4;
-  color: $text;
-}
-
-h1 {
-  font-weight: 300;
-  font-size: 2.5em;
-  margin-bottom: 100px;
-}
-
-footer {
-  font-size: 14px;
-  a{
-    color: $text;
-  }
-}
-
-
 button {
   background: none;
   border: 0;

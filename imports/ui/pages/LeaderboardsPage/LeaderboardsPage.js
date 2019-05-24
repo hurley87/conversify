@@ -66,14 +66,13 @@ class HomePageDatePicker extends React.Component {
   render() {
     const { focusedInput, startDate, endDate, startDateString, endDateString } = this.state;
     return (
-        <div>
-			<div className="page-header clearfix">
-				<h4 className="pull-left">Results</h4>
-			</div>
+        <div className='Results'>
 	    <Row>
-	      <Col xs={12}>
-          </Col>
-          <Col xs={12} sm={12}>
+					<Col xs={12} sm={2}>
+						<h3>Summary</h3>
+					</Col>
+          <Col xs={12} sm={10}>
+						<h1 className='pull-left'>RESULTS</h1>
 	          <DateRangePicker
 	            {...this.props}
 	            onDatesChange={this.onDatesChange}
@@ -87,12 +86,13 @@ class HomePageDatePicker extends React.Component {
 	            endDatePlaceholderText="End Date"
 	            isOutsideRange={this.isOutsideRangeFunc} 
 	            enableOutsideDays={true}
-	            minimumNights={0}
+							minimumNights={0}
+							className='pull-right'
 	            />
-	           <br />
-	           <br />
-	           <LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
            </Col>
+					 <Col xs={12} sm={12}>
+					 	<LeaderboardsContainer startDate={startDateString} endDate={endDateString} />
+					 </Col>
         </Row>   
         </div>
     );

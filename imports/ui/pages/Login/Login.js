@@ -55,25 +55,25 @@ class Login extends React.Component {
       <div className="Login">
         <Row>
           <Col xs={12} sm={6} md={12} lg={12}>
-            <div className='login-box'>
-              <h4 className="page-header">Log In</h4>
+            <div className='text-center'>
+              <img src="logo2.svg"/>
+              <h1>More Prospects. More Sales.</h1>
+              <p>Find New Customers Today</p>
               <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
                 <FormGroup>
-                  <ControlLabel>Email Address</ControlLabel>
                   <input
                     type="email"
                     name="emailAddress"
                     className="form-control"
+                    placeholder='Email'
                   />
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel className="clearfix">
-                    <span className="pull-left">Password</span>
-                  </ControlLabel>
                   <input
                     type="password"
                     name="password"
                     className="form-control"
+                    placeholder='Password'
                   />
                 </FormGroup>
                 <Button className='poll-btn' type="submit">Log In</Button>

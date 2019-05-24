@@ -27,9 +27,9 @@ const Templates = ({
   loading, templates, match, history,
 }) => (!loading ? (
   <div className="Templates">
-    <div className="page-header clearfix">
-      <h4 className="pull-left">Templates</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Template</Link>
+    <div className="clearfix">
+      <h1 className="pull-left">Templates</h1>
+      <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Template</Link>
     </div>
     {templates.length ?
         <Row>
@@ -37,12 +37,14 @@ const Templates = ({
             _id, title, createdAt, updatedAt, request, followup,
           }) => (
             <Col xs ={12} sm={6} key={_id}>
-              <div style={{height: "250px", overflow: "scroll"}} className='well'>
-                <h4><a href={`${match.url}/${_id}`}>{title}</a></h4>
-                <h5>Connection Request</h5>
-                <p>{request}</p>
-                <h5>Follow Up</h5>
-                <p>{followup}</p>
+              <div className='template-card'>
+                <h4>{title} <a href={`/templates/${_id}/edit`}><img className="edit" height="12px" src="Edit.svg"/></a>  <span onClick={() => handleRemove(_id)} className='delete'><img height="15px" src="Delete.svg"/></span></h4>
+                <div className='inner-card'>
+                  <h5>Connection Request</h5>
+                  <p>{request}</p>
+                  <h5>Follow Up</h5>
+                  <p>{followup}</p>
+                </div>
               </div>
 
             </Col>

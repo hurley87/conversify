@@ -1,24 +1,423 @@
 @import '../../stylesheets/colors';
 
-.App > .container {
-  margin-bottom: 20px;
+body {
+  background-color: #f4f8fb; 
 }
 
-.App .verify-email {
-  margin-bottom: 0;
-  padding: 0;
-  border-top: none;
-  border-bottom: 1px solid #e7e7e7;
-  background: #fff;
-  color: $gray-dark;
-  border-radius: 0;
-  font-weight: 300;
-
+.Index {
+  padding-top: 50px;
+  color: $primary-font;
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
   p {
-    padding: 19px;
+    font-size: 16px;
+  }
+  img {	
+    height: 272px;	
+    width: 281.54px;
+  }
+  a {	
+    height: 45px;	
+    width: 135px;	
+    display: block;
+    border-radius: 22.5px;	
+    background-color: $primary;
+    color: white;
+    border: none;
+    margin: 0px;
+    line-height: 45px;
+    text-align: center;
+    &:hover {
+      background-color: $primary;
+      color: #fff;
+      opacity: 0.8;
+      text-decoration: none;
+    }
   }
 
-  .btn {
-    padding: 0;
+}
+
+.Login {
+  color: $primary-font;
+  padding-top: 50px;
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  p {
+    font-size: 16px;
+  }
+  form {
+    max-width: 375px;
+    margin: auto;
+    margin-top: 30px;
+  }
+  input {
+    border-radius: 22.5px;
+    height: 45px;
+  }
+  button {	
+    height: 45px;	
+    width: 100%;	
+    border-radius: 22.5px;	
+    background-color: $primary;
+    color: white;
+    border: none;
+    margin: 0px;
+    &:hover {
+      background-color: $primary;
+      color: #fff;
+      opacity: 0.8;
+    }
   }
 }
+
+
+
+.Results {
+  padding-top: 50px;
+  color: $primary-font;
+  .DateRangePicker {
+    float: right;
+    border-radius: 22.5px;
+    font-size: 14px;
+  }
+  .DateInput, .DateInput_input, .DateRangePickerInput__withBorder {
+    border-radius: 22.5px;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  h5 {
+    font-size: 14px;
+    margin-top: 0px;
+    font-weight: 500;
+    color: $secondary-font;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 200;
+    color: $secondary-font;
+    margin-bottom: 25px;
+  }
+  table {
+    border-radius: 5px;	
+    background-color: #FFFFFF;	
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    td, th {
+      padding: 15px !important;
+    }
+  }
+}
+
+.Leaderboards {
+  padding-top: 15px;
+}
+
+.second-btn {	
+  height: 38px;	
+  width: 124px;	
+  border-radius: 19px;	
+  background-color: #092C4C;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  line-height: 38px;	
+  text-align: center;
+  &:hover {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+
+
+.Templates {
+  padding-top: 50px;
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .template-card {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    padding-bottom: 10px;
+    h4 {
+      font-size: 12px;
+      border-bottom: 1px solid #EBEEF3;
+      padding: 20px 15px;
+
+      .edit {
+        margin-left: 15px;
+        position: relative;
+        bottom: 2px;
+        cursor: pointer;
+      }
+
+      span {
+        position: relative;
+        bottom: 7px;
+      }
+    }
+    .delete {
+      background-color: #EAF1F7;
+      border-radius: 30px;
+      height: 30px;
+      width: 30px;
+      float: right;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 0px;
+    }
+    .inner-card {
+      border-radius: 10px;
+      border: 1px solid #EBEEF3;
+      margin: 20px;
+      margin-bottom: 10px;
+      padding: 20px 15px;
+      overflow: scroll;
+      h5 {
+        font-size: 12px !important;
+      }
+      p {
+        color: #536476; 
+      }
+    }
+  }
+}
+
+.NewTemplate, .EditTemplate {
+  padding-top: 50px;
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  h5 {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: $secondary-font;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 200;
+    color: $secondary-font;
+    margin-bottom: 25px;
+  }
+  form {
+    background: #fff;
+    padding: 20px 15px;
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    border-radius: 5px;
+    label {
+      font-size: 12px;
+    }
+    button {	
+      height: 45px;	
+      width: 100%;	
+      border-radius: 22.5px;	
+      background-color: $primary;
+      color: white;
+      border: none;
+      margin: 0px;
+      &:hover {
+        background-color: $primary;
+        color: #fff;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.Responses {
+  padding-top: 50px;
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  img {
+    cursor: pointer;
+  }
+  .response-card {
+    background: #fff;
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    h4 {
+      font-size: 12px;
+      border-bottom: 1px solid #EBEEF3;
+      padding: 20px 15px;
+      margin: 0px;
+      .edit {
+        margin-left: 15px;
+        position: relative;
+        bottom: 2px;
+        cursor: pointer;
+      }
+
+      span {
+        position: relative;
+        bottom: 7px;
+      }
+    }
+    .delete {
+      background-color: #EAF1F7;
+      border-radius: 30px;
+      height: 30px;
+      width: 30px;
+      float: right;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 0px;
+      position: relative;
+      bottom: 7px;
+    }
+    .inner-response {
+      border-radius: 10px;
+      border: 1px solid #EBEEF3;
+      margin: 15px;
+      padding: 20px 15px;
+      overflow: scroll;
+    }
+  }
+  .inner {
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    font-size: 12px;
+    table {
+      margin: 0px;
+    }
+    th, td {
+      padding: 15px 30px;
+    }
+    h5 {
+      background-color: rgba(234,241,247,0.4);
+      font-size: 12px;
+      padding: 30px 30px;
+      margin: 0px;
+    }
+  }
+}
+
+.Contacts {
+  padding-top: 50px;
+  h1 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  table {
+    font-size: 12px;
+    background-color: #fff;
+  }
+  th, td {
+    padding: 15px !important;
+    font-weight: 200;
+  }
+  p {
+    margin: 0;
+  }
+  li {
+    padding: 5px;
+    border-radius: 23px;
+    font-size: 14px;
+    a {
+      color: #536476;
+    }
+ 
+  }
+  .no-prospects {
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    h1 {
+      text-transform: none;
+      font-size: 30px;
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 200;
+      margin-bottom: 20px;
+    }
+  }
+  .active {
+    background-color: #EAF1F7;
+    color: #092C4C;
+    font-weight: 500;
+  }
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: transparent !important;
+  }
+  img {
+    margin-right: 5px;
+  }
+}
+
+.NewProspects {
+  padding-top: 50px;
+  h1 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .add-btn {	
+    height: 45px;	
+    line-height: 45px;
+    text-align: center;
+    width: 100%;	
+    border-radius: 22.5px;	
+    background-color: $primary;
+    color: white;
+    border: none;
+    display: block;
+    &:hover {
+      background-color: $primary;
+      color: #fff;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+  }
+  .box {
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    background-color: #fff;
+    border-radius: 5px;
+    h5 {
+      border-bottom: 1px solid #EBEEF3;
+      padding: 15px;
+      margin: 0px;
+    }
+    h6 {
+      padding-left: 15px;
+    }
+    p {
+      padding: 15px;
+      margin: 0px;
+    }
+  }
+}
+
+

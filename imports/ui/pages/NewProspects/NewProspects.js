@@ -195,88 +195,105 @@ class NewProspects extends React.Component {
     const { doc } = this.props;
 
     return (
-      <div>
-        <div className="page-header clearfix">
-          <h4 className="pull-left">Add Prospects</h4>
+      <div className='NewProspects'>
+        <div className="clearfix">
+          <h1 className="pull-left">Add Prospects</h1>
         </div>
         {
           this.state.template == "" ? (
             <Row>
-              <Col xs={12} sm={3}>
-              <h5>Template</h5>
-              <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-              <hr />
-              <h5>Audience</h5>
-              <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-              <p>{this.state.contacts.length} Uploaded</p>
-              </Col>
-              <Col xs={12} sm={9}>
-                <Link to="/templates/new">Add Template</Link>  
-                <br />
-                <br />
-                <h5>Templates</h5>
+              <Col xs={12} sm={4}>
+              <div className='box'>
+                <h5>Template</h5>
                 <TemplatesList  handleChange={this.handleChange} />
+              </div>
+
+              </Col>
+              <Col xs={12} sm={4}>
+                <div className='box'>
+                  <h5>Audience</h5>
+                  <p>{this.state.contacts.length} prospects uploaded</p>
+                </div>
+              </Col>
+              <Col xs={12} sm={4}>
+              <div className='box'>
+                  <h5>Preview</h5>
+                  <p>No prospects to preview</p>
+                </div>
               </Col>
             </Row> 
           ) : !this.state.upload ? 
           <Row>
-            <Col xs={12} sm={3}>
-              <h5>Template</h5>
-              <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-              <hr />
-              <h5>Audience</h5>
-              <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-              <p>{this.state.contacts.length} Uploaded</p>
-            </Col>
+
             <Col xs={12} sm={4}>
-              <h5>Cohort</h5>
-              <input
-                type='text'
-                className="form-control"
-                name="cohort"
-                defaultValue={this.state.cohort}
-                onChange={this.handleCohort}
-              />
-              <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
-                Continue
-              </Button>
-            </Col>
+              <div className='box'>
+                <h5>Template</h5>
+                <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+              </div>
+              </Col>
+              <Col xs={12} sm={4}>
+                <div className='box'>
+                  <h5>Audience</h5>
+                  <p><input
+                      type='text'
+                      className="form-control"
+                      name="cohort"
+                      defaultValue={this.state.cohort}
+                      onChange={this.handleCohort}
+                    />
+                    <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginLeft: '0px', lineHeight: "30px" }} className="add-btn" >
+                      Continue
+                    </Button>
+                  </p>
+                </div>
+              </Col>
+              <Col xs={12} sm={4}>
+                <div className='box'>
+                  <h5>Preview</h5>
+                  <p>No prospects to preview</p>
+                </div>
+              </Col>
           </Row> 
         : this.state.contacts.length > 0 && this.state.contacts.length <= 1000 ? (
               <Row>
-                <Col xs={12} sm={3}>
-                  <h5>Template</h5>
-                  <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                  <hr />
-                  <h5>Audience</h5>
-                  <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                  <p>{this.state.contacts.length} Uploaded</p>             
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Template</h5>
+                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                  </div>
                 </Col>
-                <Col sm={6} xs={12}>
-                <h5><small>({this.state.contact_index + 1} / {this.state.contacts.length}) <a  onClick={this.handleNext}>Next</a></small> </h5>
-                <h5>Connection Request</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</div>
-                  <hr />
-                  <div className='hidden'>
-                  <h5>Challenger Connection Request</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</div>
-                  <hr />
-                </div>
-                  <h5>1st Follow-up</h5>
-                  <div style={{ whiteSpace: 'pre-line' }}>{this.parseCopy(this.state.template.followup, this.state.contact_index)}</div>
-                  <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
-                    <FormGroup className='hidden'>
-                      <ControlLabel>Connection Request</ControlLabel>
-                      <textarea
-                        style={{ minHeight: '100px' }}
-                        type="text"
-                        className="form-control"
-                        name="request"
-                        defaultValue={this.state.template.request}
-                        onChange={this.handleCra}
-                      />
-                    </FormGroup>
-                    <FormGroup className='hidden'>
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Audience</h5>
+                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p>{this.state.contacts.length} prospects uploaded</p>
+                  </div>
+                </Col>
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Preview <small>({this.state.contact_index + 1} / {this.state.contacts.length}) <a  onClick={this.handleNext}>Next</a></small> </h5>
+                    <h6>Connection Request</h6>
+                    <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.request, this.state.contact_index)}</p>
+                    <div className='hidden'>
+                      <h6>Challenger Connection Request</h6>
+                      <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.crb, this.state.contact_index)}</p>
+                      <hr />
+                    </div>
+                    <h6>1st Follow-up</h6>
+                    <p style={{ whiteSpace: 'pre-line', paddingTop: '0px' }}>{this.parseCopy(this.state.template.followup, this.state.contact_index)}</p>
+                    <form ref={form => (this.form = form)} onSubmit={this.handleValidation}>
+                      <FormGroup className='hidden'>
+                        <ControlLabel>Connection Request</ControlLabel>
+                        <textarea
+                          style={{ minHeight: '100px' }}
+                          type="text"
+                          className="form-control"
+                          name="request"
+                          defaultValue={this.state.template.request}
+                          onChange={this.handleCra}
+                        />
+                      </FormGroup>
+                      <FormGroup className='hidden'>
                       <ControlLabel>Challenger Connection Request</ControlLabel>
                       <textarea
                         style={{ minHeight: '100px' }}
@@ -285,63 +302,70 @@ class NewProspects extends React.Component {
                         defaultValue={this.state.template.request}
                         onChange={this.handleCrb}
                       />
-                    </FormGroup>
-                    <FormGroup className='hidden'>
-                      <ControlLabel>Follow-up</ControlLabel>
-                      <textarea
-                        style={{ minHeight: '200px' }}
-                        className="form-control"
-                        name="followup"
-                        defaultValue={this.state.template.followup}
-                        onChange={this.handleFollow1}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      {
-                        this.state.loading ? (
-                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" disabled>
-                            <Wave text="Uploading..." />
-                          </Button>
-                        ) : (
-                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
-                            Upload prospects
-                          </Button>
-                        )
-                      }
+                      </FormGroup>
+                      <FormGroup className='hidden'>
+                        <ControlLabel>Follow-up</ControlLabel>
+                        <textarea
+                          style={{ minHeight: '200px' }}
+                          className="form-control"
+                          name="followup"
+                          defaultValue={this.state.template.followup}
+                          onChange={this.handleFollow1}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        {
+                          this.state.loading ? (
+                            <p><Button className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }} disabled>
+                              <Wave text="Uploading..." />
+                            </Button></p>
+                          ) : (
+                            <p><Button className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }}  >
+                              Upload prospects
+                            </Button></p>
+                          )
+                        }
 
-                    </FormGroup>
-                  </form>
+                      </FormGroup>
+                    </form>
+                  </div>
                 </Col>
-
               </Row>
             ) : (
               <Row>
-                <Col xs={12} sm={3}>
-                  <h5>Template</h5>
-                  <p>{this.state.template.label} <a onClick={this.changeTemplate}><i className="fa fa-edit"></i></a></p>
-                  <hr />
-                  <h5>Audience</h5>
-                  <p>{this.state.cohort} <a onClick={this.changeCohort}><i className="fa fa-edit"></i></a></p>
-                  <p>{this.state.contacts.length} Uploaded</p>
-                </Col>
-                <Col xs={12} sm={9}>
-                  <CSVReader
-                    cssClass="react-csv-input"
-                    label="Upload CSV of Contacts (max 1000)"
-                    onFileLoaded={this.handleForce}
-                  />
-                  <br />
-                  {this.state.contacts.length > 1000 ? (
-                    <p style={{ color: '#e74c3c' }}><Wave
-                      effect="stretch"
-                      effectChange={2.2}
-                      style={{ color: 'red' }}
-                      text={`That's ${this.state.contacts.length - 1000} contacts too many`}
-                    />
-                    </p>
-                ) : null}
-                </Col>
 
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Template</h5>
+                    <p>{this.state.template.label} <a onClick={this.changeTemplate}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                  </div>
+                </Col>
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Audience</h5>
+                    <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="Edit.svg"/></a></p>
+                    <p style={{paddingTop: "0px"}}><CSVReader
+                      cssClass="react-csv-input"
+                      label="Upload CSV of prospects (max 1000)"
+                      onFileLoaded={this.handleForce}
+                    /></p>
+                    {this.state.contacts.length > 1000 ? (
+                      <p style={{ color: '#e74c3c' }}><Wave
+                        effect="stretch"
+                        effectChange={2.2}
+                        style={{ color: 'red' }}
+                        text={`That's ${this.state.contacts.length - 1000} contacts too many`}
+                      />
+                      </p>
+                  ) : null}
+                  </div>
+                </Col>
+                <Col xs={12} sm={4}>
+                  <div className='box'>
+                    <h5>Preview</h5>
+                    <p>No prospects to preview</p>
+                  </div>
+                </Col>
               </Row>
             )
 
