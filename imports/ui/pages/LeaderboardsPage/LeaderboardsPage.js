@@ -69,10 +69,9 @@ class HomePageDatePicker extends React.Component {
         <div className='Results'>
 	    <Row>
 					<Col xs={12} sm={2}>
-						<h3>Summary</h3>
+					<h1 className='pull-left'>RESULTS</h1>
 					</Col>
           <Col xs={12} sm={10}>
-						<h1 className='pull-left'>RESULTS</h1>
 	          <DateRangePicker
 	            {...this.props}
 	            onDatesChange={this.onDatesChange}

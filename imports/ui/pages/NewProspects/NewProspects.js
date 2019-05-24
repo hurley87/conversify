@@ -212,7 +212,7 @@ class NewProspects extends React.Component {
               <Col xs={12} sm={4}>
                 <div className='box'>
                   <h5>Audience</h5>
-                  <p>{this.state.cohort == "" ? "n/a" : this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p>
+                  { this.state.cohort == "" ? null : <p>{this.state.cohort} <a onClick={this.changeCohort}><img className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a></p> }
                   <p>{this.state.contacts.length} prospects uploaded</p>
                 </div>
               </Col>
