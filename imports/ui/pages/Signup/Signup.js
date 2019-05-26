@@ -85,53 +85,55 @@ class Signup extends React.Component {
     return (
       <div className="Signup">
         <Row>
-          <Col xs={12} sm={6} md={5} lg={4}>
-            <h4 className="page-header">Sign Up</h4>
-            <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
-              <Row>
-                <Col xs={6}>
-                  <FormGroup>
-                    <ControlLabel>First Name</ControlLabel>
-                    <input
-                      type="text"
-                      name="firstName"
-                      className="form-control"
-                    />
-                  </FormGroup>
-                </Col>
-                <Col xs={6}>
-                  <FormGroup>
-                    <ControlLabel>Last Name</ControlLabel>
-                    <input
-                      type="text"
-                      name="lastName"
-                      className="form-control"
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <FormGroup>
-                <ControlLabel>Email Address</ControlLabel>
-                <input
-                  type="email"
-                  name="emailAddress"
-                  className="form-control"
-                />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Password</ControlLabel>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                />
-                <InputHint>Use at least six characters.</InputHint>
-              </FormGroup>
-              <Button type="submit" bsStyle="success">Sign Up</Button>
-              <AccountPageFooter>
-                <p>Already have an account? <Link to="/login">Log In</Link>.</p>
-              </AccountPageFooter>
-            </form>
+          <Col xs={12} sm={6} md={12} lg={12}>
+            <div className='text-center'>
+              <h1>Create Your First Campaign Today</h1>
+              <p>Sign Up Using Your LinkedIn Email and Password</p>
+              <form ref={form => (this .form = form)} onSubmit={event => event.preventDefault()}>
+                <Row>
+                  <Col xs={6} style={{paddingRight: "5px"}}>
+                    <FormGroup>
+                      <input
+                        type="text"
+                        name="firstName"
+                        className="form-control"
+                        placeholder='First Name'
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6} style={{paddingLeft: "5px"}}>
+                    <FormGroup>
+                      <input
+                        type="text"
+                        name="lastName"
+                        className="form-control"
+                        placeholder='Last Name'
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <FormGroup>
+                  <input
+                    type="email"
+                    name="emailAddress"
+                    className="form-control"
+                    placeholder='Email'
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder='Password'
+                  />
+                </FormGroup>
+                <Button type="submit" bsStyle="success">Sign Up</Button>
+                <AccountPageFooter>
+                  <p>Already have an account? <Link to="/login">Log In</Link>.</p>
+                </AccountPageFooter>
+              </form>
+            </div>
           </Col>
         </Row>
       </div>

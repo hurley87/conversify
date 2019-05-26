@@ -56,9 +56,8 @@ class Login extends React.Component {
         <Row>
           <Col xs={12} sm={6} md={12} lg={12}>
             <div className='text-center'>
-              <img src="logo2.svg"/>
-              <h1>More Prospects. More Sales.</h1>
-              <p>Find New Customers Today</p>
+              <h1>Welcome Back</h1>
+              <p>Log In Using Your LinkedIn Email and Password</p>
               <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
                 <FormGroup>
                   <input
@@ -77,6 +76,9 @@ class Login extends React.Component {
                   />
                 </FormGroup>
                 <Button className='poll-btn' type="submit">Log In</Button>
+                <AccountPageFooter>
+                  <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
+                </AccountPageFooter>
               </form>
             </div>
           </Col>

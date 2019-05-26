@@ -22,7 +22,7 @@ const Index = () => (
         <p>4. pretend your speaking with a friend</p>
         <p>5. download the LinkedIn app and turn on notifications</p>
         <br />
-        <p><a href="/login">Get Started</a></p>
+        <p><a href="/signup">Get Started</a></p>
       </Col>
     </Row>
     
