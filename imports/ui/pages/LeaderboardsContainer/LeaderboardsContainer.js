@@ -189,6 +189,8 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           }
           </tbody>
         </Table>
+
+        
       </Col>
     </Row>
   </div>:

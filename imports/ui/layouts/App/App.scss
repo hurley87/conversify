@@ -85,9 +85,14 @@ body {
     float: right;
     border-radius: 22.5px;
     font-size: 14px;
+    border: none;
   }
   .DateInput, .DateInput_input, .DateRangePickerInput__withBorder {
     border-radius: 22.5px;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
   }
   h1 {
     font-size: 20px;
@@ -122,14 +127,14 @@ body {
 }
 
 .second-btn {	
-  height: 38px;	
+  height: 40px;	
   width: 124px;	
   border-radius: 19px;	
   background-color: #092C4C;
   font-size: 12px;
   font-weight: 500;
   color: white;
-  line-height: 38px;	
+  line-height: 40px;	
   text-align: center;
   &:hover {
     color: white;
