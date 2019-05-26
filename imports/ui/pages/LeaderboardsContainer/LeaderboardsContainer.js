@@ -192,9 +192,11 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
       </Col>
     </Row>
   </div>:
-  <div>
-  	<Alert bsStyle="warning">No data exists between the dates selected.</Alert>
-  </div>
+    <div className='empty-state'>
+      <h1>Nothing to see here</h1>
+      <p>You'll have to select a date range that contains data</p>
+      <p><img height="280px" src="No-Prospects.png"/></p>
+    </div>
 ): <Loading />);
 
 

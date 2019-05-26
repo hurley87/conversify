@@ -69,7 +69,7 @@ class HomePageDatePicker extends React.Component {
         <div className='Results'>
 	    <Row>
 					<Col xs={12} sm={2}>
-					<h1 className='pull-left'>RESULTS</h1>
+					<h1 className='pull-left'>Results</h1>
 					</Col>
           <Col xs={12} sm={10}>
 	          <DateRangePicker

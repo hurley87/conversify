@@ -150,7 +150,7 @@ body {
   h1 {
     font-size: 20px;
     font-weight: 500;
-    text-transform: uppercase;
+    
   }
   .template-card {
     background-color: #fff;
@@ -212,7 +212,7 @@ body {
   h1 {
     font-size: 20px;
     font-weight: 500;
-    text-transform: uppercase;
+    
     margin-bottom: 25px;
   }
   h5 {
@@ -258,7 +258,7 @@ body {
   h1 {
     font-size: 20px;
     font-weight: 500;
-    text-transform: uppercase;
+    
     margin-bottom: 25px;
   }
   img {
@@ -325,12 +325,28 @@ body {
     }
   }
 }
-
+.empty-state {
+  box-shadow: 0 2px 4px 0 #D7E0E7;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  h1 {
+    text-transform: none;
+    font-size: 30px !important;
+    font-weight: 500;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 200;
+    margin-bottom: 20px;
+  }
+}
 .Contacts {
   padding-top: 50px;
   h1 {
     font-size: 16px;
-    text-transform: uppercase;
+    
     margin-bottom: 15px;
   }
   table {
@@ -353,23 +369,7 @@ body {
     }
  
   }
-  .no-prospects {
-    box-shadow: 0 2px 4px 0 #D7E0E7;
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    text-align: center;
-    padding: 20px;
-    h1 {
-      text-transform: none;
-      font-size: 30px;
-      font-weight: 500;
-    }
-    p {
-      font-size: 14px;
-      font-weight: 200;
-      margin-bottom: 20px;
-    }
-  }
+
   .active {
     background-color: #EAF1F7;
     color: #092C4C;
@@ -387,7 +387,7 @@ body {
   padding-top: 50px;
   h1 {
     font-size: 16px;
-    text-transform: uppercase;
+    
     margin-bottom: 15px;
   }
   .add-btn {	

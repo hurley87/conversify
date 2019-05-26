@@ -127,7 +127,7 @@ const Contacts = ({
                         ))}
                       </tbody>
                         </Table> : 
-                        <div className='no-prospects'>
+                        <div className='empty-state'>
                           <h1>You have no prospects uploaded</h1>
                           <p>Upload a Seamless.ai CSV to start</p>
                           <p><img height="280px" src="No-Prospects.png"/></p>
