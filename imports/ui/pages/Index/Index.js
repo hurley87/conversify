@@ -16,7 +16,7 @@ const Index = () => (
         <h3>
           A few useful tips...
         </h3>
-        <p>1. Sign in using your LinkedIn email and password</p>
+        <p>1. sign in using your LinkedIn email and password</p>
         <p>2. bot will run once a day in the morning</p>
         <p>3. only reply when someone messages you first</p>
         <p>4. pretend your speaking with a friend</p>
