@@ -269,11 +269,11 @@ class NewSequence extends React.Component {
                     <FormGroup>
                       {
                         this.state.loading ? (
-                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" disabled>
+                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" disabled>
                             <Wave text="Uploading..." />
                           </Button>
                         ) : (
-                          <Button className="pull-left" style={{ marginLeft: '0px' }} type="submit" bsStyle="success" >
+                          <Button className="pull-left" style={{ marginLeft: '0px' }}  type="submit" >
                             Upload prospects
                           </Button>
                         )

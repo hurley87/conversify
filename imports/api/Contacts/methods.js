@@ -121,7 +121,6 @@ Meteor.methods({
       _id: String,
       championText: String,
       firstFollowUpText: String,
-      secondFollowUpText: String,
     });
 
     try {

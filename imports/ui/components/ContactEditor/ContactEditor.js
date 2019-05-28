@@ -38,7 +38,6 @@ class ContactEditor extends React.Component {
     const doc = {
       championText: form.championText.value.trim(),
       firstFollowUpText: form.firstFollowUpText.value.trim(),
-      secondFollowUpText: form.secondFollowUpText.value.trim(),
     };
 
     if (existingContact) doc._id = existingContact;
@@ -75,7 +74,7 @@ class ContactEditor extends React.Component {
             defaultValue={doc && doc.firstFollowUpText}
           />
         </FormGroup>
-        <Button type="submit" bsStyle="success" style={{margin: "0px"}}>
+        <Button type="submit" className="add-btn" style={{margin: "0px", lineHeight: "35px"}}>
           {doc && doc._id ? 'Update' : 'Add Contact'}
         </Button>
       </form>

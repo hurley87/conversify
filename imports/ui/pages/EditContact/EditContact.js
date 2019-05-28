@@ -37,25 +37,21 @@ const renderContact = (doc, match, history) => (doc ? (
   <div className="EditContact">
     <Row>
         <Col xs={12} sm={8} smOffset={2}>
-            <div className="page-header clearfix">
-            <h4 className="pull-left">{doc.firstName} {doc.lastName} <small>{doc.title} at <a target="_blank" href={`http://${doc.website}`}>{doc.company}</a></small>
-                <a target="_blank" href={doc.linkedinUrl}><div style={{ backgroundColor: "#0077B5", marginLeft: "5px" }} className='badge'><span className="fa fa-linkedin"></span></div></a>
-            </h4>
+          <div className="template-card">
+            <h4><a target="_blank" href={`/prospects/${doc._id}`}>{doc.firstName} {doc.lastName}</a> <a target="_blank" href={doc.linkedinUrl}><img height='15px' src="https://s3.amazonaws.com/adsgen/linkedin.svg"/></a>
             {
               !doc.replied ? (
-                <ButtonToolbar className="pull-right">
-                  <ButtonGroup bsSize="small">
-                    <Button onClick={() => history.push(`/prospects/${doc._id}`)}>View</Button>
-                    <Button onClick={() => handleRemove(doc._id, history)} className="text-danger">
-                      Delete
-                  </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <span onClick={() => handleRemove(doc._id)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
               ) : null
-
             }
+             </h4>
+             <Row>
+               <Col sm={12} style={{padding: "15px 30px"}}>
+                <ContactEditor doc={doc} history={history} />
+               </Col>
+             </Row>
+              
             </div>
-            <ContactEditor doc={doc} history={history} />
         </Col>
     </Row>
   </div>

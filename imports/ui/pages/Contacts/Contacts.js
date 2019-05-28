@@ -108,7 +108,7 @@ const Contacts = ({
                             <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                             </td>
                             
-                            <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                            <td>{ title }</td>
                             <td>{company}</td>
                             <td>{cohort}</td>
                             <td>{template}</td>
@@ -157,7 +157,7 @@ const Contacts = ({
                           <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
-                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{ title }</td>
                           <td>{company}</td>
                           <td>{cohort}</td>
                           <td>{template}</td>
@@ -202,7 +202,7 @@ const Contacts = ({
                           <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
-                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{ title }</td>
                           <td>{company}</td>
                           <td>{cohort}</td>
                           <td>{template}</td>
@@ -247,7 +247,7 @@ const Contacts = ({
                           <a target="_blank" href={linkedinUrl}><img height='15px' src="linkedin.svg"/></a> <a href={`/prospects/${_id}`}>{firstName} {lastName}</a>  
                           </td>
                           
-                          <td>{ title.length > 50 ? title.slice(0,50) + "..." : title }</td>
+                          <td>{ title }</td>
                           <td>{company}</td>
                           <td>{cohort}</td>
                           <td>{template}</td>

@@ -212,6 +212,60 @@ body {
   }
 }
 
+.template-card {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 #D7E0E7;
+  padding-bottom: 10px;
+  min-height: 250px;
+  margin-bottom: 15px;
+  h4 {
+    font-size: 12px;
+    border-bottom: 1px solid #EBEEF3;
+    padding: 20px 15px;
+
+    .edit {
+      margin-left: 15px;
+      position: relative;
+      bottom: 2px;
+      cursor: pointer;
+    }
+
+    span {
+      position: relative;
+      bottom: 7px;
+    }
+  }
+  .delete {
+    background-color: #EAF1F7;
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    float: right;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 0px;
+  }
+  .inner-card {
+    border-radius: 10px;
+    border: 1px solid #EBEEF3;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 20px 15px;
+    overflow: scroll;
+    max-height: 200px;
+    h5 {
+      font-size: 12px !important;
+      margin-top: 0px;
+    }
+    p {
+      color: #536476; 
+    }
+  }
+}
+
 .NewTemplate, .EditTemplate {
   padding-top: 50px;
   h1 {
@@ -387,6 +441,23 @@ body {
     margin-right: 5px;
   }
 }
+.add-btn {	
+  height: 45px;	
+  line-height: 45px;
+  text-align: center;
+  width: 100%;	
+  border-radius: 22.5px;	
+  background-color: $primary;
+  color: white;
+  border: none;
+  display: block;
+  &:hover {
+    background-color: $primary;
+    color: #fff;
+    opacity: 0.8;
+    text-decoration: none;
+  }
+}
 
 .NewProspects {
   padding-top: 50px;
@@ -395,23 +466,7 @@ body {
     
     margin-bottom: 15px;
   }
-  .add-btn {	
-    height: 45px;	
-    line-height: 45px;
-    text-align: center;
-    width: 100%;	
-    border-radius: 22.5px;	
-    background-color: $primary;
-    color: white;
-    border: none;
-    display: block;
-    &:hover {
-      background-color: $primary;
-      color: #fff;
-      opacity: 0.8;
-      text-decoration: none;
-    }
-  }
+
   .inner-card {
     border-radius: 10px;
     border: 1px solid #EBEEF3;
