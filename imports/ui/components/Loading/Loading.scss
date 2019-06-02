@@ -16,8 +16,8 @@
 
 $background: #fefefe;
 $text: #4b507a;
-$primaryColor: #702c91;
-$secondaryColor: #7cc242;
+$primaryColor: #F5C31E;
+$secondaryColor: #F5C31E;
 
 .Loading {
   button {
@@ -38,37 +38,38 @@ $secondaryColor: #7cc242;
       height: 100%;
     }
   }
-}
 
 
 
-.spin {
-  width: 5em;
-  height: 5em;
-  padding: 0;
-  color: #702c91;
-  
-  &::after {
-    top: 0;
-    left: 0;
-    border: 0 solid transparent; 
-    border-top: 2px solid ;
-    border-left-width: 2px; 
-    border-right-width: 2px; 
-    animation: infiniteRotate 1s infinite;
-    transition: border-top-color ease-in 0.5s, transform ease-in 0.1s;
-  }
-}
-
-.circle {
-  border-radius: 10%;
-  box-shadow: none;
+  .spin {
+    width: 5em;
+    height: 5em;
+    padding: 0;
+    color: #F5C31E;
     
-  &::before,
-  &::after {
-    border-radius: 100%;
+    &::after {
+      top: 0;
+      left: 0;
+      border: 0 solid transparent; 
+      border-top: 2px solid ;
+      border-left-width: 2px; 
+      border-right-width: 2px; 
+      animation: infiniteRotate 1s infinite;
+      transition: border-top-color ease-in 0.5s, transform ease-in 0.1s;
+    }
+  }
+  
+  .circle {
+    border-radius: 10%;
+    box-shadow: none;
+      
+    &::before,
+    &::after {
+      border-radius: 100%;
+    }
   }
 }
+
 
 @include keyframes(infiniteRotate) {  
   from {

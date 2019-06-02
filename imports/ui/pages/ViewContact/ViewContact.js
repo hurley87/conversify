@@ -43,7 +43,7 @@ const renderContact = (doc, match, history) => (doc ? (
             {
               !doc.replied ? (
                 <span>
-                  <a href={`/prospects/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  <span onClick={() => handleRemove(doc._id)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
+                  <a href={`/prospects/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  <span onClick={() => handleRemove(doc._id, history)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
                 </span>
               ) : null
             }

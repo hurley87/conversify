@@ -121,7 +121,7 @@ class TemplateEditor extends React.Component {
               <p>{`{{Website}}`}</p>
             </Col>
             <Col sm={12}>
-              <img height='250px' src="/add-guy.png"/>
+            <p><img height='250px' src="/add-guy.png"/></p>
             </Col>
           </Row>
         </Col>

@@ -130,6 +130,7 @@ const Contacts = ({
                         <div className='empty-state'>
                           <h1>You have no prospects uploaded</h1>
                           <p>Upload a Seamless.ai CSV to start</p>
+                          <br />
                           <p><img height="280px" src="No-Prospects.png"/></p>
                         </div>
                   }

@@ -130,8 +130,8 @@ const Responses = ({
             </Col>
             <Col xs={12}>
             
-            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginLeft: "15px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')}><img height="15px" src="up.svg"/></Button>
-            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'neutral')}><img height="15px" src="down.svg"/></Button>
+            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginLeft: "15px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'positive')}><i class="fa fa-thumbs-up"></i></Button>
+            <Button style={{ margin: '0', position:'relative', marginRight: "5px", marginBottom: "15px" }} onClick={() => updateSentiment(response.linkedInUsername, 'neutral')}><i class="fa fa-thumbs-down"></i></Button>
             </Col>
           </Row>
         </div>
