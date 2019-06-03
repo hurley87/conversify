@@ -1,0 +1,37 @@
+.Index {
+    .hero-container {
+        padding: 120px 0px;
+        background-color: #fff;
+        img {
+            height: 350px;
+            width: auto;
+        }
+    }
+    .first {
+        position: relative;
+        padding-top: 150px;
+        background-color: #fff;
+        &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 120%;
+            top: 0;
+            transform: skewY(-5deg);
+            background: #f4f8fb;
+            z-index: 1;
+        }
+        .text {
+            z-index: 2;
+            position: relative;
+        }
+    }
+    .second {
+        position: relative;
+        background-color: #fff;
+        padding-top: 250px;
+        height: 500px;
+
+    }
+    
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import './Loading.scss';
 
 const Loading = () => (
-  <div className="Loading">
+  <div className="Loading container">
     <button class="spin circle">Loading</button>
   </div>
 );

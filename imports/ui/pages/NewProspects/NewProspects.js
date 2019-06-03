@@ -195,7 +195,7 @@ class NewProspects extends React.Component {
     const { doc } = this.props;
 
     return (
-      <div className='NewProspects'>
+      <div className='NewProspects container'>
         <div className="clearfix">
           <h1 className="pull-left">Add Prospects</h1>
         </div>

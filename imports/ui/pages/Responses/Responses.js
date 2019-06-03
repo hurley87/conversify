@@ -91,7 +91,7 @@ const noResponses = (respones) => (
 const Responses = ({
   loading, Responses,
 }) => (!loading ? (
-  <div className="Responses">
+  <div className="Responses container">
     <div className="clearfix">
       <h1>Responses</h1>
     </div>

@@ -34,7 +34,7 @@ const handleAdd = (templateId, history) => {
 };
 
 const renderTemplate = (doc, match, history) => (doc ? (
-  <div className="EditTemplate">
+  <div className="EditTemplate container">
     <Row>
         <Col xs={12}>
             <div className="clearfix">

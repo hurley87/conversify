@@ -66,7 +66,7 @@ class HomePageDatePicker extends React.Component {
   render() {
     const { focusedInput, startDate, endDate, startDateString, endDateString } = this.state;
     return (
-        <div className='Results'>
+        <div className='Results container'>
 	    <Row>
 					<Col xs={12} sm={2}>
 					<h1 className='pull-left'>Insights</h1>

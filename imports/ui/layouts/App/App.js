@@ -43,6 +43,7 @@ import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
 import EditTemplate from '../../pages/EditTemplate/EditTemplate';
 import NewProspects from '../../pages/NewProspects/NewProspects';
 import './App.scss';
+import Loading from '../../components/Loading/Loading';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,38 +63,37 @@ class App extends React.Component {
         {!props.loading ? (
           <div className="App">
             <Navigation {...props} {...state} />
-            <Grid>
-              <Switch>
-                <Route exact name="index" path="/" component={Index} />
-                <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/new" component={NewProspects} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/templates/:_id/edit" component={EditTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Public path="/signup" component={Signup} {...props} {...state} />
-                <Public path="/login" component={Login} {...props} {...state} />
-                <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
-                <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
-                <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
-                <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
-                <Route name="terms" path="/terms" component={Terms} />
-                <Route name="privacy" path="/privacy" component={Privacy} />
-                <Route name="examplePage" path="/example-page" component={ExamplePage} />
-                <Route component={NotFound} />
-              </Switch>
-            </Grid>
+            <Switch>
+              <Route exact name="index" path="/" component={Index} />
+              <Route exact name="loading" path="/loading" component={Loading} />
+              <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects/new" component={NewProspects} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/templates/:_id/edit" component={EditTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Public path="/signup" component={Signup} {...props} {...state} />
+              <Public path="/login" component={Login} {...props} {...state} />
+              <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
+              <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
+              <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
+              <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
+              <Route name="terms" path="/terms" component={Terms} />
+              <Route name="privacy" path="/privacy" component={Privacy} />
+              <Route name="examplePage" path="/example-page" component={ExamplePage} />
+              <Route component={NotFound} />
+            </Switch>
           </div>
         ) : ''}
       </Router>

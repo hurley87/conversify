@@ -22,7 +22,7 @@ const handleRemove = (documentId, history) => {
 };
 
 const renderDocument = (doc, match, history) => (doc ? (
-  <div className="ViewDocument">
+  <div className="ViewDocument container">
     <div className="page-header clearfix">
       <h4 className="pull-left">{ doc && doc.title }</h4>
       <ButtonToolbar className="pull-right">

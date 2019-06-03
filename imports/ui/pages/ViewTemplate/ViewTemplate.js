@@ -22,7 +22,7 @@ const handleRemove = (templateId, history) => {
 };
 
 const renderTemplate = (doc, match, history) => (doc ? (
-  <div className="ViewTemplate">
+  <div className="ViewTemplate container">
     <Row>
       <Col sm={6} smOffset={3}>
       <div className="page-header clearfix">

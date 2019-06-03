@@ -20,6 +20,13 @@ $primaryColor: #F5C31E;
 $secondaryColor: #F5C31E;
 
 .Loading {
+  position: absolute;
+  top: 50px;
+  background: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding-top: 150px;
   button {
     background: none;
     border: 0;

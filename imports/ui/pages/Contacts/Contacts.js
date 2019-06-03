@@ -59,7 +59,7 @@ const handleDelete = (contactId, history) => {
 const Contacts = ({
   loading, contacts, myContacts, limit, message, requestSent, match, history,
 }) => (!loading ? (
-  <div className="Contacts">
+  <div className="Contacts container">
     <div className="clearfix">
       <h1 className="pull-left">Prospects ({myContacts.length})</h1>
       <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Prospects</Link>

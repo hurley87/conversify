@@ -26,7 +26,7 @@ const handleRemove = (templateId) => {
 const Templates = ({
   loading, templates, match, history,
 }) => (!loading ? (
-  <div className="Templates">
+  <div className="Templates container">
     <div className="clearfix">
       <h1 className="pull-left">Templates</h1>
       <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Template</Link>

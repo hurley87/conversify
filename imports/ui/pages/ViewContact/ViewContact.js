@@ -34,7 +34,7 @@ const handleAdd = (contactId, history) => {
 };
 
 const renderContact = (doc, match, history) => (doc ? (
-  <div className="ViewContact">
+  <div className="ViewContact container">
     <Row>
         <Col xs={12} sm={8} smOffset={2}>
             <div className="template-card">
