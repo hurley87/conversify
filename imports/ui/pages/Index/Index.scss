@@ -1,10 +1,22 @@
 .Index {
     .hero-container {
-        padding: 120px 0px;
         background-color: #fff;
+        padding: 120px 0px;
         img {
-            height: 350px;
-            width: auto;
+            height: auto;
+            width: 100%;
+            position: relative;
+            bottom: 50px;
+        }
+        .header {
+            padding: 100px;
+            text-align: center;
+            h3 {
+                font-size: 30px;
+            }
+        }
+        .step {
+            padding: 20px 100px;
         }
     }
     .first {
@@ -24,6 +36,7 @@
         .text {
             z-index: 2;
             position: relative;
+            
         }
     }
     .second {

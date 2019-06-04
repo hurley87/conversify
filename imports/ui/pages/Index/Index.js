@@ -13,18 +13,47 @@ const Index = () => (
             <h1>
               Experience the new standard in outbound marketing
             </h1>
-            <p>Surround is the best way to reach our ideal customers. 
-              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.</p>
+            <p>Get 5-10 qualified meetings per week with key decision makers using an orchestrated sequence over LinkedIn and Email.</p>
             <br />
             <p><a href="/signup">Get Started</a></p>
           </Col>
-          <Col xs={12} sm={5} smOffset={1}>
+          <Col xs={12} sm={6}>
             <img src="Tips.png"/>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <div className='header'>
+              <h3>
+                Direct selling doesn’t work like it used to
+              </h3>
+              <p>Surround your prospect with value and have them come to you.</p>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={4} xs={12}>
+            <div className='step'>
+              <img src="step_1.png"/>
+              <p>This is step 1</p>
+            </div>
+          </Col>
+          <Col sm={4} xs={12}>
+            <div className='step'>
+              <img src="step_2.png"/>
+              <p>This is step 1</p>
+            </div>
+          </Col>
+          <Col sm={4} xs={12}>
+            <div className='step'>
+              <img src="step_3.png"/>
+              <p>This is step 1</p>
+            </div>
           </Col>
         </Row>
       </div>
     </div>
-    {/* <div className='first'>
+    <div className='first'>
       <div className='text container'>
         <h1>
               Experience the new standard in <br /> outbound marketing
@@ -50,7 +79,7 @@ const Index = () => (
       <div className="container">
         <h3>so cool</h3>
       </div>
-    </div> */}
+    </div>
   </div>
 );
 
