@@ -197,7 +197,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
     <div className='empty-state'>
       <h1>Nothing to see here</h1>
       <p>You'll have to select a date range that contains data</p>
-      <p><img height="280px" src="No-Prospects.png"/></p>
+      <p><img height="280px" src="data_analyze.png"/></p>
     </div>
 ): <Loading />);
 

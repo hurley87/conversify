@@ -11,7 +11,7 @@ const Index = () => (
         <Row>
           <Col xs={12} sm={6}>
             <h1>
-              Experience the new standard in <br /> outbound marketing
+              Experience the new standard in outbound marketing
             </h1>
             <p>Surround is the best way to reach our ideal customers. 
               We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.</p>
@@ -24,7 +24,7 @@ const Index = () => (
         </Row>
       </div>
     </div>
-    <div className='first'>
+    {/* <div className='first'>
       <div className='text container'>
         <h1>
               Experience the new standard in <br /> outbound marketing
@@ -50,7 +50,7 @@ const Index = () => (
       <div className="container">
         <h3>so cool</h3>
       </div>
-    </div>
+    </div> */}
   </div>
 );
 
