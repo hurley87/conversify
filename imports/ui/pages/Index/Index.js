@@ -41,7 +41,7 @@ const Index = () => (
           <Col sm={4} xs={12}>
             <div className='step'>
               <img src="step_2.png"/>
-              <p>Send a LinkedIn connection request and follow up message</p>
+              <p>Send a connection request and follow up message over LinkedIn</p>
             </div>
           </Col>
           <Col sm={4} xs={12}>
