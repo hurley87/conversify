@@ -3,7 +3,16 @@
 body, html {
   background-color: #f4f8fb; 
   height: 100%;
-  font-family: 'Muli', sans-serif;
+  font-family: 'Muli', sans-serif !important;
+}
+.spinning.glyphicon {
+  margin-right: 7px;
+  top: 2px;
+  animation: spin 1s infinite linear;
+}
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1) rotate(360deg); }
 }
 
 .Index {

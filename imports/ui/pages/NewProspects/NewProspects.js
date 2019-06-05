@@ -321,12 +321,12 @@ class NewProspects extends React.Component {
                       <FormGroup>
                         {
                           this.state.loading ? (
-                            <p><Button  type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }} disabled>
-                              <Wave text="Uploading..." />
+                            <p><Button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }} disabled>
+                              Uploading <Glyphicon glyph="refresh" className="spinning" />
                             </Button></p>
                           ) : (
-                            <p><Button  type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }}  >
-                              Upload prospects
+                            <p><Button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }}  >
+                              Upload Prospects
                             </Button></p>
                           )
                         }

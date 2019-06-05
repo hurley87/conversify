@@ -94,9 +94,9 @@ Meteor.methods({
       newContact.sequenceOverDate = '';
       newContact.threadUrl = ''
       console.log('cool')
-      console.log(Contacts.find({ firstName: uploadedContact.firstName, lastName: uploadedContact.lastName }).fetch().length)
-      if (Contacts.find({ firstName: uploadedContact.firstName, lastName: uploadedContact.lastName }).fetch().length === 1) {
+      if (Contacts.find({ linkedinUrl: uploadedContact.LIProfileUrl}).fetch().length === 1) {
         console.log('contact exists')
+        console.log(uploadedContact.LIProfileUrl)
       } else {
         Contacts.insert(newContact);
       }
