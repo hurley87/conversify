@@ -6,7 +6,8 @@
   background-color: #fff;
   border: none;
   height: 50px;
-  margin: 0px
+  margin: 0px;
+
 }
 .navbar-brand {
   float: left;
@@ -14,4 +15,8 @@
   padding: 10px 15px;
   font-size: 18px;
   line-height: 20px;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #f4f8fb;
 }

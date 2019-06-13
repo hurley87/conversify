@@ -11,11 +11,13 @@ const Index = () => (
         <Row>
           <Col xs={12} sm={6}>
             <h1>
-              Experience the new standard in outbound marketing
+            Book 20-30 high-quality B2B meetings each month
             </h1>
-            <p>Get 5-10 qualified meetings per week with key decision makers using an orchestrated sequence over LinkedIn and Email</p>
+            <p>
+            Our 3-Pillar Outbound Sales Automation System will give you more time to focus on sales activities like building relationships and closing sales.
+            </p>
             <br />
-            <p><a href="/signup">Get Started</a></p>
+            <p><a href="/signup">Get Started For Free</a></p>
           </Col>
           <Col xs={12} sm={6}>
             <img src="Tips.png"/>
@@ -35,51 +37,74 @@ const Index = () => (
           <Col sm={4} xs={12}>
             <div className='step'>
               <img src="step_1.png"/>
-              <p>Create a list of qualified prospects and a sequence of messages</p>
+              <p>You approve a list of qualified prospects and a sequence of messages</p>
             </div>
           </Col>
           <Col sm={4} xs={12}>
             <div className='step'>
               <img src="step_2.png"/>
-              <p>Send a connection request and follow up message over LinkedIn</p>
+              <p>We send a sequence of messages over LinkedIn on your behalf</p>
             </div>
           </Col>
           <Col sm={4} xs={12}>
             <div className='step'>
               <img src="step_3.png"/>
-              <p>Email prospects based on how they responded on LinkedIn</p>
+              <p>We email prospects based on how they responded over LinkedIn</p>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <div className='header text-center'>
+              <h3>
+                Put your prospecting on autopilot
+              </h3>
+              <p>Without having to spend money on ads or any other complicated marketing funnel</p>
+              <br/>
+              <p><a style={{margin: 'auto'}} href="/signup">Get Started For Free</a></p>
             </div>
           </Col>
         </Row>
       </div>
     </div>
-    <div className='first'>
+ 
+{/* <div className='first'>
       <div className='text container'>
-        <h1>
-              Experience the new standard in <br /> outbound marketing
-            </h1>
-            <p>Surround is the best way to reach our ideal customers. 
-              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.</p>
-            <br />
-            <h1>
-              Experience the new standard in <br /> outbound marketing
-            </h1>
-            {/* <p>Surround is the best way to reach our ideal customers. 
-              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.</p>
-            <br />
-            <h1>
-              Experience the new standard in <br /> outbound marketing
-            </h1>
-            <p>Surround is the best way to reach our ideal customers. 
-              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.</p>
-            <br /> */}
+            <h3>
+              Templates
+            </h3>
+            <p>
+              Surround is the best way to reach our ideal customers. 
+              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.
+            </p>
       </div>
     </div>
     <div className='second'>
       <div className="container">
-        <h3>so cool</h3>
+      <Row>
+        <Col xs={6}>
+          <h3>
+            Prospects
+          </h3>
+          <p>
+            Surround is the best way to reach our ideal customers. 
+            We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.
+          </p>
+        </Col>
+      </Row>
       </div>
     </div>
+    <div className='first'>
+      <div className='text container'>
+            <h3>
+              Sales Funnel
+            </h3>
+            <p>
+              Surround is the best way to reach our ideal customers. 
+              We help you sychronize the distribution of value over email and LinkedIn in a way that delights your prospects.
+            </p>
+      </div>
+    </div> */}
   </div>
 );
 

@@ -78,7 +78,7 @@ class App extends React.Component {
               <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/responses" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/funnel" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

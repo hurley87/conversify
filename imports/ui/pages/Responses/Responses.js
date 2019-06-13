@@ -33,10 +33,7 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
                 {cohort}
               </td>
               <td>
-                {messages.length}
-              </td>
-              <td>
-                {responseText.slice(0, 70)}
+                {responseText.slice(0, 50)}
               </td>
               <td>
                 <img onClick={() => updateSentiment(linkedInUsername, upSentiment)} height="15px" src="up.svg"/>
@@ -93,7 +90,7 @@ const Responses = ({
 }) => (!loading ? (
   <div className="Responses container">
     <div className="clearfix">
-      <h1>Responses</h1>
+      <h1>Funnel</h1>
     </div>
     <div className='inner'>
       <Table responsive>
@@ -101,7 +98,6 @@ const Responses = ({
           <tr>
             <th>Name</th>
             <th>Cohort</th>
-            <th>Messages</th>
             <th>First Response</th>
             <th />
             <th />

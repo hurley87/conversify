@@ -18,42 +18,6 @@ h1 {
   to { transform: scale(1) rotate(360deg); }
 }
 
-.Index {
-  color: $primary-font;
-  h3 {
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-  p {
-    font-size: 16px;
-  }
-  img {	
-    height: 272px;	
-    width: 281.54px;
-  }
-  a {	
-    height: 45px;	
-    width: 135px;	
-    display: block;
-    border-radius: 22.5px;	
-    background-color: $primary;
-    color: white;
-    border: none;
-    margin: 0px;
-    line-height: 45px;
-    text-align: center;
-    &:hover {
-      background-color: $primary;
-      color: #fff;
-      opacity: 0.8;
-      text-decoration: none;
-    }
-  }
-
-}
-
 .Login, .Signup {
   color: $primary-font;
   padding-top: 50px;
@@ -330,8 +294,6 @@ h1 {
   h1 {
     font-size: 20px;
     font-weight: 500;
-    
-    margin-bottom: 25px;
   }
   img {
     cursor: pointer;

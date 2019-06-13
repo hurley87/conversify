@@ -1,3 +1,5 @@
+@import '../../stylesheets/colors';
+
 .Index {
     .hero-container {
         background-color: #fff;
@@ -8,12 +10,31 @@
             position: relative;
             bottom: 50px;
         }
+        a {	
+            height: 45px;	
+            width: 175px;	
+            display: block;
+            border-radius: 22.5px;	
+            background-color: $primary;
+            color: white;
+            border: none;
+            margin: 0px;
+            line-height: 45px;
+            text-align: center;
+            &:hover {
+              background-color: $primary;
+              color: #fff;
+              opacity: 0.8;
+              text-decoration: none;
+            }
+          }
+        h3 {
+            font-size: 30px;
+        }
         .header {
             padding: 100px;
             text-align: center;
-            h3 {
-                font-size: 30px;
-            }
+
         }
         .step {
             padding: 20px 80px;
@@ -42,9 +63,8 @@
     .second {
         position: relative;
         background-color: #fff;
-        padding-top: 250px;
-        height: 500px;
-
+        padding-top: 150px;
+        height: 120%;
     }
     
 }
