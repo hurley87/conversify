@@ -87,7 +87,7 @@ class Signup extends React.Component {
         <Row>
           <Col xs={12} sm={6} md={12} lg={12}>
             <div className='text-center'>
-              <h1>Get Your First Meeting For Free</h1>
+              <h1>Put your prospecting on autopilot</h1>
               <p>Sign Up Using Your LinkedIn Email and Password</p>
               <form ref={form => (this .form = form)} onSubmit={event => event.preventDefault()}>
                 <Row>
