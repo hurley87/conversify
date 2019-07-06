@@ -3,7 +3,7 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  background-color: #fff;
+  background-color: #0085EF;
   border: none;
   height: 50px;
   margin: 0px;
@@ -19,4 +19,8 @@
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   background-color: #f4f8fb;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
 }

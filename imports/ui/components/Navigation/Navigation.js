@@ -11,7 +11,7 @@ const Navigation = props => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to="/"><img height='45px' style={{position: "relative", bottom: "8px"}} src="https://adsgen.s3.amazonaws.com/awesome.svg"/></Link>
+        <Link to="/"><img height='25px' src="https://adsgen.s3.amazonaws.com/conversify-logo.svg"/></Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>

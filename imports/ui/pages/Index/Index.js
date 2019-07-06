@@ -11,10 +11,10 @@ const Index = () => (
         <Row>
           <Col xs={12} sm={6}>
             <h1>
-            Book 20-30 high-quality B2B meetings each month
+            Your all-in-one growth marketing platform.
             </h1>
             <p>
-            Our 3-Pillar Outbound Sales Automation System will give you more time to focus on sales activities like building relationships and closing sales.
+            Conversify is a complete Email, LinkedIn and Live Chat solution designed to help you manage all your sales conversations in one place.
             </p>
             <br />
             <p><a href="/signup">Get Started For Free</a></p>
