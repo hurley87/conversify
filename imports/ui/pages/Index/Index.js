@@ -15,7 +15,7 @@ const Index = () => (
               Your all-in-one B2B growth marketing platform
               </h1>
               <p>
-              Created to help you allow your sales team to be more productive. 
+              Conversify is designed to help you enable your sales team to be more productive. 
               </p>
               <br />
               <p><a href="/signup">Get Started</a></p>
@@ -90,6 +90,8 @@ const Index = () => (
             <Col xs={3}>
               <h4>Company</h4>
               <p><a href="/about">About</a></p>
+              <p><a href="/about">Process</a></p>
+              <p><a href="/about">Golf</a></p>
               <p><a href="/about">Pricing</a></p>
               <p><a href="/about">Careers</a></p>
             </Col>
