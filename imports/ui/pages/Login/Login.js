@@ -57,7 +57,7 @@ class Login extends React.Component {
           <Col xs={12} sm={6} md={12} lg={12}>
             <div className='text-center'>
               <h1>Welcome Back</h1>
-              <p>Log In Using Your LinkedIn Email and Password</p>
+              <p>Sign in to your account</p>
               <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
                 <FormGroup>
                   <input
@@ -77,7 +77,7 @@ class Login extends React.Component {
                 </FormGroup>
                 <Button className='poll-btn' type="submit">Log In</Button>
                 <AccountPageFooter>
-                  <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
+                  <p>Don't have an account? <a href="https://calendly.com/conversifyai">Get Started</a>.</p>
                 </AccountPageFooter>
               </form>
             </div>

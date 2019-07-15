@@ -26,6 +26,12 @@ import Profile from '../../pages/Profile/Profile';
 import NotFound from '../../pages/NotFound/NotFound';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
+import About from '../../pages/About/About';
+import Golf from '../../pages/Golf/Golf';
+import Prospecting from '../../pages/Prospecting/Prospecting';
+import Messaging from '../../pages/Messaging/Messaging';
+import Automation from '../../pages/Automation/Automation';
+import Reporting from '../../pages/Reporting/Reporting';
 import ExamplePage from '../../pages/ExamplePage/ExamplePage';
 import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert';
 import getUserName from '../../../modules/get-user-name';
@@ -44,6 +50,7 @@ import EditTemplate from '../../pages/EditTemplate/EditTemplate';
 import NewProspects from '../../pages/NewProspects/NewProspects';
 import './App.scss';
 import Loading from '../../components/Loading/Loading';
+import Footer from '../../components/Footer/Footer';
 
 class App extends React.Component {
   constructor(props) {
@@ -91,9 +98,16 @@ class App extends React.Component {
               <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
               <Route name="terms" path="/terms" component={Terms} />
               <Route name="privacy" path="/privacy" component={Privacy} />
+              <Route name="about" path="/about" component={About} />
+              <Route name="golf" path="/golf" component={Golf} />
+              <Route name="messaging" path="/messaging" component={Messaging} />
+              <Route name="automation" path="/automation" component={Automation} />
+              <Route name="reporting" path="/reporting" component={Reporting} />
+              <Route name="prospecting" path="/prospecting" component={Prospecting} />
               <Route name="examplePage" path="/example-page" component={ExamplePage} />
               <Route component={NotFound} />
             </Switch>
+            <Footer />
           </div>
         ) : ''}
       </Router>

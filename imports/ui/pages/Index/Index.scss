@@ -1,18 +1,17 @@
 @import '../../stylesheets/colors';
+@import '../../stylesheets/mixins';
 
 .Index {
     .rectangle {
-        background: linear-gradient(90deg, #1688EC 0%, rgba(0,133,239,0) 100%);
+        background: linear-gradient(90deg,#092C4C  0%, rgba(0,133,239,0) 100%);
         height: 100%;
         position: relative;
     }
     .hero-container {
-        background-image: url("bg-image.png");
+        background-color: #1688EC;
         background-size: cover;
-        background-position-y: -175px;
-        background-position-x: 150px;
         .container {
-            padding: 120px 0px;
+            padding: 100px 0px;
         }
         img {
             height: auto;
@@ -100,21 +99,107 @@
             margin: auto;
         }
     }
-    .footer {
-        background-color: #092C4C;
-        width: 100%;
-        padding: 100px 0px;
-        margin-top: 50px;
-        h4 {
-            color: #1688EC;
-            font-size: 14px;
+}
+
+@include breakpoint(tablet) {
+    .Index {
+        .rectangle {
+            height: 100%;
+            position: relative;
         }
-        p {
-            color: white;
-            a {
+        .hero-container {
+            background-image: none;
+            background-color:#1688EC;
+            text-align: center;
+            .container {
+                padding: 70px 10px;
+            }
+            img {
+                bottom: 0px;
+            }
+            a {	
+                height: 60px;	
+                width: 100%;	
+                display: block;
+                border-radius: 30px;	
+                background-color: $primary;
                 color: white;
-                font-size: 15px;
+                border: none;
+                margin: 0px;
+                line-height: 55px;
+                text-align: center;
+                border: 3px solid #FFFFFF;
+                font-size: 18px;
+                &:hover {
+                  background-color: $primary;
+                  color: #fff;
+                  opacity: 0.8;
+                  text-decoration: none;
+                }
+              }
+            p {
+                color: #fff;
+                font-size: 23px;
+            }
+            h1 {
+                font-size: 38px;
+                color: #fff;
+            }
+            .header {
+                padding: 100px;
+                text-align: center;
+    
+            }
+            .step {
+                padding: 20px 80px;
+            }
+        }
+        .content-container {
+            padding-bottom: 70px;
+            img {
+                height: 300px;
+            }
+            h3 {
+                text-align: center;
+                font-size: 40px;
+                font-weight: 500;
+                margin-top: 100px;
+            }
+            h4 {
+                font-size: 18px;
+                text-transform: uppercase;
+                color: $primary;
+                padding-top: 50px;
+            }
+            h2 {
+                margin: 10px 0px;
+                font-size: 38px;
+            }
+            p {
+                font-size: 23px;
+            }
+            .add-btn {
+                font-size: 14px;
+                margin-top: 15px;
+            }
+            .line {	
+                box-sizing: border-box;	
+                height: 1px;	
+                width: 180px;	
+                border: 5px solid #1688EC;
+                margin: auto;
+                margin-top: 25px;
+            }
+            .section {
+                padding: 0px;
+                padding-top: 40px;
+                width: 100%;
+                margin: auto;
+                h2, p, h4 {
+                    text-align: left;
+                }
             }
         }
     }
+    
 }

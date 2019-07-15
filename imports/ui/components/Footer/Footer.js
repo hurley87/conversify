@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import { year } from '../../../modules/dates';
 
 import './Footer.scss';
@@ -11,15 +11,53 @@ const copyrightYear = () => {
 };
 
 const Footer = () => (
-  <div className="Footer">
-    <Grid>
-      <p className="pull-left">&copy; {copyrightYear()} Application Name</p>
-      <ul className="pull-right">
-        <li><Link to="/terms">Terms<span className="hidden-xs"> of Service</span></Link></li>
-        <li><Link to="/privacy">Privacy<span className="hidden-xs"> Policy</span></Link></li>
-      </ul>
-    </Grid>
+  <div className='Footer'>
+    <div className="get-started">
+      <div className='container text-center'>
+      <Row>
+        <Col md={6} sm={12} mdOffset={3} xs={12}>
+        <h1>Getting started is easy</h1>
+        <p>Conversify offers services that make it even easier for sales leaders to remove the complexities and get started faster to reach their growth goals.</p>
+        <p><a className='add-btn' href='https://calendly.com/conversifyai'>Get Started</a></p>
+        </Col>
+      </Row>
+      </div>
+    </div>
+    <div className='container'>
+    <Row>
+      <Col sm={3}>
+        <img height='25px' src="https://adsgen.s3.amazonaws.com/conversify-logo.svg"/>
+      </Col>
+      <Col sm={3}>
+        <h4>Company</h4>
+        <p><a href="/about">About</a></p>
+        <p><a href="/golf">Golf</a></p>
+        <p><a href="/terms">Terms</a></p>
+        <p><a href="/privacy">Privacy</a></p>
+      </Col>
+      <Col sm={3}>
+        <h4>Product</h4>
+        <p><a href="/prospecting">Prospecting</a></p>
+        <p><a href="/messaging">Messaging</a></p>
+        <p><a href="/automation">Automation</a></p>
+        <p><a href="/reporting">Reporting</a></p>
+      </Col>
+      <Col sm={3}>
+        <h4>Contact</h4>
+        <p>+1 (647) 284-5023</p>
+        <p>david@conversify.ai</p>
+        <p><a href="https://calendly.com/conversifyai">Get a Demo</a></p>
+      </Col>
+      <Col xs={12}>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p className='text-center'><small>Copyright Conversify Inc.</small></p>
+      </Col>
+    </Row>
   </div>
+</div>
 );
 
 Footer.propTypes = {};

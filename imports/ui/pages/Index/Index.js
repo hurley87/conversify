@@ -1,5 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 
 import './Index.scss';
@@ -18,7 +20,10 @@ const Index = () => (
               Conversify is designed to help you enable your sales team to be more productive. 
               </p>
               <br />
-              <p><a href="/signup">Get Started</a></p>
+              <p><a href="https://calendly.com/conversifyai">Get a Demo</a></p>
+            </Col>
+            <Col xs={12} sm={5} smOffset={1}>
+              <img src='8.png' />
             </Col>
           </Row>
         </div>
@@ -32,87 +37,45 @@ const Index = () => (
           </Col>
         </Row>
         <Row className='section'>
-          <Col xs={6}>
-            <h4>Prospects</h4>
-            <h2>Get started quickly</h2>
-            <p>Created the perfect list of contact to go after.</p>
+          <Col sm={7}>
+            <h4><Link to="prospecting">Prospecting</Link></h4>
+            <h2>Curate the Perfect Leads</h2>
+            <p>Using our lead generation software, you no longer just have to find business contacts one by one on LinkedIn.</p>
           </Col>
-          <Col xs={6}>
+          <Col sm={5}  className='hidden-xs'>
             <p className='text-right'><img src="3.png"/></p>
           </Col>
         </Row>
         <Row className='section'>
-        <Col xs={6}>
+        <Col sm={5}  className='hidden-xs'>
             <img src="1.png"/>
           </Col>
-          <Col xs={6} className='text-right'>
-            <h4>Templates</h4>
-            <h2>Get started quickly</h2>
-            <p>Created the perfect list of contact to go after.</p>
+          <Col sm={7} className='text-right'>
+            <h4><Link to="messaging">Messaging</Link></h4>
+            <h2>Craft the Perfect Messages</h2>
+            <p>We create conversation sequences for your prospects that is guaranteed to get their attention.</p>
           </Col>
         </Row>
         <Row className='section'>
-          <Col xs={6}>
-            <h4>Outreach</h4>
-            <h2>Get started quickly</h2>
-            <p>Created the perfect list of contact to go after.</p>
+          <Col sm={7}>
+            <h4><Link to="automation">Automation</Link></h4>
+            <h2>Automate the Boring Stuff</h2>
+            <p>After we set up your LinkedIn and Email accounts all you'll have to do is sit back and let your leads come to you.</p>
           </Col>
-          <Col xs={6}>
+          <Col sm={5} className='hidden-xs'>
           <p className='text-right'><img src="2.png"/></p>
           </Col>
         </Row>
         <Row className='section'>
-        <Col xs={6}>
+        <Col sm={5} className='hidden-xs'>
             <img src="5.png"/>
           </Col>
-          <Col xs={6} className='text-right'>
-            <h4>Reporting</h4>
-            <h2>Get started quickly</h2>
-            <p>Created the perfect list of contact to go after.</p>
+          <Col sm={7} className='text-right'>
+            <h4><Link to="reporting">Reporting</Link></h4>
+            <h2>Analyze the Quality of Leads</h2>
+            <p>In God we trust, all others must bring data. We integrate with your CRM to get insights on what happens to a lead after it's generated.</p>
           </Col>
         </Row>
-        <Row className='section'>
-          <Col xs={12}>
-            <h3>Put your prospecting on autopilot</h3>
-            <p className='text-center'>This is an amazing concluding statement</p>
-          </Col>
-          <Col smOffset={4} sm={4}>
-            <p className='text-center'><a className='add-btn' href="/signup">Get Started</a></p>
-          </Col>
-        </Row>
-      </div>
-      <div className='footer'>
-        <div className='container'>
-          <Row>
-            <Col xs={3}>
-              <img height='25px' src="https://adsgen.s3.amazonaws.com/conversify-logo.svg"/>
-            </Col>
-            <Col xs={3}>
-              <h4>Company</h4>
-              <p><a href="/about">About</a></p>
-              <p><a href="/about">Process</a></p>
-              <p><a href="/about">Golf</a></p>
-              <p><a href="/about">Pricing</a></p>
-              <p><a href="/about">Careers</a></p>
-            </Col>
-            <Col xs={3}>
-              <h4>Product</h4>
-              <p><a href="/about">List Building</a></p>
-              <p><a href="/about">Advanced Sequences</a></p>
-              <p><a href="/about">LinkedIn Automation</a></p>
-              <p><a href="/about">Email Automation</a></p>
-              <p><a href="/about">Live Chat</a></p>
-            </Col>
-            <Col xs={3}>
-              <h4>Contact</h4>
-              <p>+1 (800) 651-9632</p>
-              <p>support@conversify.ai</p>
-              <p>Request a demo</p>
-              <p>Site Map</p>
-            </Col>
-          </Row>
-        </div>
-
       </div>
   </div>
 );

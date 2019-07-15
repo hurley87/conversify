@@ -425,6 +425,8 @@ h1 {
   color: white;
   border: none;
   display: block;
+  max-width: 250px;
+  margin: auto;
   &:hover {
     background-color: $primary;
     color: #fff;
