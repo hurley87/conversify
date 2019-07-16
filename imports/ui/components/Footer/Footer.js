@@ -15,10 +15,10 @@ const Footer = () => (
     <div className="get-started">
       <div className='container text-center'>
       <Row>
-        <Col md={6} sm={12} mdOffset={3} xs={12}>
-        <h1>Getting started is easy</h1>
-        <p>Conversify offers services that make it even easier for sales leaders to remove the complexities and get started faster to reach their growth goals.</p>
-        <p><a className='add-btn' href='https://calendly.com/conversifyai'>Get Started</a></p>
+        <Col md={4} sm={12} mdOffset={4} xs={12}>
+        <h1>Get started</h1>
+        <p>Conversify offers services that make it easy for sales leaders to reach their growth goals.</p>
+        <p><a className='add-btn' href='https://calendly.com/conversifyai'>Get a Demo</a></p>
         </Col>
       </Row>
       </div>

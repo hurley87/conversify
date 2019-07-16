@@ -53,14 +53,14 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4><Link to="messaging">Messaging</Link></h4>
             <h2>Craft the Perfect Messages</h2>
-            <p>We create conversation sequences for your prospects that is guaranteed to get their attention.</p>
+            <p>We hire professional copy writers that will create outbound sequences that'll get your prospect's attention and start a conversation.</p>
           </Col>
         </Row>
         <Row className='section'>
           <Col sm={7}>
             <h4><Link to="automation">Automation</Link></h4>
             <h2>Automate the Boring Stuff</h2>
-            <p>After we set up your LinkedIn and Email accounts all you'll have to do is sit back and let your leads come to you.</p>
+            <p>After we set up your LinkedIn and Email accounts all you'll have to do is sit back and let your customers come to you.</p>
           </Col>
           <Col sm={5} className='hidden-xs'>
           <p className='text-right'><img src="2.png"/></p>
@@ -73,7 +73,7 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4><Link to="reporting">Reporting</Link></h4>
             <h2>Analyze the Quality of Leads</h2>
-            <p>In God we trust, all others must bring data. We integrate with your CRM to get insights on what happens to a lead after it's generated.</p>
+            <p>In God we trust, all others must bring data. We integrate with your CRM to help yu make sense of all the data we collect.</p>
           </Col>
         </Row>
       </div>
