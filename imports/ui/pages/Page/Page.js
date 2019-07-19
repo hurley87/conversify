@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Footer from '../../components/Footer/Footer';
 
 import './Page.scss';
 
@@ -13,6 +14,7 @@ const Page = ({ title, subtitle, content }) => {
       <div className="Content">
         <ReactMarkdown source={content} />
       </div>
+      <Footer />
     </div>
   );
 };

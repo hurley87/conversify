@@ -19,7 +19,7 @@ Meteor.publish('contacts.list', function contactsList(startDate, endDate) {
   console.log(endDate);
 
   let selector = {
-    "userId": this.userId,
+    // "userId": this.userId,
     "requestSentDate": {
       $gte: new Date(startDate),
       $lte: new Date(endDate)

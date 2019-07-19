@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import Footer from '../../components/Footer/Footer';
 
 
 import './Index.scss';
@@ -72,11 +72,12 @@ const Index = () => (
           </Col>
           <Col sm={7} className='text-right'>
             <h4><Link to="reporting">Reporting</Link></h4>
-            <h2>Analyze the Quality of Leads</h2>
+            <h2>Analyze Message Market Fit</h2>
             <p>In God we trust, all others must bring data. We integrate with your CRM to help yu make sense of all the data we collect.</p>
           </Col>
         </Row>
       </div>
+      <Footer />
   </div>
 );
 

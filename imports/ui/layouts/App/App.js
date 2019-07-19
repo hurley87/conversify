@@ -107,7 +107,6 @@ class App extends React.Component {
               <Route name="examplePage" path="/example-page" component={ExamplePage} />
               <Route component={NotFound} />
             </Switch>
-            <Footer />
           </div>
         ) : ''}
       </Router>

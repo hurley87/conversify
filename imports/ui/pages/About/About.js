@@ -20,7 +20,7 @@ const About = () => (
   <div className="About">
     <Page
       title="About"
-      subtitle="Last updated July 1st, 2019"
+      subtitle="Our mission is to turn the internet into a conversation."
       content={content}
     />
   </div>
