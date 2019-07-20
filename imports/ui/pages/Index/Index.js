@@ -40,7 +40,7 @@ const Index = () => (
           <Col sm={7}>
             <h4><Link to="prospecting">Prospecting</Link></h4>
             <h2>Curate the Perfect Leads</h2>
-            <p>Using our lead generation software, you no longer just have to find business contacts one by one on LinkedIn.</p>
+            <p>Build a massive list of your total addressable contact market; inclusive of perfect emails, phone numbers and insights.</p>
           </Col>
           <Col sm={5}  className='hidden-xs'>
             <p className='text-right'><img src="3.png"/></p>
@@ -52,15 +52,15 @@ const Index = () => (
           </Col>
           <Col sm={7} className='text-right'>
             <h4><Link to="messaging">Messaging</Link></h4>
-            <h2>Craft the Perfect Messages</h2>
-            <p>We hire professional copy writers that will create outbound sequences that'll get your prospect's attention and start a conversation.</p>
+            <h2>Craft the Perfect Message</h2>
+            <p>Work with professional copy writers that will help you create messaging that'll get your prospect's attention and start a conversation.</p>
           </Col>
         </Row>
         <Row className='section'>
           <Col sm={7}>
             <h4><Link to="automation">Automation</Link></h4>
             <h2>Automate the Boring Stuff</h2>
-            <p>After we set up your LinkedIn and Email accounts all you'll have to do is sit back and let your customers come to you.</p>
+            <p>An automated sales pipeline with personalized messaging that targets qualified leads and delivers interested responses right to your inbox.</p>
           </Col>
           <Col sm={5} className='hidden-xs'>
           <p className='text-right'><img src="2.png"/></p>
@@ -72,8 +72,8 @@ const Index = () => (
           </Col>
           <Col sm={7} className='text-right'>
             <h4><Link to="reporting">Reporting</Link></h4>
-            <h2>Analyze Message Market Fit</h2>
-            <p>In God we trust, all others must bring data. We integrate with your CRM to help yu make sense of all the data we collect.</p>
+            <h2>Analyze Your Growth</h2>
+            <p>We integrate with your CRM to help you make sense of all the data we collect during our outreach campaigns to help optimize messaging.</p>
           </Col>
         </Row>
       </div>

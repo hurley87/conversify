@@ -2,22 +2,23 @@ import React from 'react';
 import Page from '../Page/Page';
 
 const content = `
-Your Messaging is important to us.
-It is Conversify's policy to respect your Messaging regarding any information we may collect while operating our website. Accordingly, we have developed this Messaging policy in order for you to understand how we collect, use, communicate, disclose and otherwise make use of personal information. We have outlined our Messaging policy below.
-We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.
-Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.
-Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.
-We will protect personal information by using reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.
-We will make readily available to customers information about our policies and practices relating to the management of personal information.
-We will only retain personal information for as long as necessary for the fulfillment of those purposes.
-We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained. Conversify may change this Messaging policy from time to time at Conversify's sole discretion.
+#### Develop and Test Value-Driven Messaging
+Here's what's dead: Sending out messages that don't take into account the values and priorities of your customers and hoping that they will care about your agenda.
+#### Test Multi-channel Messaging 
+Use direct, casual, and authentic outreach messages via email, LinkedIn, and live chat. Our platform takes elements of your unique voice, tone, and style and joins the conversation your prospects are already having inside their own heads about what's most important to them.
+#### Personalize Each Unique Message
+Personalization tailors each message to current events and concerns such as growth statistics, technology trends, and common priorities.
+#### Messaging that Converts
+We deliver high quality opportunities to you at scale. Humans and technology working hand in hand to fill your funnel with targeted accounts.
+#### Targeted Conversation Campaigns
+A/Btest conversation campaigns over live chat, LinkedIn and email to find the perfect words that convert.
 `;
 
 const Messaging = () => (
   <div className="Messaging">
     <Page
-      title="Messaging Policy"
-      subtitle="Last updated May 29th, 2017"
+      title="Craft the Perfect Message"
+      subtitle="Work with professional copy writers that will help you create messaging that'll get your prospect's attention and start a conversation."
       content={content}
     />
   </div>

@@ -242,9 +242,9 @@ class NewProspects extends React.Component {
                       defaultValue={this.state.cohort}
                       onChange={this.handleCohort}
                     />
-                    <Button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginTop: "15px", marginLeft: '0px', lineHeight: "30px" }} className="add-btn" >
+                    <button onClick={this.handleSubmitCohort} disabled={this.state.cohort.length < 4 } style={{ marginTop: "15px", marginLeft: '0px', lineHeight: "30px" }} className="add-btn" >
                       Continue
-                    </Button>
+                    </button>
                   </p>
                 </div>
               </Col>
@@ -321,13 +321,13 @@ class NewProspects extends React.Component {
                       <FormGroup>
                         {
                           this.state.loading ? (
-                            <p><Button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }} disabled>
+                            <p><button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }} disabled>
                               Uploading <Glyphicon glyph="refresh" className="spinning" />
-                            </Button></p>
+                            </button></p>
                           ) : (
-                            <p><Button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }}  >
+                            <p><button type="submit" className="add-btn" style={{ marginLeft: '0px', lineHeight: "30px", marginTop: '0px' }}  >
                               Upload Prospects
-                            </Button></p>
+                            </button></p>
                           )
                         }
 
