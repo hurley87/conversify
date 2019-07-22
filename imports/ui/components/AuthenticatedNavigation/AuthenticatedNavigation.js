@@ -19,7 +19,7 @@ const AuthenticatedNavigation = ({ name, history }) => (
       <LinkContainer to="/insights">
         <NavItem eventKey={2.3} href="/insights">Insights</NavItem>
       </LinkContainer>
-      <NavDropdown eventKey={2} title="Profile" id="user-nav-dropdown">
+      <NavDropdown eventKey={2} title={name} id="user-nav-dropdown">
         <MenuItem eventKey={2.2} onClick={() => history.push('/logout')}>Logout</MenuItem>
       </NavDropdown>
     </Nav>
