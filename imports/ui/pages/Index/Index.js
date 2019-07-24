@@ -22,7 +22,7 @@ const Index = () => (
               <br />
               <p><a href="https://calendly.com/conversifyai">Get a Demo</a></p>
             </Col>
-            <Col xs={12} sm={5} smOffset={1}>
+            <Col xs={12} sm={4} smOffset={1}>
               <img src='8.png' />
             </Col>
           </Row>
