@@ -50,19 +50,7 @@ const displayResponses = (responses, sentiment, upSentiment, downSentiment) =>
           ))}
       </tbody>
     </Table>
-  )
-  
-  // responses.filter((response) => response.sentiment == sentiment).map((response) => {
-  //     return (
-  //       <div>
-  //         <h5><a href={`/prospects/${response._id}`}>{response["firstName"] + " " + response["lastName"]}</a> <Button style={{margin: '0', marginLeft: "5px", padding: '0', fontSize: "17px"}} onClick={() => updateSentiment(response['linkedInUsername'], '')} className="fa fa-edit"></Button></h5>
-  //         <p>{response['title']} of {response['company']}</p>
-  //         <p><a >Respond to {response['firstName']}</a></p>
-
-  //       </div>
-  //     )
-  //   })
-;
+  );
 
 const noResponses = (respones) => (
     <Row>
@@ -89,24 +77,16 @@ const Responses = ({
   loading, Responses,
 }) => (!loading ? (
   <div className="Responses container">
-    <div className="clearfix">
-      <h1>Funnel</h1>
+
+  {
+    Responses.filter(response => response.sentiment == '').length > 0 ? (
+     <div className="clearfix">
+      <h1>Label your responses</h1>
     </div>
+    ) : null
+  }
+
     <div className='inner'>
-      <Table responsive>
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Cohort</th>
-            <th>First Response</th>
-            <th />
-            <th />
-          </tr>
-        </thead>
-      </Table>
-      { 
-      Responses.filter(response => response.sentiment == '').length == 0 ? noResponses(Responses) : null 
-    }
     {
       Responses.filter(response => response.sentiment == '').map((response) => {
         console.log(response);

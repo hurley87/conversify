@@ -41,6 +41,7 @@ import Responses from '../../pages/Responses/Responses';
 import NewSequence from '../../pages/NewSequence/NewSequence';
 import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
 import Contacts from '../../pages/Contacts/Contacts';
+import Campaigns from '../../pages/Campaigns/Campaigns';
 import ViewContact from '../../pages/ViewContact/ViewContact';
 import EditContact from '../../pages/EditContact/EditContact';
 import Templates from '../../pages/Templates/Templates';
@@ -86,6 +87,7 @@ class App extends React.Component {
               <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/funnel" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/campaigns" component={Campaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

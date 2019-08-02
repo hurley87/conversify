@@ -10,11 +10,8 @@ const AuthenticatedNavigation = ({ name, history }) => (
     <LinkContainer to="/templates">
         <NavItem eventKey={2.4} href="/templates">Templates</NavItem>
       </LinkContainer>
-      <LinkContainer to="/prospects">
-        <NavItem eventKey={2.1} href="/prospects">Prospects</NavItem>
-      </LinkContainer>
-      <LinkContainer to="/funnel">
-        <NavItem eventKey={2.2} href="/funnel">Funnel</NavItem>
+      <LinkContainer to="/campaigns">
+        <NavItem eventKey={2.1} href="/campaigns">Campaigns</NavItem>
       </LinkContainer>
       <LinkContainer to="/insights">
         <NavItem eventKey={2.3} href="/insights">Insights</NavItem>

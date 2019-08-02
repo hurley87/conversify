@@ -22,15 +22,14 @@ const handleRemove = (contactId, history) => {
   }
 };
 
-const handleAdd = (contactId, history) => {
-    Meteor.call('contacts.add', contactId, (error) => {
-        if (error) {
-            Bert.alert(error.reason, 'danger');
-        } else {
-            Bert.alert('Contact added!', 'success');
-          history.push('/prospects');
-        }
-    });
+const updateSentiment = (linkedInUrl, sentiment) => {
+  Meteor.call('updateSentiment', linkedInUrl, sentiment, (error) => {
+    if (error) {
+      console.log(error.reason, 'success');
+    } else {
+      console.log('Added', 'success');
+    }
+  });
 };
 
 const renderContact = (doc, match, history) => (doc ? (
@@ -39,19 +38,21 @@ const renderContact = (doc, match, history) => (doc ? (
         <Col xs={12} sm={8} smOffset={2}>
             <div className="template-card">
             <h4>{doc.firstName} {doc.lastName} <a target="_blank" href={doc.linkedinUrl}><img height='15px' src="https://s3.amazonaws.com/adsgen/linkedin.svg"/></a>
+            <small> {doc.title} at {doc.company}</small>
 
             {
-              !doc.replied ? (
+              !doc.connection ? (
                 <span>
-                  <a href={`/prospects/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  <span onClick={() => handleRemove(doc._id, history)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
+                  <a href={`/prospects/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  
+                  <span onClick={() => handleRemove(doc._id, history)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
                 </span>
-              ) : null
+              ) : <a target="_blank" href={doc.threadUrl} className='pull-right'>Respond</a>
             }
             
             </h4>
 
             {
-              !doc.replied ? (
+              !doc.connection ? (
                 <div className='inner-card'>
                   <h5>Connect Request</h5>
                   <p>{doc.championText}</p>
@@ -69,10 +70,25 @@ const renderContact = (doc, match, history) => (doc ? (
                   })
 
                 }
-                <p><a target='_blank' href={doc['threadUrl']}>Respond to {doc['firstName']}</a></p>
                 </div>
 
               )
+            }
+            <hr />
+            {
+              doc.replied ? (
+                <div className='inner-card'>
+                  {
+                    doc.sentiment == "positive" ? (
+                      <p>Positive <Button className='pull-right' onClick={() => updateSentiment(doc.linkedInUsername, 'neutral')}>make negative</Button></p>
+                    ) : (
+                      <p>Negative <Button className='pull-right' onClick={() => updateSentiment(doc.linkedInUsername, 'positive')}>make positive</Button></p>
+                    )  
+                    
+                  }
+                  
+                </div>
+              ) : null
             }
           </div>
         </Col>

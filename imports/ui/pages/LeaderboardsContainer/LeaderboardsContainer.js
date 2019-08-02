@@ -32,7 +32,7 @@ const enumerateDaysBetweenDates = function (startDate, endDate) {
   return dates;
 };
 
-const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, meetings, clients, cohort_stats, }) => ( !loading ? (
+const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, meetings, clients, cohort_stats, template_stats}) => ( !loading ? (
   leaderboards.length > 0 ? 
   <div className="Leaderboards">
 
@@ -42,26 +42,17 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <p>{first_msgs}</p>
         <h5>Connections</h5>
         <p>{ncs} <small>({((ncs)/first_msgs*100).toFixed(1)}%)</small></p>
-        <h5>Replies</h5>
+        <h5>Conversations</h5>
         <p>{replies} <small>({((replies)/first_msgs*100).toFixed(1)}%)</small></p>
-        <h5>Leads</h5>
-        <p>{prtime} <small>({((meetings + clients + prtime)/first_msgs*100).toFixed(1)}%)</small></p>
-        <h5>Meetings</h5>
-        <p>{meetings + clients} <small>({((meetings + clients)/first_msgs*100).toFixed(1)}%)</small></p>
-        <h5>Clients</h5>
-        <p>{clients} <small>({(clients/first_msgs*100).toFixed(1)}%)</small></p>
       </Col>
       <Col xs={12} sm={10}>
         <Table responsive>
           <thead>
             <tr>
-              <th>Audience</th>
+              <th>Campaign</th>
               <th>Requests</th>
               <th>Connections</th>
-              <th>Replies</th>
-              <th>Leads</th>
-              <th>Meetings</th>
-              <th>Clients</th>
+              <th>Conversations</th>
             </tr>
           </thead>
           <tbody>
@@ -90,30 +81,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                     )
                   }
                   </td>
-                  <td>
-                  {numberWithCommas(stat.positives + stat.meetings + stat.clients)} 
-                  {
-                    stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({((stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
-                  </td>
-                  <td>
-                  {numberWithCommas(stat.meetings + stat.clients)} 
-                  {
-                    stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({((stat.meetings + stat.clients)/ stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
-                  </td>
-                  <td>
-                  {numberWithCommas(stat.clients)} 
-                  {
-                    stat.clients == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.clients / stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
-                  </td>
                 </tr>
               )
             })
@@ -127,10 +94,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
               <th>Account</th>
               <th>Requests</th>
               <th>Connections</th>
-              <th>Replies</th>
-              <th>Leads</th>
-              <th>Meetings</th>
-              <th>Clients</th>
+              <th>Conversations</th>
             </tr>
           </thead>
           <tbody>
@@ -159,27 +123,45 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                     )
                   }
                   </td>
-                  <td>
-                  {numberWithCommas(stat.positives + stat.meetings + stat.clients)} 
-                  {
-                    stat.positives == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({((stat.positives + stat.meetings + stat.clients) / stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </Table>
+
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>Template</th>
+              <th>Requests</th>
+              <th>Connections</th>
+              <th>Conversations</th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            template_stats.reverse().map((stat, i) =>{
+              return (
+                <tr>
+                  <td>{stat.name}
                   </td>
                   <td>
-                  {numberWithCommas(stat.meetings + stat.clients)} 
-                  {
-                    stat.meetings == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({((stat.meetings + stat.clients)/ stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
+                  {numberWithCommas(stat.num_crs_sent)}
                   </td>
                   <td>
-                  {numberWithCommas(stat.clients)} 
+                  { numberWithCommas(stat.new_CR) } 
+                  { 
+                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
+                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
+                    )
+                  } 
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.replies)} 
                   {
-                    stat.clients == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.clients / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
                     )
                   }
                   </td>
@@ -189,8 +171,6 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
           }
           </tbody>
         </Table>
-
-        
       </Col>
     </Row>
   </div>:
@@ -227,10 +207,14 @@ export default createContainer((props) => {
 	    }, 0);
     const accounts = leaderboards.groupBy('owner')
     const cohorts = leaderboards.groupBy("cohort")
+    const templates = leaderboards.groupBy('template')
     const names = []
     const cohort_names = []
+    const template_names = []
+
     for(var k in accounts) names.push(k)
     for(var k in cohorts) cohort_names.push(k)
+    for(var k in templates) template_names.push(k)
 
     const prtime = leaderboards.reduce(function (n, replies) {
           return n + (replies["sentiment"] == 'positive');
@@ -246,6 +230,7 @@ export default createContainer((props) => {
 
     let stats = []
     let cohort_stats = []
+    let template_stats = []
 
 	  function get_stat(collection, str, result) {
 	    return collection.reduce(function (n, collection) { return n + (collection[str] == result)}, 0);
@@ -269,6 +254,21 @@ export default createContainer((props) => {
 	  cohort_names.map(name => {
       const collection = cohorts[name]
 	    cohort_stats.push({
+	      name: name,
+	      num_crs_sent: get_stat(collection, "requestSent", true),
+	      new_CR: get_stat(collection, "connection", true),
+	      replies: get_stat(collection, "replied", true),
+        positives: get_stat(collection, "sentiment", 'positive'),
+        meetings: get_stat(collection, "sentiment", "meeting") + get_stat(collection, "sentiment", "client"),
+        clients: get_stat(collection, "sentiment", "client"),
+	      neutrals: get_stat(collection, "sentiment", 'neutral'),
+	      negatives: get_stat(collection, "sentiment", 'negative'),
+      })
+    })
+
+	  template_names.map(name => {
+      const collection = templates[name]
+	    template_stats.push({
 	      name: name,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
@@ -320,6 +320,7 @@ export default createContainer((props) => {
 
     stats = _.sortBy(stats, ['positives'])
     cohort_stats = _.sortBy(cohort_stats, ['positives'])
+    template_stats = _.sortBy(template_stats, ['positives'])
 
     let leads = stats.groupBy('account')
 
@@ -365,5 +366,6 @@ export default createContainer((props) => {
       meetings, 
       clients,
       cohort_stats,
+      template_stats
 	  };
 }, LeaderboardsContainer);
