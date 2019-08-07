@@ -46,10 +46,58 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
         <p>{replies} <small>({((replies)/first_msgs*100).toFixed(1)}%)</small></p>
       </Col>
       <Col xs={12} sm={10}>
+
+      {
+          stats.length > 1 ? (
+            <Table responsive>
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Requests</th>
+                <th>Connections</th>
+                <th>Conversations</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+              stats.reverse().map((stat, i) =>{
+                return (
+                  <tr>
+                    <td>{stat.name}
+                    </td>
+                    <td>
+                    {numberWithCommas(stat.num_crs_sent)}
+                    </td>
+                    <td>
+                    { numberWithCommas(stat.new_CR) } 
+                    { 
+                      stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
+                        <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
+                      )
+                    } 
+                    </td>
+                    <td>
+                    {numberWithCommas(stat.replies)} 
+                    {
+                      stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
+                        <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                      )
+                    }
+                    </td>
+                  </tr>
+                )
+              })
+            }
+            </tbody>
+          </Table>
+          ) : null
+        }
+        
         <Table responsive>
           <thead>
             <tr>
               <th>Campaign</th>
+              <th>Template</th>
               <th>Requests</th>
               <th>Connections</th>
               <th>Conversations</th>
@@ -62,47 +110,7 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
                 <tr>
                   <td>{stat.name}
                   </td>
-                  <td>
-                  {numberWithCommas(stat.num_crs_sent)}
-                  </td>
-                  <td>
-                  { numberWithCommas(stat.new_CR) } 
-                  { 
-                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
-                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
-                    )
-                  } 
-                  </td>
-                  <td>
-                  {numberWithCommas(stat.replies)} 
-                  {
-                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
-                  </td>
-                </tr>
-              )
-            })
-          }
-          </tbody>
-        </Table>
-
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Account</th>
-              <th>Requests</th>
-              <th>Connections</th>
-              <th>Conversations</th>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            stats.reverse().map((stat, i) =>{
-              return (
-                <tr>
-                  <td>{stat.name}
+                  <td>{stat.template}
                   </td>
                   <td>
                   {numberWithCommas(stat.num_crs_sent)}
@@ -238,8 +246,10 @@ export default createContainer((props) => {
 
 	  names.map(name => {
       const collection = accounts[name]
+      console.log("hey")
+      console.log(collection)
 	    stats.push({
-	      name: name,
+        name: name,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),
@@ -254,7 +264,8 @@ export default createContainer((props) => {
 	  cohort_names.map(name => {
       const collection = cohorts[name]
 	    cohort_stats.push({
-	      name: name,
+        name: name,
+        template: collection[0].template,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),

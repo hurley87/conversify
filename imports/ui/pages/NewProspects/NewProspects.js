@@ -118,7 +118,7 @@ class NewProspects extends React.Component {
       } else {
         this.form.reset();
         Bert.alert('Prospects uploaded', 'success');
-        history.push('/prospects');
+        history.push('/campaigns');
       }
     });
   }

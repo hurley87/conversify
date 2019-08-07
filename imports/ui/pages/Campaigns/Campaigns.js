@@ -49,7 +49,7 @@ const handleDelete = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/prospects');
+        history.push('/campaigns');
       }
     });
   } 
@@ -69,23 +69,35 @@ const Campaigns = ({
       <h1 className="pull-left">Campaigns</h1>
       <Link className="second-btn pull-right" to={`/prospects/new`}>New Campaign</Link>
     </div>
+    {
+      campaign_names.length == 0 ? (
+        <div className='empty-state'>
+          <h1>Getting started is easy</h1>
+          <p>Create a template and upload a CSV of prospects to create a campaign.</p>
+          <br />
+          <p><img height="280px" src="No-Prospects.png"/></p>
+        </div>
+      ) : null
+    }
+
+
     <Row>
       <TabContainer id="left-tabs-example" defaultActiveKey={campaign_names[0]}>
         <Row>
-          <Col sm={2}>
+          <Col sm={2} style={{paddingRight: "0px"}}>
             <Nav variant="pills" className="flex-column">
                 {
                     campaign_names.map(name => {
                         return (
                             <NavItem eventKey={name}>
-                                <p>{name} <small>{myCampaigns.filter(contact => contact.cohort == name).length}</small></p> 
+                                <p>{name}</p> 
                             </NavItem>
                         )
                     })
                 }
             </Nav>
           </Col>
-          <Col sm={10}>
+          <Col sm={10} style={{paddingLeft: "0px"}}>
             <TabContent>
               {
                   campaign_names.map(name => {

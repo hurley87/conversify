@@ -42,6 +42,7 @@ const Templates = ({
                 <div className='inner-card'>
                   <h5>Connection Request</h5>
                   <p>{request}</p>
+                  <br />
                   <h5>Follow Up</h5>
                   <p>{followup}</p>
                 </div>

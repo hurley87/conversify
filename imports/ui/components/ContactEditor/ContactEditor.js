@@ -49,7 +49,7 @@ class ContactEditor extends React.Component {
         const confirmation = existingContact ? 'Contact updated!' : 'Contact added!';
         this.form.reset();
         Bert.alert(confirmation, 'success');
-        history.push(`/prospects/${contactId}`);
+        history.push(`/campaigns/${contactId}`);
       }
     });
   }

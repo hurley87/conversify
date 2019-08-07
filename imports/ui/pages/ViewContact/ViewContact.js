@@ -16,7 +16,7 @@ const handleRemove = (contactId, history) => {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Contact deleted!', 'danger');
-        history.push('/prospects');
+        history.push('/campaigns');
       }
     });
   }
@@ -43,7 +43,7 @@ const renderContact = (doc, match, history) => (doc ? (
             {
               !doc.connection ? (
                 <span>
-                  <a href={`/prospects/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  
+                  <a href={`/campaigns/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  
                   <span onClick={() => handleRemove(doc._id, history)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
                 </span>
               ) : <a target="_blank" href={doc.threadUrl} className='pull-right'>Respond</a>

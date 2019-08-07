@@ -14,10 +14,10 @@ const Index = () => (
           <Row>
             <Col xs={12} sm={6}>
               <h1>
-              Your all-in-one B2B growth marketing platform
+              An outbound marketing automation solution
               </h1>
               <p>
-              Conversify is designed to help you enable your sales team to be more productive. 
+              We help sales teams manage conversations at scale over LinkedIn and Email
               </p>
               <br />
               <p><a href="https://calendly.com/conversifyai">Get a Demo</a></p>
@@ -32,14 +32,14 @@ const Index = () => (
     <div className='content-container container'>
         <Row>
           <Col xs={12}>
-            <h3>All the growth tools you need</h3>
+            <h3>Our process</h3>
             <div className='line'></div>
           </Col>
         </Row>
         <Row className='section'>
           <Col sm={7}>
             <h4>Prospecting</h4>
-            <h2>Curate the Perfect Leads</h2>
+            <h2>Curate the Perfect List</h2>
             <p>Build a massive list of your total addressable contact market including emails, phone numbers and LinkedIn URLs.</p>
           </Col>
           <Col sm={5}  className='hidden-xs'>
@@ -53,7 +53,7 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4>Templates</h4>
             <h2>Craft the Perfect Message</h2>
-            <p>We help you create messaging that'll get your prospect's attention so that you can start a conversation with them.</p>
+            <p>We are experts at starting conversations over LinkedIn and Email that convert to sales qualified leads.</p>
           </Col>
         </Row>
         <Row className='section'>
@@ -73,7 +73,7 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4>Insights</h4>
             <h2>Analyze Your Growth</h2>
-            <p>We integrate with your CRM to help you make sense of all the data we collect during our outreach campaigns to help optimize messaging.</p>
+            <p>We integrate with your CRM to help you make sense of all the data we collect during our conversation campaigns to help optimize messaging.</p>
           </Col>
         </Row>
       </div>
