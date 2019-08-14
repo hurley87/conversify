@@ -44,11 +44,12 @@ import Contacts from '../../pages/Contacts/Contacts';
 import Campaigns from '../../pages/Campaigns/Campaigns';
 import ViewContact from '../../pages/ViewContact/ViewContact';
 import EditContact from '../../pages/EditContact/EditContact';
+import ViewUser from '../../pages/ViewUser/ViewUser';
 import Templates from '../../pages/Templates/Templates';
 import NewTemplate from '../../pages/NewTemplate/NewTemplate';
 import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
 import EditTemplate from '../../pages/EditTemplate/EditTemplate';
-import NewProspects from '../../pages/NewProspects/NewProspects';
+import NewCampaigns from '../../pages/NewCampaigns/NewCampaigns';
 import './App.scss';
 import Loading from '../../components/Loading/Loading';
 import Footer from '../../components/Footer/Footer';
@@ -76,10 +77,10 @@ class App extends React.Component {
               <Route exact name="loading" path="/loading" component={Loading} />
               <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/prospects/new" component={NewProspects} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Route exact path="/demo/:_id" component={ViewUser} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
@@ -88,6 +89,7 @@ class App extends React.Component {
               <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/funnel" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/campaigns" component={Campaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/campaigns/new" component={NewCampaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

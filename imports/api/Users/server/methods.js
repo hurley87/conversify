@@ -19,6 +19,9 @@ Meteor.methods({
           first: String,
           last: String,
         },
+        linkedin: String,
+        meetingLink: String,
+        sendingLimit: Number,
       },
     });
 

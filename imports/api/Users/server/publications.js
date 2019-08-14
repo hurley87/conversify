@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 Meteor.publish('users.editProfile', function usersProfile() {
   return Meteor.users.find(this.userId, {
@@ -8,4 +9,9 @@ Meteor.publish('users.editProfile', function usersProfile() {
       services: 1,
     },
   });
+});
+
+Meteor.publish('users.view', function usersView(userId) {
+  check(userId, String);
+  return Meteor.users.find({ _id: userId });
 });

@@ -53,7 +53,7 @@ const Templates = ({
           <div className='empty-state'>
             <h1>Your template library is empty</h1>
             <p>Make sure you add a template before you upload prospects.</p>
-            <p><img height="280px" src="marketing_2.png"/></p>
+            <p><img height="280px" src="/1.png"/></p>
           </div>
           
   }

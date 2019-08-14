@@ -46,7 +46,7 @@ const renderContact = (doc, match, history) => (doc ? (
                   <a href={`/campaigns/${doc._id}/edit`}><img style={{top: "5px"}} className="edit" height="12px" src="https://s3.amazonaws.com/adsgen/Edit.svg"/></a>  
                   <span onClick={() => handleRemove(doc._id, history)} className='delete'><img height="15px" src="https://s3.amazonaws.com/adsgen/Delete.svg"/></span>
                 </span>
-              ) : <a target="_blank" href={doc.threadUrl} className='pull-right'>Respond</a>
+              ) : <a target="_blank" href={doc.threadUrl} className='pull-right'><img height="15px" src="/chat.svg"/></a>
             }
             
             </h4>
@@ -74,20 +74,25 @@ const renderContact = (doc, match, history) => (doc ? (
 
               )
             }
-            <hr />
             {
               doc.replied ? (
-                <div className='inner-card'>
-                  {
-                    doc.sentiment == "positive" ? (
-                      <p>Positive <Button className='pull-right' onClick={() => updateSentiment(doc.linkedInUsername, 'neutral')}>make negative</Button></p>
-                    ) : (
-                      <p>Negative <Button className='pull-right' onClick={() => updateSentiment(doc.linkedInUsername, 'positive')}>make positive</Button></p>
-                    )  
-                    
-                  }
-                  
-                </div>
+                <Row className='text-center'>
+                  <Col xs={4} style={{paddingRight: "0px"}}>
+                    <div onClick={() => updateSentiment(doc.linkedInUsername, 'positive')} className={doc.sentiment == 'positive' ? "positive active" : "positive"}>
+                      positive
+                    </div>
+                  </Col>
+                  <Col xs={4} style={{padding: "0px"}}>
+                    <div onClick={() => updateSentiment(doc.linkedInUsername, 'neutral')} className={doc.sentiment == 'neutral' ? "neutral active" : "neutral"}>
+                      neutral
+                    </div>
+                  </Col>
+                  <Col xs={4} style={{paddingLeft: "0px"}}>
+                  <div onClick={() => updateSentiment(doc.linkedInUsername, 'negative')} className={doc.sentiment == 'negative' ? "negative active" : "negative"}>
+                      negative
+                    </div>
+                  </Col>                  
+                </Row>
               ) : null
             }
           </div>

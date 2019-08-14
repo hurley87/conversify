@@ -1,45 +1,46 @@
 @import '../../stylesheets/colors';
 
-.OAuthProfile {
-  .LoggedInWith {
-    padding: 20px;
-    border-radius: 3px;
-    color: #fff;
-    border: 1px solid $gray-lighter;
-    text-align: center;
-
-    img {
-      width: 100px;
+.Profile {
+  padding-top: 50px;
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    
+    margin-bottom: 25px;
+  }
+  h5 {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: $secondary-font;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 200;
+    color: $secondary-font;
+    margin-bottom: 25px;
+  }
+  form {
+    background: #fff;
+    padding: 20px 15px;
+    box-shadow: 0 2px 4px 0 #D7E0E7;
+    border-radius: 5px;
+    label {
+      font-size: 12px;
     }
-
-    &.github img {
-      width: 125px;
-    }
-
-    p {
-      margin: 20px 0 0 0;
-      color: $gray-light;
-    }
-
-    .btn {
-      margin-top: 20px;
-
-      &.btn-facebook {
-        background: $facebook;
-        border-color: $facebook;
+    button {	
+      height: 45px;	
+      width: 100%;	
+      border-radius: 22.5px;	
+      background-color: $primary;
+      color: white;
+      border: none;
+      margin: 0px;
+      &:hover {
+        background-color: $primary;
         color: #fff;
-      }
-
-      &.btn-google {
-        background: $google;
-        border-color: $google;
-        color: #fff;
-      }
-
-      &.btn-github {
-        background: $github;
-        border-color: $github;
-        color: #fff;
+        opacity: 0.8;
       }
     }
   }

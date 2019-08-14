@@ -1,4 +1,6 @@
 
+@import '../../stylesheets/colors';
+
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
     @content; 
@@ -13,11 +15,6 @@
     @content;
   } 
 }
-
-$background: #fefefe;
-$text: #4b507a;
-$primaryColor: #F5C31E;
-$secondaryColor: #F5C31E;
 
 .Loading {
   position: absolute;
@@ -52,7 +49,7 @@ $secondaryColor: #F5C31E;
     width: 5em;
     height: 5em;
     padding: 0;
-    color: #F5C31E;
+    color: #primary;
     
     &::after {
       top: 0;
@@ -81,10 +78,10 @@ $secondaryColor: #F5C31E;
 @include keyframes(infiniteRotate) {  
   from {
     transform: rotate(0deg);
-    border-top-color: $secondaryColor;
+    border-top-color: $info;
   }
   to {
     transform: rotate(360deg);
-    border-top-color: $primaryColor ;
+    border-top-color: $primary ;
   } 
 }

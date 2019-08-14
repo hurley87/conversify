@@ -183,9 +183,9 @@ const LeaderboardsContainer = ({ loading, leaderboards, stats, first_msgs, ncs, 
     </Row>
   </div>:
     <div className='empty-state'>
-      <h1>Nothing to see here</h1>
-      <p>You'll have to select a date range that contains data</p>
-      <p><img height="280px" src="data_analyze.png"/></p>
+      <h1>Nothing to see yet</h1>
+      <p>Select a date range that contains data</p>
+      <p><img height="280px" src="/5.png"/></p>
     </div>
 ): <Loading />);
 
@@ -202,7 +202,7 @@ export default createContainer((props) => {
 
   console.log(labels)
 
-  let leaderboards = ContactsCollection.find().fetch();
+  let leaderboards = ContactsCollection.find({}).fetch();
 
 	  const first_msgs = leaderboards.reduce(function (n, first_msgs) {
 	        return n + (first_msgs["requestSent"] == true);

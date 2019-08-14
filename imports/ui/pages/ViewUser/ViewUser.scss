@@ -1,0 +1,25 @@
+.ViewUser {
+    position: relative;
+    bottom: 50px;
+    z-index: 999999999999;
+    background-color: #f4f8fb;
+    width: 100%;
+    text-align: center;
+    h1 {
+        font-size: 64px;
+        font-weight: 100;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 300;
+    }
+    img {
+        margin: auto;
+        margin-top: 70px;
+        display: block;
+    }
+    iframe {
+        margin: auto;
+        display: block;
+    }
+}

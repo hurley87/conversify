@@ -9,6 +9,7 @@ import ContactsCollection from '../../../api/Contacts/Contacts';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 import Responses from "../Responses/Responses";
+import _ from 'lodash';
 
 // import './Campaigns.scss';
 
@@ -67,15 +68,15 @@ const Campaigns = ({
 
     <div className="clearfix">
       <h1 className="pull-left">Campaigns</h1>
-      <Link className="second-btn pull-right" to={`/prospects/new`}>New Campaign</Link>
+      <Link className="second-btn pull-right" to={`/campaigns/new`}>New Campaign</Link>
     </div>
     {
       campaign_names.length == 0 ? (
         <div className='empty-state'>
           <h1>Getting started is easy</h1>
-          <p>Create a template and upload a CSV of prospects to create a campaign.</p>
+          <p>Create a template and upload a CSV of prospects to create a campaign</p>
           <br />
-          <p><img height="280px" src="No-Prospects.png"/></p>
+          <p><img height="280px" src="/2.png"/></p>
         </div>
       ) : null
     }
@@ -164,7 +165,7 @@ const Campaigns = ({
                                         myCampaigns.filter(contact => (contact.cohort == name && contact.replied == true)).map(({
                                             _id, firstName, lastName, linkedinUrl, threadUrl, firstFollowUpSent, sentiment,
                                         }) => (
-                                                <div className={firstFollowUpSent ? sentiment == "positive" ? "prospect-card blue-border positive-border": "prospect-card blue-border negative-border": sentiment == "positive" ? "prospect-card positive-border": "prospect-card negative-border"} key={_id}>
+                                                <div className={firstFollowUpSent ? sentiment == "positive" ? "prospect-card blue-border positive-border": sentiment == "neutral" ?  "prospect-card blue-border neutral-border" : "prospect-card blue-border negative-border" : sentiment == "positive" ? "prospect-card positive-border": sentiment == "neutral" ? "prospect-card neutral-border" : "prospect-card negative-border" } key={_id}>
                                                     <h4><a target="_blank" href={linkedinUrl}><img height='15px' src="https://s3.amazonaws.com/adsgen/linkedin.svg"/></a> <a href={`/prospects/${_id}`}> {firstName} {lastName}</a> 
                                                         <a className='pull-right' target='_blank' href={threadUrl}>
                                                             <img height="15px" src="chat.svg"/>
@@ -198,7 +199,7 @@ Campaigns.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe('contacts');
 
-  const myCampaigns = ContactsCollection.find({
+  let myCampaigns = ContactsCollection.find({
     userId: Meteor.userId(),
     owner: Meteor.user().emails[0].address,
   }).fetch();
@@ -206,6 +207,8 @@ export default withTracker(() => {
   const campaigns = myCampaigns.groupBy("cohort")  
   const campaign_names = []
   for(var k in campaigns) campaign_names.push(k)
+
+  myCampaigns = _.sortBy(myCampaigns, ['sentiment']).reverse()
 
   return {
     loading: !subscription.ready(),

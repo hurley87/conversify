@@ -13,7 +13,7 @@ import { Wave, Random } from 'react-animated-text';
 import TemplatesList from "../TemplatesList/TemplatesList"
 import { Link } from 'react-router-dom';
 
-class NewProspects extends React.Component {
+class NewCampaigns extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -195,7 +195,7 @@ class NewProspects extends React.Component {
     const { doc } = this.props;
 
     return (
-      <div className='NewProspects container'>
+      <div className='NewCampaigns container'>
         <div className="clearfix">
           <h1 className="pull-left">New Campaign</h1>
         </div>
@@ -380,14 +380,14 @@ class NewProspects extends React.Component {
   }
 }
 
-NewProspects.defaultProps = {
+NewCampaigns.defaultProps = {
   doc: { title: '', body: '' },
 };
 
-NewProspects.propTypes = {
+NewCampaigns.propTypes = {
   doc: PropTypes.object,
   history: PropTypes.object.isRequired,
 };
 
-export default NewProspects;
+export default NewCampaigns;
 

@@ -7,7 +7,7 @@
   border: none;
   height: 50px;
   margin: 0px;
-
+  z-index: 1
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -29,13 +29,13 @@
 
 .navbar-default .navbar-nav > li > a {
   color: #fff;
-  z-index: 9999;
+  // z-index: 9999;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border: none;
   background-color: #092C4C;
-  a {
-    color: #fff;
-  }
+  // a {
+  //   color: #fff;
+  // }
 }
