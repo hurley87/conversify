@@ -27,6 +27,15 @@ const enumerateDaysBetweenDates = function (startDate, endDate) {
   return dates;
 };
 
+Array.prototype.groupBy = function(prop) {
+  return this.reduce(function(groups, item) {
+    const val = item[prop]
+    groups[val] = groups[val] || []
+    groups[val].push(item)
+    return groups
+  }, {})
+}
+
 const InsightsContainer = ({ loading, insights, stats, first_msgs, ncs, replies, prtime, owner_stats, labels, series, meetings, clients, cohort_stats, template_stats}) => ( !loading ? (
   insights.length > 0 ? 
   <div className="Insights">

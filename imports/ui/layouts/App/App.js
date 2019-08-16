@@ -29,7 +29,7 @@ import Templates from '../../pages/Templates/Templates';
 import NewTemplate from '../../pages/NewTemplate/NewTemplate';
 import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
 import EditTemplate from '../../pages/EditTemplate/EditTemplate';
-import NewCampaigns from '../../pages/NewCampaigns/NewCampaigns';
+import NewCampaign from '../../pages/NewCampaign/NewCampaign';
 import ViewContact from '../../pages/ViewContact/ViewContact';
 import EditContact from '../../pages/EditContact/EditContact';
 import './App.scss';
@@ -59,7 +59,7 @@ class App extends React.Component {
               <Authenticated exact path="/settings" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/insights" component={InsightsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/campaigns" component={Campaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/campaigns/new" component={NewCampaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/campaigns/new" component={NewCampaign} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />

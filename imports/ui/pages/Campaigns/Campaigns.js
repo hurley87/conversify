@@ -70,6 +70,7 @@ const Campaigns = ({
       <h1 className="pull-left">Campaigns</h1>
       <Link className="second-btn pull-right" to={`/campaigns/new`}>New Campaign</Link>
     </div>
+    <br />
     {
       campaign_names.length == 0 ? (
         <div className='empty-state'>

@@ -20,7 +20,7 @@ const Footer = () => (
     <Row>
       <Col md={8} sm={12} mdOffset={2} xs={12}>
         <h1>Get started</h1>
-        <p>Manage conversations at scale over LinkedIn and Email.</p>
+        <p>Manage conversations at scale over LinkedIn and Email</p>
         <br />
         <p><a className='add-btn' href='https://calendly.com/conversifyai'>Get a Demo</a></p>
       </Col>

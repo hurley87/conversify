@@ -31,6 +31,7 @@ const Templates = ({
       <h1 className="pull-left">Templates</h1>
       <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Template</Link>
     </div>
+    <br />
     {templates.length ?
         <Row>
           {templates.map(({

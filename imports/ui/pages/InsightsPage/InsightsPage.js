@@ -5,8 +5,6 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import InsightsContainer from '../InsightsContainer/InsightsContainer';
-import Leaderboards from '../Leaderboards/Leaderboards';
-
 
 class HomePageDatePicker extends React.Component {
   constructor(props) {
@@ -89,6 +87,7 @@ class HomePageDatePicker extends React.Component {
 	            />
            </Col>
 					 <Col xs={12} sm={12}>
+					 		<br />
 					 		<InsightsContainer startDate={startDateString} endDate={endDateString} />
 					 </Col>
         </Row>   
