@@ -2,7 +2,6 @@
 
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import Documents from '../../Documents/Documents';
 
 let action;
 
@@ -14,18 +13,9 @@ const deleteUser = (userId) => {
   }
 };
 
-const deleteDocuments = (userId) => {
-  try {
-    return Documents.remove({ owner: userId });
-  } catch (exception) {
-    throw new Error(`[deleteAccount.deleteDocuments] ${exception.message}`);
-  }
-};
-
 const deleteAccount = ({ userId }, promise) => {
   try {
     action = promise;
-    deleteDocuments(userId);
     deleteUser(userId);
     action.resolve();
   } catch (exception) {

@@ -69,7 +69,7 @@ Templates.propTypes = {
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('templates');
-  console.log('hey')
+
   return {
     loading: !subscription.ready(),
     templates: TemplatesCollection.find().fetch(),

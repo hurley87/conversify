@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autoBind from 'react-autobind';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Grid } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
@@ -12,10 +11,6 @@ import Navigation from '../../components/Navigation/Navigation';
 import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
-import Documents from '../../pages/Documents/Documents';
-import NewDocument from '../../pages/NewDocument/NewDocument';
-import ViewDocument from '../../pages/ViewDocument/ViewDocument';
-import EditDocument from '../../pages/EditDocument/EditDocument';
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
@@ -27,32 +22,18 @@ import NotFound from '../../pages/NotFound/NotFound';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
 import About from '../../pages/About/About';
-import Golf from '../../pages/Golf/Golf';
-import Prospecting from '../../pages/Prospecting/Prospecting';
-import Messaging from '../../pages/Messaging/Messaging';
-import Automation from '../../pages/Automation/Automation';
-import Reporting from '../../pages/Reporting/Reporting';
-import ExamplePage from '../../pages/ExamplePage/ExamplePage';
-import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert';
 import getUserName from '../../../modules/get-user-name';
-import LeaderboardsPage from '../../pages/LeaderboardsPage/LeaderboardsPage';
-import ContactsContainer from '../../pages/ContactsContainer/ContactsContainer';
-import Responses from '../../pages/Responses/Responses';
-import NewSequence from '../../pages/NewSequence/NewSequence';
-import UpdateSequence from '../../pages/UpdateSequence/UpdateSequence';
-import Contacts from '../../pages/Contacts/Contacts';
+import InsightsPage from '../../pages/InsightsPage/InsightsPage';
 import Campaigns from '../../pages/Campaigns/Campaigns';
-import ViewContact from '../../pages/ViewContact/ViewContact';
-import EditContact from '../../pages/EditContact/EditContact';
-import ViewUser from '../../pages/ViewUser/ViewUser';
 import Templates from '../../pages/Templates/Templates';
 import NewTemplate from '../../pages/NewTemplate/NewTemplate';
 import ViewTemplate from '../../pages/ViewTemplate/ViewTemplate';
 import EditTemplate from '../../pages/EditTemplate/EditTemplate';
 import NewCampaigns from '../../pages/NewCampaigns/NewCampaigns';
+import ViewContact from '../../pages/ViewContact/ViewContact';
+import EditContact from '../../pages/EditContact/EditContact';
 import './App.scss';
 import Loading from '../../components/Loading/Loading';
-import Footer from '../../components/Footer/Footer';
 
 class App extends React.Component {
   constructor(props) {
@@ -75,25 +56,16 @@ class App extends React.Component {
             <Switch>
               <Route exact name="index" path="/" component={Index} />
               <Route exact name="loading" path="/loading" component={Loading} />
-              <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/contacts" component={ContactsContainer} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/prospects" component={Contacts} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Route exact path="/demo/:_id" component={ViewUser} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/documents/:_id" component={ViewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/sequences/:_id/edit" component={UpdateSequence} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/insights" component={LeaderboardsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-              <Authenticated exact path="/funnel" component={Responses} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/settings" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/insights" component={InsightsPage} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/campaigns" component={Campaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/campaigns/new" component={NewCampaigns} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates" component={Templates} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/new" component={NewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id" component={ViewTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Authenticated exact path="/templates/:_id/edit" component={EditTemplate} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects/:_id" component={ViewContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+              <Authenticated exact path="/prospects/:_id/edit" component={EditContact} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
               <Public path="/signup" component={Signup} {...props} {...state} />
               <Public path="/login" component={Login} {...props} {...state} />
               <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
@@ -103,12 +75,6 @@ class App extends React.Component {
               <Route name="terms" path="/terms" component={Terms} />
               <Route name="privacy" path="/privacy" component={Privacy} />
               <Route name="about" path="/about" component={About} />
-              <Route name="golf" path="/golf" component={Golf} />
-              <Route name="messaging" path="/messaging" component={Messaging} />
-              <Route name="automation" path="/automation" component={Automation} />
-              <Route name="reporting" path="/reporting" component={Reporting} />
-              <Route name="prospecting" path="/prospecting" component={Prospecting} />
-              <Route name="examplePage" path="/example-page" component={ExamplePage} />
               <Route component={NotFound} />
             </Switch>
           </div>

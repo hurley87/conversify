@@ -3,7 +3,7 @@ import './Loading.scss';
 
 const Loading = () => (
   <div className="Loading container">
-    <button class="spin circle">Loading</button>
+    <button className="spin circle">Loading</button>
   </div>
 );
 

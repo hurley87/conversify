@@ -165,12 +165,6 @@ class Profile extends React.Component {
   }
 
   renderPasswordUser(loading, user) {
-    console.log("Profile")
-
-    console.log(user)
-    console.log(user.profile.linkedin)
-
-
     return !loading ? (
       <div>
         <FormGroup>
@@ -188,15 +182,6 @@ class Profile extends React.Component {
             type="text"
             name="lastName"
             defaultValue={user.profile.name.last}
-            className="form-control"
-          />
-        </FormGroup>
-        <FormGroup>
-          <ControlLabel>Meeting Link</ControlLabel>
-          <input
-            type="text"
-            name="meetingLink"
-            defaultValue={user.profile.meetingLink}
             className="form-control"
           />
         </FormGroup>
@@ -260,11 +245,6 @@ class Profile extends React.Component {
   render() {
     const { loading, user } = this.props;
 
-    const userProfile = user.profile;
-
-    console.log(userProfile);
-
-
     return (
       <div className="Profile container">
         <Row>
@@ -273,9 +253,6 @@ class Profile extends React.Component {
             <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
               {this.renderProfileForm(loading, user)}
             </form>
-          </Col>
-          <Col xs={12} sm={6} md={4} className='well'>
-            <a target="_blank" href={`/demo/${user._id}`}>View Landing Page</a>
           </Col>
         </Row>
       </div>

@@ -7,7 +7,6 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import Contacts from '../../../api/Contacts/Contacts';
 import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
-import ContactEditor from '../../components/ContactEditor/ContactEditor';
 
 const handleRemove = (contactId, history) => {
   if (confirm('Are you sure? This is permanent!')) {
@@ -121,10 +120,9 @@ ViewContact.propTypes = {
 
 export default withTracker(({ match }) => {
   const contactId = match.params._id;
-  console.log(contactId)
   const subscription = Meteor.subscribe('contacts.view', contactId);
   const doc = Contacts.findOne(contactId);
-  console.log(doc)
+
   return {
     loading: !subscription.ready(),
     doc,
