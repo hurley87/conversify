@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonToolbar, ButtonGroup, Button, Row, Col, Alert } from 'react-bootstrap';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { Bert } from 'meteor/themeteorchef:bert';
 import { Link } from 'react-router-dom';
-import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
 import Templates from '../../../api/Templates/Templates';
 import Select from 'react-select';

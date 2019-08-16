@@ -1,47 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Table, Alert, Button, Row, Col, TabContainer, NavItem, TabContent, TabPane, NavLink, Nav } from 'react-bootstrap';
+import { Row, Col, TabContainer, NavItem, TabContent, TabPane, Nav } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import ContactsCollection from '../../../api/Contacts/Contacts';
-import { timeago, monthDayYearAtTime } from '../../../modules/dates';
+import { timeago } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 import Responses from "../Responses/Responses";
 import _ from 'lodash';
 
 // import './Campaigns.scss';
-
-const handleAdd = (contactId) => {
-  Meteor.call('contacts.add', contactId, (error) => {
-    if (error) {
-      Bert.alert(error.reason, 'danger');
-    } else {
-      console.log('added');
-    }
-  });
-};
-
-const handleSkip = (contactId) => {
-  Meteor.call('contacts.skip', contactId, (error) => {
-    if (error) {
-      Bert.alert(error.reason, 'danger');
-    } else {
-      console.log('added');
-    }
-  });
-};
-
-const handleRemove = (contactId) => {
-  Meteor.call('contacts.skip', contactId, (error) => {
-    if (error) {
-      Bert.alert(error.reason, 'danger');
-    } else {
-      console.log('added');
-    }
-  });
-};
 
 const handleDelete = (contactId, history) => {
   if (confirm('Are you sure you want to permanently delete this prospect?')) {

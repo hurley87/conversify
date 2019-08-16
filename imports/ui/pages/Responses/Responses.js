@@ -2,13 +2,11 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import ContactsCollection from '../../../api/Contacts/Contacts';
 import Loading from '../../components/Loading/Loading';
-import { notDeepEqual } from 'assert';
 
 const updateSentiment = (linkedInUrl, sentiment) => {
   Meteor.call('updateSentiment', linkedInUrl, sentiment, (error) => {

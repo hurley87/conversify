@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -8,30 +8,6 @@ import Templates from '../../../api/Templates/Templates';
 import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
 import TemplateEditor from '../../components/TemplateEditor/TemplateEditor';
-
-const handleRemove = (templateId, history) => {
-  if (confirm('Are you sure? This is permanent!')) {
-    Meteor.call('templates.remove', templateId, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Template deleted!', 'danger');
-        history.push('/prospects');
-      }
-    });
-  }
-};
-
-const handleAdd = (templateId, history) => {
-    Meteor.call('templates.add', templateId, (error) => {
-        if (error) {
-            Bert.alert(error.reason, 'danger');
-        } else {
-            Bert.alert('Template added!', 'success');
-          history.push('/prospects');
-        }
-    });
-};
 
 const renderTemplate = (doc, match, history) => (doc ? (
   <div className="EditTemplate container">

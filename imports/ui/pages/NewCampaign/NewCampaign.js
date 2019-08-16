@@ -9,9 +9,8 @@ import validate from '../../../modules/validate';
 import autoBind from 'react-autobind';
 import CSVReader from 'react-csv-reader';
 import { Row, Col } from 'react-bootstrap';
-import { Wave, Random } from 'react-animated-text';
+import { Wave } from 'react-animated-text';
 import TemplatesList from "../TemplatesList/TemplatesList"
-import { Link } from 'react-router-dom';
 
 class NewCampaign extends React.Component {
   constructor(props) {

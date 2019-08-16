@@ -4,7 +4,7 @@ import TemplateEditor from '../../components/TemplateEditor/TemplateEditor';
 
 const NewTemplate = ({ history }) => (
   <div className="NewTemplate container">
-    <h1>Add A Template</h1>
+    <h1>New Template</h1>
     <TemplateEditor history={history} />
   </div>
 );

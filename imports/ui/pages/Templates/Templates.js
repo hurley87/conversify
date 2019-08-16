@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import TemplatesCollection from '../../../api/Templates/Templates';
-import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 
 import './Templates.scss';
@@ -29,7 +28,7 @@ const Templates = ({
   <div className="Templates container">
     <div className="clearfix">
       <h1 className="pull-left">Templates</h1>
-      <Link className="second-btn pull-right" to={`${match.url}/new`}>Add Template</Link>
+      <Link className="second-btn pull-right" to={`${match.url}/new`}>New Template</Link>
     </div>
     <br />
     {templates.length ?
