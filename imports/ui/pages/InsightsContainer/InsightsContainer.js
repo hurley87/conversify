@@ -42,6 +42,54 @@ const InsightsContainer = ({ loading, insights, stats, first_msgs, ncs, replies,
       </Col>
       <Col xs={12} sm={10}>
 
+      <Table responsive>
+          <thead>
+            <tr>
+              <th>Campaign</th>
+              <th>Account</th>
+              <th>Template</th>
+              <th>Requests</th>
+              <th>Connections</th>
+              <th>Conversations</th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            cohort_stats.reverse().map((stat, i) =>{
+              return (
+                <tr>
+                  <td>{stat.name}
+                  </td>
+                  <td>{stat.account}
+                  </td>
+                  <td>{stat.template}
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.num_crs_sent)}
+                  </td>
+                  <td>
+                  { numberWithCommas(stat.new_CR) } 
+                  { 
+                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
+                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
+                    )
+                  } 
+                  </td>
+                  <td>
+                  {numberWithCommas(stat.replies)} 
+                  {
+                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
+                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
+                    )
+                  }
+                  </td>
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </Table>
+
       {
           stats.length > 1 ? (
             <Table responsive>
@@ -88,50 +136,7 @@ const InsightsContainer = ({ loading, insights, stats, first_msgs, ncs, replies,
           ) : null
         }
         
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Campaign</th>
-              <th>Template</th>
-              <th>Requests</th>
-              <th>Connections</th>
-              <th>Conversations</th>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            cohort_stats.reverse().map((stat, i) =>{
-              return (
-                <tr>
-                  <td>{stat.name}
-                  </td>
-                  <td>{stat.template}
-                  </td>
-                  <td>
-                  {numberWithCommas(stat.num_crs_sent)}
-                  </td>
-                  <td>
-                  { numberWithCommas(stat.new_CR) } 
-                  { 
-                    stat.num_crs_sent == 0 || stat.new_CR == 0 ? null : ( 
-                      <small>({(stat.new_CR / stat.num_crs_sent * 100).toFixed(1)}%)</small>  
-                    )
-                  } 
-                  </td>
-                  <td>
-                  {numberWithCommas(stat.replies)} 
-                  {
-                    stat.replies == 0 || stat.num_crs_sent == 0 ? null : (
-                      <small>({(stat.replies / stat.num_crs_sent * 100).toFixed(1)}%)</small>
-                    )
-                  }
-                  </td>
-                </tr>
-              )
-            })
-          }
-          </tbody>
-        </Table>
+
 
         <Table responsive>
           <thead>
@@ -257,6 +262,7 @@ export default createContainer((props) => {
 	    cohort_stats.push({
         name: name,
         template: collection[0].template,
+        account: collection[0].owner,
 	      num_crs_sent: get_stat(collection, "requestSent", true),
 	      new_CR: get_stat(collection, "connection", true),
 	      replies: get_stat(collection, "replied", true),
