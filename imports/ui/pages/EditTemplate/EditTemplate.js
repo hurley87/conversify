@@ -9,6 +9,8 @@ import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
 import TemplateEditor from '../../components/TemplateEditor/TemplateEditor';
 
+import "./EditTemplate.scss";
+
 const renderTemplate = (doc, match, history) => (doc ? (
   <div className="EditTemplate container">
     <Row>

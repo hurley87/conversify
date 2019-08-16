@@ -8,6 +8,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import ContactsCollection from '../../../api/Contacts/Contacts';
 import Loading from '../../components/Loading/Loading';
 
+import './Responses.scss'
+
 const updateSentiment = (linkedInUrl, sentiment) => {
   Meteor.call('updateSentiment', linkedInUrl, sentiment, (error) => {
     if (error) {

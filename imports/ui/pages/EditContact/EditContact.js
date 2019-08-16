@@ -22,17 +22,6 @@ const handleRemove = (contactId, history) => {
   }
 };
 
-const handleAdd = (contactId, history) => {
-    Meteor.call('contacts.add', contactId, (error) => {
-        if (error) {
-            Bert.alert(error.reason, 'danger');
-        } else {
-            Bert.alert('Contact added!', 'success');
-          history.push('/prospects');
-        }
-    });
-};
-
 const renderContact = (doc, match, history) => (doc ? (
   <div className="EditContact container">
     <Row>

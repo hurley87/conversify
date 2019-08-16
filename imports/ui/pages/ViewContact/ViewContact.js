@@ -8,6 +8,8 @@ import Contacts from '../../../api/Contacts/Contacts';
 import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
 
+import './ViewContact.scss';
+
 const handleRemove = (contactId, history) => {
   if (confirm('Are you sure? This is permanent!')) {
     Meteor.call('contacts.remove', contactId, (error) => {

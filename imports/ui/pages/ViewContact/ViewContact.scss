@@ -1,0 +1,56 @@
+.ViewContact {
+    .positive {
+      border: 1px solid #2ecc71;
+      padding: 10px;
+      border-bottom-left-radius: 5px;
+      color: #2ecc71;
+      cursor: pointer;
+  
+      &.active {
+        background-color: #2ecc71;
+        color: white;
+      }
+  
+      &:hover {
+        background-color: #2ecc71;
+        color: white;
+        transition: 0.5s all ease;
+      }
+      
+    }
+    .neutral {
+      border: 1px solid #f1c40f;
+      padding: 10px;
+      cursor: pointer;
+      color: #f1c40f;
+  
+      &.active {
+        background-color: #f1c40f;
+        color: white;
+      }
+  
+      &:hover {
+        background-color: #f1c40f;
+        color: white;
+        transition: 0.5s all ease;
+      }
+    }
+    .negative {
+      border: 1px solid #e74c3c;
+      padding: 10px;
+      border-bottom-right-radius: 5px;
+      cursor: pointer;
+      color: #e74c3c;
+  
+      &.active {
+        background-color: #e74c3c;
+        color: white;
+      }
+  
+      &:hover {
+        background-color: #e74c3c;
+        color: white;
+        transition: 0.5s all ease;
+      }
+    }
+  }

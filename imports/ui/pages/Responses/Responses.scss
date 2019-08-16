@@ -1,24 +1,21 @@
-.Templates {
+.Responses {
     padding-top: 50px;
     h1 {
       font-size: 20px;
       font-weight: 500;
-      
     }
-    .template-card {
-      background-color: #fff;
-      width: 100%;
-      border-radius: 5px;
+    img {
+      cursor: pointer;
+    }
+    .response-card {
+      background: #fff;
       box-shadow: 0 2px 4px 0 #D7E0E7;
-      padding-bottom: 10px;
-      min-height: 250px;
-      max-height: 250px;
       margin-bottom: 15px;
       h4 {
         font-size: 12px;
-        border-bottom: 1px solid #EBEEF3;
-        padding: 20px 15px;
-  
+        padding: 0px 15px;
+        margin: 0px;
+        margin-top: 20px;
         .edit {
           margin-left: 15px;
           position: relative;
@@ -41,22 +38,35 @@
         text-align: center;
         cursor: pointer;
         margin-top: 0px;
+        position: relative;
+        bottom: 7px;
       }
-      .inner-card {
+      .inner-response {
         border-radius: 10px;
-        height: 150px;
-        margin: 20px;
-        margin-bottom: 10px;
+        border: 1px solid #EBEEF3;
+        margin: 15px;
         padding: 20px 15px;
         overflow: scroll;
-        
-        h5 {
-          font-size: 12px !important;
-          margin-top: 0px;
-        }
-        p {
-          color: #536476; 
-        }
+      }
+    }
+    .inner {
+      border-radius: 5px;
+      background-color: #FFFFFF;
+      box-shadow: 0 2px 4px 0 #D7E0E7;
+      font-size: 12px;
+      table {
+        margin: 0px;
+      }
+      th, td {
+        padding: 15px 30px;
+      }
+      h5 {
+        background-color: rgba(234,241,247,0.4);
+        font-size: 12px;
+        padding: 30px 30px;
+        margin: 0px;
       }
     }
   }
+  
+  

@@ -1,0 +1,68 @@
+@import '../../stylesheets/colors';
+
+.Campaigns {
+    padding-top: 50px;
+    h1 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    table {
+      font-size: 12px;
+      background-color: #fff;
+    }
+    th, td {
+      padding: 15px !important;
+      font-weight: 200;
+    }
+    p {
+      margin: 0;
+    }
+    li {
+      padding: 5px;
+      border-radius: 23px 0px 0px 23px;
+      font-size: 14px;
+      a {
+        color: #536476;
+      }
+   
+    }
+  
+    .active {
+      background-color: #EAF1F7;
+      color: #092C4C;
+      font-weight: 500;
+  
+      .msg {
+        font-weight: 200;
+        margin-top: 7px;
+        display: block;
+        font-size: 12px;
+      }
+    }
+  
+    .nav > li > a:hover, .nav > li > a:focus {
+      background-color: transparent !important;
+    }
+    img {
+      margin-right: 5px;
+    }
+  }
+  .add-btn {	
+    height: 45px;	
+    line-height: 45px;
+    text-align: center;
+    width: 100%;	
+    border-radius: 22.5px;	
+    background-color: $primary;
+    color: white;
+    border: none;
+    display: block;
+    max-width: 350px;
+    margin: auto;
+    &:hover {
+      background-color: $primary;
+      color: #fff;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+  }

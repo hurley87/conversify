@@ -1,0 +1,41 @@
+.NewCampaign {
+    padding-top: 50px;
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+  
+    .inner-card {
+      border-radius: 10px;
+     
+      margin: 20px;
+      margin-bottom: 10px;
+      padding: 5px;
+      overflow: scroll;
+      h5 {
+        font-size: 12px !important;
+        margin-top: 0px;
+      }
+      p {
+        color: #536476; 
+      }
+    }
+    .box {
+      box-shadow: 0 2px 4px 0 #D7E0E7;
+      background-color: #fff;
+      border-radius: 5px;
+      h5 {
+        border-bottom: 1px solid #EBEEF3;
+        padding: 15px;
+        margin: 0px;
+      }
+      h6 {
+        padding-left: 15px;
+      }
+      p {
+        padding: 15px;
+        margin: 0px;
+      }
+    }
+  }

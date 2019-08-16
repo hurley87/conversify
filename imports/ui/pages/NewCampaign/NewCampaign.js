@@ -12,6 +12,8 @@ import { Row, Col } from 'react-bootstrap';
 import { Wave } from 'react-animated-text';
 import TemplatesList from "../TemplatesList/TemplatesList"
 
+import './NewCampaign.scss';
+
 class NewCampaign extends React.Component {
   constructor(props) {
     super(props);
@@ -193,6 +195,7 @@ class NewCampaign extends React.Component {
         <div className="clearfix">
           <h1 className="pull-left">New Campaign</h1>
         </div>
+        <br />
         {
           this.state.template == "" ? (
             <Row>

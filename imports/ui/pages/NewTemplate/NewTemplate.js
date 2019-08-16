@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TemplateEditor from '../../components/TemplateEditor/TemplateEditor';
 
+import './NewTemplate.scss';
+
 const NewTemplate = ({ history }) => (
   <div className="NewTemplate container">
     <h1>New Template</h1>

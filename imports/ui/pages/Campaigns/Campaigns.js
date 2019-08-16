@@ -11,7 +11,7 @@ import Loading from '../../components/Loading/Loading';
 import Responses from "../Responses/Responses";
 import _ from 'lodash';
 
-// import './Campaigns.scss';
+import './Campaigns.scss';
 
 const handleDelete = (contactId, history) => {
   if (confirm('Are you sure you want to permanently delete this prospect?')) {
