@@ -1,7 +1,6 @@
 import React from 'react';
-import Page from '../Page/Page';
 import moment from 'moment';
-import { Table, Alert, Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';

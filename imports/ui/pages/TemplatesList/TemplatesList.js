@@ -49,9 +49,6 @@ export default createContainer((props) => {
 	  }
   }
 
-  console.log("HEY")
-  console.log(select)
- 
   return {
     loading: !subscription.ready(),
     templates: templates,

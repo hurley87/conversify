@@ -65,7 +65,6 @@ EditTemplate.propTypes = {
 
 export default withTracker(({ match }) => {
   const templateId = match.params._id;
-  console.log(templateId)
   const subscription = Meteor.subscribe('templates.view', templateId);
 
   return {

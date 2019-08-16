@@ -76,7 +76,6 @@ EditContact.propTypes = {
 
 export default withTracker(({ match }) => {
   const contactId = match.params._id;
-  console.log(contactId)
   const subscription = Meteor.subscribe('contacts.view', contactId);
 
   return {

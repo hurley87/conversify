@@ -89,7 +89,6 @@ const Responses = ({
     <div className='inner'>
     {
       Responses.filter(response => response.sentiment == '').map((response) => {
-        console.log(response);
       return (
         <div className='response-card'>
           <Row>
@@ -134,7 +133,6 @@ export default withTracker(() => {
   }).fetch();
 
   Responses.map(response => {
-    console.log(response.messages[0]);
     response['responseText'] = "";
     for(var i = 0; i < response.messages.length; i++) {
       if(response.messages[i]['name'] != response.messages[0]['name']) {
@@ -143,9 +141,6 @@ export default withTracker(() => {
       }
     }
   })
-
-  console.log(Responses);
-
 
   return {
     loading: !subscription.ready(),

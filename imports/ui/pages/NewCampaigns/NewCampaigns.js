@@ -96,7 +96,6 @@ class NewCampaigns extends React.Component {
     
 
     for (const contact in newContacts) {
-      console.log(this.state.template)
       newContacts[contact]['championText'] = this.parseCopy(form.request.value, contact);
       newContacts[contact]['challengerText'] = this.parseCopy(form.request.value, contact);
       newContacts[contact]['firstFollowUpText'] = this.parseCopy(form.followup.value, contact);
@@ -105,8 +104,6 @@ class NewCampaigns extends React.Component {
       newContacts[contact]['userId'] = Meteor.userId();
       newContacts[contact]['template'] = this.state.template.label;
     }
-
-    console.log(newContacts)
 
     this.setState({
       loading: true,
@@ -172,8 +169,6 @@ class NewCampaigns extends React.Component {
   }
 
   handleChange(template) {
-    console.log(this.state.template)
-    console.log(template)
     this.setState({ 
       template: template
     });
