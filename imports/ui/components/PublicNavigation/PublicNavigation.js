@@ -18,7 +18,7 @@ const PublicNavigation = () => (
       <NavItem eventKey={3} href="/login">Log In</NavItem>
     </LinkContainer>
     <li role='presentation'>
-      <a href="https://calendly.com/conversifyai">Get a Demo</a>
+      <a href="https://meetings.hubspot.com/david1033">Get a Demo</a>
     </li>
   </Nav>
 );

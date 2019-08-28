@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 
 
@@ -14,13 +13,13 @@ const Index = () => (
           <Row>
             <Col xs={12} sm={6}>
               <h1>
-              An outbound marketing automation solution
+              Connect Your Sales Teams With Your Future Customers
               </h1>
               <p>
-              We help sales teams manage conversations at scale over LinkedIn and Email
+              Our team of outbound sales experts deliver a steady flow of ideal customers right to your LinkedIn and Email inbox.
               </p>
               <br />
-              <p><a href="https://calendly.com/conversifyai">Get a Demo</a></p>
+              <p><a href="https://meetings.hubspot.com/david1033">Get a Demo</a></p>
             </Col>
             <Col xs={12} sm={4} smOffset={1}>
               <img src='8.png' />
@@ -40,7 +39,7 @@ const Index = () => (
           <Col sm={7}>
             <h4>Prospecting</h4>
             <h2>Curate the Perfect List</h2>
-            <p>Build a massive list of your total addressable contact market including emails, phone numbers and LinkedIn URLs.</p>
+            <p>From our database of more than 300 million contacts, we build you customized prospect lists of thousands of your ideal customers.</p>
           </Col>
           <Col sm={5}  className='hidden-xs'>
             <p className='text-right'><img src="3.png"/></p>
@@ -53,14 +52,14 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4>Templates</h4>
             <h2>Craft the Perfect Message</h2>
-            <p>We are experts at starting conversations over LinkedIn and Email that convert to sales qualified leads.</p>
+            <p>An outbound sales expert will help you write a sequence of LinkedIn messages and emails that is sure to start a conversation.</p>
           </Col>
         </Row>
         <Row className='section'>
           <Col sm={7}>
             <h4>Campaigns</h4>
             <h2>Automate the Boring Stuff</h2>
-            <p>An automated sales pipeline with personalized messaging that targets qualified leads and delivers interested responses right to your inbox.</p>
+            <p>We build you an automated sales pipeline with personalized messaging that targets qualified leads and starts a conversation with them.</p>
           </Col>
           <Col sm={5} className='hidden-xs'>
           <p className='text-right'><img src="2.png"/></p>
@@ -73,7 +72,7 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4>Insights</h4>
             <h2>Analyze Your Growth</h2>
-            <p>We integrate with your CRM to help you make sense of all the data we collect during our conversation campaigns to help optimize messaging.</p>
+            <p>Import or export your prospects to your favorite CRM so you can see which conversation campaigns are the most effective.</p>
           </Col>
         </Row>
       </div>

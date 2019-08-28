@@ -77,7 +77,7 @@ class Login extends React.Component {
                 </FormGroup>
                 <Button className='poll-btn' type="submit">Log In</Button>
                 <AccountPageFooter>
-                  <p>Don't have an account? <a href="https://calendly.com/conversifyai">Get Started</a>.</p>
+                  <p>Don't have an account? <a href="https://meetings.hubspot.com/david1033">Get Started</a>.</p>
                 </AccountPageFooter>
               </form>
             </div>
