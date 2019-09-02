@@ -22,7 +22,7 @@ const Footer = () => (
         <h1>Get started</h1>
         <p>Manage conversations at scale over LinkedIn and Email</p>
         <br />
-        <p><a className='add-btn' href='https://meetings.hubspot.com/david1033'>Get a Demo</a></p>
+        <p><a className='add-btn' href='https://meetings.hubspot.com/david1033'>Chat with us</a></p>
       </Col>
     </Row>
     <br />

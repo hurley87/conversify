@@ -77,23 +77,17 @@ const renderContact = (doc, match, history) => (doc ? (
             }
             {
               doc.replied ? (
-                <Row className='text-center'>
-                  <Col xs={4} style={{paddingRight: "0px"}}>
-                    <div onClick={() => updateSentiment(doc.linkedInUsername, 'positive')} className={doc.sentiment == 'positive' ? "positive active" : "positive"}>
-                      positive
-                    </div>
-                  </Col>
-                  <Col xs={4} style={{padding: "0px"}}>
-                    <div onClick={() => updateSentiment(doc.linkedInUsername, 'neutral')} className={doc.sentiment == 'neutral' ? "neutral active" : "neutral"}>
-                      neutral
-                    </div>
-                  </Col>
-                  <Col xs={4} style={{paddingLeft: "0px"}}>
-                  <div onClick={() => updateSentiment(doc.linkedInUsername, 'negative')} className={doc.sentiment == 'negative' ? "negative active" : "negative"}>
-                      negative
-                    </div>
-                  </Col>                  
-                </Row>
+                <div className='inner-card' style={{marginTop: '0px', paddingTop: "0px"}}>
+                  <button onClick={() => updateSentiment(doc.linkedInUsername, 'positive')} className={doc.sentiment == 'positive' ? "positive active" : "positive"}>
+                    positive
+                  </button>
+                  <button onClick={() => updateSentiment(doc.linkedInUsername, 'neutral')} className={doc.sentiment == 'neutral' ? "neutral active" : "neutral"}>
+                    neutral
+                  </button>
+                  <button onClick={() => updateSentiment(doc.linkedInUsername, 'negative')} className={doc.sentiment == 'negative' ? "negative active" : "negative"}>
+                    negative
+                  </button>             
+                </div>
               ) : null
             }
           </div>

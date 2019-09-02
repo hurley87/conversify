@@ -8,24 +8,19 @@ import './Index.scss';
 const Index = () => (
   <div className="Index">
     <div className="hero-container">
-      <div className='rectangle'>
-        <div className='container'>
-          <Row>
-            <Col xs={12} sm={6}>
-              <h1>
-              Connect Your Sales Teams With Your Future Customers
-              </h1>
-              <p>
-              Our team of outbound sales experts deliver a steady flow of ideal customers right to your LinkedIn and Email inbox.
-              </p>
-              <br />
-              <p><a href="https://meetings.hubspot.com/david1033">Get a Demo</a></p>
-            </Col>
-            <Col xs={12} sm={4} smOffset={1}>
-              <img src='8.png' />
-            </Col>
-          </Row>
-        </div>
+      <div className='container'>
+        <Row>
+          <Col sm={8} smOffset={2}>
+            <h1>
+            Connect With Your Future Customers
+            </h1>
+            <p>
+            Our team of outbound sales experts deliver a steady flow of customers right to your LinkedIn and Email inbox.
+            </p>
+            <br />
+            <p><a href="https://meetings.hubspot.com/david1033">Chat with us</a></p>
+          </Col>
+        </Row>
       </div>
     </div>
     <div className='content-container container'>
@@ -39,7 +34,7 @@ const Index = () => (
           <Col sm={7}>
             <h4>Prospecting</h4>
             <h2>Curate the Perfect List</h2>
-            <p>From our database of more than 300 million contacts, we build you customized prospect lists of thousands of your ideal customers.</p>
+            <p>We find and build you customized prospect lists of thousands of your ideal customers or enrich lists that you already own.</p>
           </Col>
           <Col sm={5}  className='hidden-xs'>
             <p className='text-right'><img src="3.png"/></p>
@@ -52,7 +47,7 @@ const Index = () => (
           <Col sm={7} className='text-right'>
             <h4>Templates</h4>
             <h2>Craft the Perfect Message</h2>
-            <p>An outbound sales expert will help you write a sequence of LinkedIn messages and emails that is sure to start a conversation.</p>
+            <p>An outbound sales expert will help you write a sequence of LinkedIn messages and emails that are sure to start a conversation.</p>
           </Col>
         </Row>
         <Row className='section'>

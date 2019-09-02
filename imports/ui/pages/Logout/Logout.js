@@ -14,7 +14,7 @@ class Logout extends React.Component {
     return (
       <div className="Logout">
         <img
-          src="marketing_3.png"
+          src="10.png"
           alt="Clever Beagle"
         />
         <h1>Stay safe out there</h1>
