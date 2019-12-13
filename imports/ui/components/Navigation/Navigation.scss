@@ -1,9 +1,11 @@
+@import '../../stylesheets/colors';
+
 .navbar {
   border-radius: 0;
   border-left: none;
   border-right: none;
   border-top: none;
-  background: #092C4C;
+  background: $secondary;
   border: none;
   height: 50px;
   margin: 0px;
@@ -34,7 +36,7 @@
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border: none;
-  background-color: #092C4C;
+  background-color: $secondary;
   // a {
   //   color: #fff;
   // }

@@ -89,7 +89,7 @@
             box-sizing: border-box;	
             height: 1px;	
             width: 180px;	
-            border: 5px solid #1688EC;
+            border: 5px solid $primary;
             margin: auto;
             margin-top: 25px;
         }
@@ -186,7 +186,7 @@
                 box-sizing: border-box;	
                 height: 1px;	
                 width: 180px;	
-                border: 5px solid #1688EC;
+                border: 5px solid $primary;
                 margin: auto;
                 margin-top: 25px;
             }
