@@ -18,7 +18,7 @@ const Index = () => (
             Our team of outbound sales experts deliver a steady flow of customers right to your LinkedIn and Email inbox.
             </p>
             <br />
-            <p><a href="https://meetings.hubspot.com/david1033">Chat with us</a></p>
+            <p><a href="https://meetings.hubspot.com/david1225">Chat with us</a></p>
           </Col>
         </Row>
       </div>
