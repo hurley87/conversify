@@ -26,10 +26,10 @@ class NewCampaign extends React.Component {
       loading: false,
       cohort: '',
       template: "",
-      cra: 'Hi {{firstName}}, I’m working with Lufthansa Airlines to help automate requests going to their travel agent portal, eXperts. I’ve prepared a ‘coles notes’ explaining our process. Would you like to take a look and see if it’s useful?',
-      crb: "Hi {{firstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
-      follow1: "Thanks for connecting, {{firstName}}.\n\nDoes {{Company}} handle customer service requests in house or are they outsourced?",
-      follow2: "Thanks for connecting, {{firstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{CompanyCleaned}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
+      cra: 'Hi {{FirstName}}, I’m working with Lufthansa Airlines to help automate requests going to their travel agent portal, eXperts. I’ve prepared a ‘coles notes’ explaining our process. Would you like to take a look and see if it’s useful?',
+      crb: "Hi {{FirstName}}, I came across your profile after connecting with a friend from {{City}}. Let me know if you'd like to connect.",
+      follow1: "Thanks for connecting, {{FirstName}}.\n\nDoes {{Company Name}} handle customer service requests in house or are they outsourced?",
+      follow2: "Thanks for connecting, {{FirstName}}.\n\nWould you be open to having that call(or meet in person)? I'm interested in knowing more about {{Company Name}}. If I can help then that's a bonus(specifically within the digital / app space).\n\nA lot of good things come from these spontaneous conversations so let me know!",
     };
   }
 
@@ -82,6 +82,8 @@ class NewCampaign extends React.Component {
       contacts.push(contact);
     }
     contacts = contacts.slice(0, contacts.length - 1);
+
+    console.log(contacts)
 
     this.setState({
       contacts,
