@@ -1,18 +1,18 @@
+import Contacts from "./Contacts";
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 /* eslint-disable semi */
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
-import Contacts from './Contacts';
-import handleMethodException from '../../modules/handle-method-exception';
+import { Meteor } from "meteor/meteor";
+import { check } from "meteor/check";
+import handleMethodException from "../../modules/handle-method-exception";
 
 Meteor.methods({
-  'contacts.add': function contactsAdd(_id) {
+  "contacts.add": function contactsAdd(_id) {
     check(_id, String);
 
     const email = Meteor.users.findOne(this.userId).emails[0].address;
-    console.log(email)
+    console.log(email);
 
     try {
       return Contacts.update(_id, {
@@ -25,16 +25,16 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
-  'contacts.skip': function contactsSkip(_id) {
+  "contacts.skip": function contactsSkip(_id) {
     check(_id, String);
 
     const email = Meteor.users.findOne(this.userId).emails[0].address;
-    console.log(email)
+    console.log(email);
 
     try {
       return Contacts.update(_id, {
         $set: {
-          owner: '',
+          owner: "",
           userId: this.userId,
         },
       });
@@ -42,7 +42,7 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
-  'contacts.remove': function contactsRemove(contactId) {
+  "contacts.remove": function contactsRemove(contactId) {
     check(contactId, String);
 
     try {
@@ -51,52 +51,53 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
-  'upload.contacts': function uploadContacts(contacts) {
+  "upload.contacts": function uploadContacts(contacts) {
     check(contacts, Array);
 
     console.log(contacts);
 
     for (const idx in contacts) {
-      const newContact = {}
+      const newContact = {};
       const uploadedContact = contacts[idx];
       newContact.createdAt = new Date();
       newContact.cohort = uploadedContact.cohort;
-      newContact.firstName = uploadedContact.FirstName;
-      newContact.lastName = uploadedContact.LastName;
-      newContact.title = uploadedContact.Title;
-      newContact.company = uploadedContact['Company Name'];
-      newContact.city = uploadedContact.ContactCity;
-      newContact.website = uploadedContact.Website;
-      newContact.email = uploadedContact.Email1;
-      newContact.linkedinUrl = uploadedContact.LIProfileUrl;
+      newContact.firstName = uploadedContact.firstName;
+      newContact.lastName = uploadedContact.lastName;
+      newContact.title = uploadedContact.position;
+      newContact.company = uploadedContact.company;
+      newContact.city = uploadedContact.location;
+      newContact.linkedinUrl = uploadedContact.linkedinUrl;
       newContact.template = uploadedContact.template;
       newContact.badLinkedinUrl = false;
-      newContact.linkedInUsername = ""
+      newContact.linkedInUsername = "";
       newContact.userId = uploadedContact.userId;
       newContact.owner = uploadedContact.owner;
       newContact.badFit = false;
       newContact.requestSent = false;
-      newContact.requestSentDate = '';
+      newContact.requestSentDate = "";
       newContact.connection = false;
-      newContact.connectionDate = '';
+      newContact.connectionDate = "";
       newContact.replied = false;
-      newContact.sentiment = '';
+      newContact.sentiment = "";
       newContact.messages = [];
       newContact.championText = uploadedContact.championText;
       newContact.challengerText = uploadedContact.challengerText;
       newContact.firstFollowUpSent = false;
       newContact.firstFollowUpText = uploadedContact.firstFollowUpText;
-      newContact.firstFollowUpDate = '';
+      newContact.firstFollowUpDate = "";
       newContact.secondFollowUpText = uploadedContact.secondFollowUpText;
       newContact.secondFollowUpSent = false;
-      newContact.secondFollowUpDate = '';
+      newContact.secondFollowUpDate = "";
       newContact.sequenceOver = false;
-      newContact.sequenceOverDate = '';
-      newContact.threadUrl = ''
-      console.log('cool')
-      if (Contacts.find({ linkedinUrl: uploadedContact.LIProfileUrl}).fetch().length === 1) {
-        console.log('contact exists')
-        console.log(uploadedContact.LIProfileUrl)
+      newContact.sequenceOverDate = "";
+      newContact.threadUrl = "";
+      console.log("cool");
+      if (
+        Contacts.find({ linkedinUrl: uploadedContact.LIProfileUrl }).fetch()
+          .length === 1
+      ) {
+        console.log("contact exists");
+        console.log(uploadedContact.LIProfileUrl);
       } else {
         Contacts.insert(newContact);
       }
@@ -107,16 +108,19 @@ Meteor.methods({
     check(sentiment, String);
 
     try {
-      return Contacts.update({ linkedInUsername }, {
-        $set: {
-          sentiment,
-        },
-      });
+      return Contacts.update(
+        { linkedInUsername },
+        {
+          $set: {
+            sentiment,
+          },
+        }
+      );
     } catch (exception) {
       handleMethodException(exception);
     }
   },
-  'contacts.update': function contactsUpdate(doc) {
+  "contacts.update": function contactsUpdate(doc) {
     check(doc, {
       _id: String,
       championText: String,
