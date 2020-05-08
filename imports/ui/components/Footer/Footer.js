@@ -25,7 +25,7 @@ const Footer = () => (
           <br />
           <p>
             <a className="add-btn" href="/signup">
-              Chat with us
+              Get Started
             </a>
           </p>
         </Col>

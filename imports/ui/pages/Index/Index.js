@@ -18,7 +18,7 @@ const Index = () => (
             </p>
             <br />
             <p>
-              <a href="/signup">Chat with us</a>
+              <a href="/signup">Get Started</a>
             </p>
           </Col>
         </Row>
