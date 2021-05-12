@@ -43,7 +43,7 @@
     "react-select": "^2.4.4",
     "react-stripe-checkout": "^2.6.3",
     "react-tweet-embed": "^1.2.2",
-    "simpl-schema": "^0.3.2",
+    "simpl-schema": "^1.10.2",
     "typed.js": "^2.0.11"
   },
   "devDependencies": {
